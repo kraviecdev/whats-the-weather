@@ -16,7 +16,7 @@ import useDebounce from "./useDebounce";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsSearchActive,
-  setCoordinates,
+  setSearch,
   toggleSearchActive,
 } from "./searchSlice";
 
@@ -34,11 +34,12 @@ const Search = () => {
   });
 
   const handleOnClick = (autocomplete) => {
-    const initialCoordinates = {
+    const searchValues = {
+      id: autocomplete.id,
       lat: autocomplete.lat,
       lon: autocomplete.lon,
     };
-    dispatch(setCoordinates(initialCoordinates));
+    dispatch(setSearch(searchValues));
     dispatch(toggleSearchActive());
     setQuery("");
   };

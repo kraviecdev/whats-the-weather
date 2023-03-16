@@ -4,21 +4,21 @@ const searchSlice = createSlice({
   name: "search",
   initialState: {
     isSearchActive: false,
-    coordinates: null,
+    searchValues: null,
   },
   reducers: {
     toggleSearchActive: (state) => {
       state.isSearchActive = !state.isSearchActive;
     },
-    setCoordinates: (state, { payload: coordinates }) => {
-      state.coordinates = coordinates;
+    setSearch: (state, { payload: cityInfo }) => {
+      state.searchValues = cityInfo;
     },
   },
 });
 
-export const { toggleSearchActive, setCoordinates } = searchSlice.actions;
+export const { toggleSearchActive, setSearch } = searchSlice.actions;
 
-export const selectCoordinates = (state) => state.search.coordinates;
+export const selectSearchValues = (state) => state.search.searchValues;
 export const selectIsSearchActive = (state) => state.search.isSearchActive;
 
 export default searchSlice.reducer;

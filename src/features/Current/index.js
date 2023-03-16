@@ -14,7 +14,6 @@ import {
   RealTimeWrapper,
 } from "./styled";
 import { getCurrentData } from "./getCurrentData";
-import { nanoid } from "@reduxjs/toolkit";
 import {
   removeCityFromCityList,
   selectCityList,
@@ -22,31 +21,34 @@ import {
   updateCityDataInCityList,
 } from "./currentSlice";
 import {
-  selectCoordinates,
-  setCoordinates,
+  selectSearchValues,
+  setSearch,
   toggleSearchActive,
 } from "../../components/Search/searchSlice";
 
 const Current = () => {
   const dispatch = useDispatch();
-  const coordinates = useSelector(selectCoordinates);
+  const searchValues = useSelector(selectSearchValues);
   const cityList = useSelector(selectCityList);
 
-  const currentData = useQuery(["currentData", { coordinates }], () => {
-    if (!!coordinates) {
-      const stringifyCoordinates = `${coordinates.lat.toString()},${coordinates.lon.toString()}`;
+  const currentData = useQuery(["currentData", { searchValues }], () => {
+    if (!!searchValues) {
+      const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
       return getCurrentData(stringifyCoordinates);
     }
   });
 
   useEffect(() => {
     if (!!currentData.data) {
-      if (cityList.some((city) => city.coordinates === coordinates)) {
-        const city = cityList.find((city) => city.coordinates === coordinates);
+      if (cityList.some((city) => city.id === searchValues.id)) {
+        const city = cityList.find((city) => city.id === searchValues.id);
 
         const updatedCity = {
           id: city.id,
-          coordinates: city.coordinates,
+          coordinates: {
+            lat: searchValues.lat,
+            lon: searchValues.lon,
+          },
           weatherData: currentData.data,
         };
 
@@ -56,11 +58,11 @@ const Current = () => {
             updatedWeatherData: updatedCity,
           })
         );
-        dispatch(setCoordinates(null));
+        dispatch(setSearch(null));
       } else {
         dispatch(
           setCityList({
-            id: nanoid(),
+            id: searchValues.id,
             coordinates: {
               lat: currentData.data.location.lat,
               lon: currentData.data.location.lon,
@@ -68,10 +70,10 @@ const Current = () => {
             weatherData: currentData.data,
           })
         );
-        dispatch(setCoordinates(null));
+        dispatch(setSearch(null));
       }
     }
-  }, [currentData.data, dispatch, coordinates, cityList]);
+  }, [currentData.data, dispatch, searchValues, cityList]);
 
   return (
     <>
@@ -83,7 +85,15 @@ const Current = () => {
             <RealTimeWrapper key={city.id}>
               <InfoTile
                 deleteTile={() => dispatch(removeCityFromCityList(city.id))}
-                refreshData={() => dispatch(setCoordinates(city.coordinates))}
+                refreshData={() =>
+                  dispatch(
+                    setSearch({
+                      id: city.id,
+                      lat: city.coordinates.lat,
+                      lon: city.coordinates.lon,
+                    })
+                  )
+                }
                 icon={city.weatherData.current.condition.icon}
                 city={city.weatherData.location.name}
                 country={city.weatherData.location.country}

@@ -4,7 +4,6 @@ import { Add } from "@styled-icons/fluentui-system-filled/Add";
 export const RealTimeWrapper = styled.div`
   min-height: 300px;
   max-width: 486px;
-  max-height: max-content;
   width: 100%;
   border: 10px solid ${({ theme }) => theme.colors.secondaryColor};
   display: flex;

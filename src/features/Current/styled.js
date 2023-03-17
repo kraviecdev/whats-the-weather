@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Add } from "@styled-icons/fluentui-system-filled/Add";
 
 export const RealTimeWrapper = styled.div`
-  max-width: 486px;
   min-height: 300px;
+  max-width: 486px;
+  max-height: max-content;
   width: 100%;
-  height: 100%;
   border: 10px solid ${({ theme }) => theme.colors.secondaryColor};
   display: flex;
   justify-content: center;

@@ -126,7 +126,6 @@ export const Info = styled.p`
 `;
 
 export const InfoWrapper = styled.div`
-  max-height: 100%;
   display: grid;
   align-items: center;
   margin: 12px 0;

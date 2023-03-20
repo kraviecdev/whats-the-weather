@@ -9,7 +9,7 @@ import {
   SearchInputWrapper,
   SearchWrapper,
 } from "./styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getSearchData } from "./getSearchData";
 import useDebounce from "./useDebounce";
@@ -41,21 +41,27 @@ const Search = () => {
     };
     dispatch(setSearch(searchValues));
     dispatch(toggleSearchActive());
-    setQuery("");
   };
 
+  useEffect(() => {
+    if (!isSearchActive) {
+      setQuery("");
+    }
+  }, [isSearchActive]);
+
   return (
-    <SearchWrapper visible={isSearchActive}>
+    <SearchWrapper>
       <SearchInputWrapper>
-        <SearchIcon />
         <SearchInput
+          visible={isSearchActive}
           onChange={({ target }) => setQuery(target.value)}
           placeholder="Search by city name"
           value={query || ""}
         />
+        <SearchIcon onClick={() => dispatch(toggleSearchActive())} />
       </SearchInputWrapper>
       {searchCity.data && (
-        <SearchDropdownWrapper>
+        <SearchDropdownWrapper visibility={!isSearchActive}>
           <SearchDropdownInfoList>
             {searchCity.data.slice(0, 5).map((autocomplete) => (
               <SearchDropdownInfoItem key={autocomplete.id}>

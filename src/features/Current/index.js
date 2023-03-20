@@ -25,14 +25,17 @@ import {
   setSearch,
   toggleSearchActive,
 } from "../../components/Search/searchSlice";
+import { useLocation } from "react-router";
+import { toCurrentWeather } from "../../core/routes";
 
 const Current = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const searchValues = useSelector(selectSearchValues);
   const cityList = useSelector(selectCityList);
 
   const currentData = useQuery(["currentData", { searchValues }], () => {
-    if (!!searchValues) {
+    if (!!searchValues && location.pathname === toCurrentWeather) {
       const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
       return getCurrentData(stringifyCoordinates);
     }

@@ -21,8 +21,15 @@ export const MainWrapper = styled.article`
   justify-content: center;
   flex-grow: 1;
   padding: 20px;
+  max-width: 486px;
   width: 100%;
   color: ${({ theme }) => theme.colors.secondaryFont};
+  border: 10px solid ${({ theme }) => theme.colors.secondaryColor};
+  transition: 0.7s ease-out;
+
+  &:hover {
+    border: 10px solid ${({ theme }) => theme.colors.secondaryFont};
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     padding: 10px;

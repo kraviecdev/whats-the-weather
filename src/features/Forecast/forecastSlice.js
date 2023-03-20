@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const forecastSlice = createSlice({
   name: "forecast",
   initialState: {
-    city: {},
+    city: null,
   },
   reducers: {
     setCity: (state, { payload: searchResult }) => {

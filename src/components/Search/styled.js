@@ -14,12 +14,12 @@ const translateY = keyframes`
 
 const dropDownSearch = keyframes`
   from {
-    max-height: 0;
-    opacity: 0;
+    max-width: 0;
+    display: none;
   }
   to {
-    max-height: 100%;
-    opacity: 1;
+    max-width: 300px;
+    display: block;
   }
 `;
 
@@ -27,27 +27,25 @@ export const SearchWrapper = styled.div`
   position: relative;
   flex-direction: column;
   display: flex;
-  max-height: 0;
-  opacity: 0;
+  max-width: max-content;
+  justify-self: right;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
     font-size: 12px;
   }
+`;
 
-  ${({ visible }) =>
-    visible &&
-    css`
-      animation: ${dropDownSearch} 0.3s linear;
-      max-height: 100%;
-      opacity: 1;
-    `}
+export const SearchIcon = styled(Search)`
+  width: 20px;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  cursor: pointer;
 `;
 export const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 30px;
-  border: 1px solid ${({ theme }) => theme.colors.mainFont};
+  background: ${({ theme }) => theme.colors.secondaryColor};
 `;
 
 export const SearchInput = styled.input`
@@ -56,11 +54,16 @@ export const SearchInput = styled.input`
   outline: none;
   margin: 0 6px;
   color: ${({ theme }) => theme.colors.mainFont};
-`;
+  max-width: 0;
+  display: none;
 
-export const SearchIcon = styled(Search)`
-  width: 20px;
-  color: ${({ theme }) => theme.colors.mainFont};
+  ${({ visible }) =>
+    visible &&
+    css`
+      animation: ${dropDownSearch} 0.3s linear;
+      max-width: 300px;
+      display: block;
+    `}
 `;
 
 export const SearchDropdownWrapper = styled.div`
@@ -68,6 +71,12 @@ export const SearchDropdownWrapper = styled.div`
   top: 50px;
   z-index: 1;
   width: 100%;
+
+  ${({ visibility }) =>
+    visibility &&
+    css`
+      display: none;
+    `}
 `;
 
 export const SearchDropdownInfoList = styled.ul`

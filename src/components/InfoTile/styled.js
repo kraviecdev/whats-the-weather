@@ -22,6 +22,7 @@ export const MainWrapper = styled.article`
   flex-grow: 1;
   padding: 20px;
   max-width: 486px;
+  min-height: 300px;
   width: 100%;
   color: ${({ theme }) => theme.colors.secondaryFont};
   border: 10px solid ${({ theme }) => theme.colors.secondaryColor};
@@ -32,7 +33,15 @@ export const MainWrapper = styled.article`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
+    max-width: 476px;
+    min-height: 250px;
     padding: 10px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    max-width: 348px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    min-height: 200px;
   }
 `;
 

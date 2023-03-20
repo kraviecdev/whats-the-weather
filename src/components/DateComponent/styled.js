@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 
+export const DateComponentWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+`;
 export const DateWrapper = styled.div`
   display: flex;
   flex-direction: column;

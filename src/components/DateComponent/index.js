@@ -1,4 +1,11 @@
-import { DateInfo, DateTitle, DateWrapper } from "./styled";
+import React from "react";
+import Search from "../Search";
+import {
+  DateComponentWrapper,
+  DateInfo,
+  DateTitle,
+  DateWrapper,
+} from "./styled";
 
 const DateComponent = () => {
   const timestamp = new Date();
@@ -14,11 +21,14 @@ const DateComponent = () => {
   const fullDate = fullDateFormat.split("/").reverse().join("-");
 
   return (
-    <DateWrapper>
-      <DateTitle>Today is</DateTitle>
-      <DateInfo>{day}</DateInfo>
-      <DateInfo additional>{fullDate}</DateInfo>
-    </DateWrapper>
+    <DateComponentWrapper>
+      <DateWrapper>
+        <DateTitle>Today is</DateTitle>
+        <DateInfo>{day}</DateInfo>
+        <DateInfo additional>{fullDate}</DateInfo>
+      </DateWrapper>
+      <Search />
+    </DateComponentWrapper>
   );
 };
 

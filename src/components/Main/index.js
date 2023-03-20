@@ -15,6 +15,10 @@ const Main = styled.main`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     padding: 10px;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    padding: 10px 0;
+  }
 `;
 
 export default Main;

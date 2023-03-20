@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.header`
   gap: 24px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    gap: 12px;
+    gap: 0;
     flex-wrap: wrap;
   }
 `;

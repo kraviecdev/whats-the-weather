@@ -12,13 +12,12 @@ const translateY = keyframes`
   }
 `;
 
-const dropDownSearch = keyframes`
+const visibleSearch = keyframes`
   from {
     max-width: 0;
     display: none;
   }
   to {
-    max-width: 300px;
     display: block;
   }
 `;
@@ -39,6 +38,10 @@ export const SearchIcon = styled(Search)`
   width: 20px;
   color: ${({ theme }) => theme.colors.secondaryFont};
   cursor: pointer;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+    width: 12px;
+  }
 `;
 export const SearchInputWrapper = styled.div`
   display: flex;
@@ -60,9 +63,13 @@ export const SearchInput = styled.input`
   ${({ visible }) =>
     visible &&
     css`
-      animation: ${dropDownSearch} 0.3s linear;
-      max-width: 300px;
+      animation: ${visibleSearch} 0.3s linear;
+      max-width: 180px;
       display: block;
+
+      @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
+        max-width: 120px;
+      }
     `}
 `;
 

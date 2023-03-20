@@ -4,6 +4,7 @@ export const DateComponentWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
+  gap: 10px;
 `;
 export const DateWrapper = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ export const DateTitle = styled.h1`
   margin: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    font-size: 24px;
+    font-size: 20px;
   }
 `;
 

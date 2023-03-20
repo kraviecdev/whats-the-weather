@@ -5,14 +5,7 @@ import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Section from "../../components/Section";
 import DateComponent from "../../components/DateComponent";
-import Search from "../../components/Search";
 import InfoTile from "../../components/InfoTile";
-import {
-  ButtonIcon,
-  RealTimeAddButton,
-  RealTimeInfo,
-  RealTimeWrapper,
-} from "./styled";
 import { getCurrentData } from "./getCurrentData";
 import {
   removeCityFromCityList,
@@ -23,7 +16,6 @@ import {
 import {
   selectSearchValues,
   setSearch,
-  toggleSearchActive,
 } from "../../components/Search/searchSlice";
 import { useLocation } from "react-router";
 import { toCurrentWeather } from "../../core/routes";
@@ -85,38 +77,30 @@ const Current = () => {
         <DateComponent />
         <Section>
           {cityList.map((city) => (
-            <RealTimeWrapper key={city.id}>
-              <InfoTile
-                deleteTile={() => dispatch(removeCityFromCityList(city.id))}
-                refreshData={() =>
-                  dispatch(
-                    setSearch({
-                      id: city.id,
-                      lat: city.coordinates.lat,
-                      lon: city.coordinates.lon,
-                    })
-                  )
-                }
-                icon={city.weatherData.current.condition.icon}
-                city={city.weatherData.location.name}
-                country={city.weatherData.location.country}
-                localT={city.weatherData.current.last_updated}
-                degrees={city.weatherData.current.temp_c}
-                weather={city.weatherData.current.condition.text}
-                realTemp={city.weatherData.current.feelslike_c}
-                humidify={city.weatherData.current.humidity}
-                visibility={city.weatherData.current.vis_km}
-                pressure={city.weatherData.current.pressure_mb}
-              />
-            </RealTimeWrapper>
+            <InfoTile
+              key={city.id}
+              deleteTile={() => dispatch(removeCityFromCityList(city.id))}
+              refreshData={() =>
+                dispatch(
+                  setSearch({
+                    id: city.id,
+                    lat: city.coordinates.lat,
+                    lon: city.coordinates.lon,
+                  })
+                )
+              }
+              icon={city.weatherData.current.condition.icon}
+              city={city.weatherData.location.name}
+              country={city.weatherData.location.country}
+              localT={city.weatherData.current.last_updated}
+              degrees={city.weatherData.current.temp_c}
+              weather={city.weatherData.current.condition.text}
+              realTemp={city.weatherData.current.feelslike_c}
+              humidify={city.weatherData.current.humidity}
+              visibility={city.weatherData.current.vis_km}
+              pressure={city.weatherData.current.pressure_mb}
+            />
           ))}
-          <RealTimeWrapper>
-            <RealTimeAddButton onClick={() => dispatch(toggleSearchActive())}>
-              <ButtonIcon />
-              <RealTimeInfo>Click + to search</RealTimeInfo>
-            </RealTimeAddButton>
-            <Search />
-          </RealTimeWrapper>
         </Section>
       </Main>
     </>

@@ -9,8 +9,8 @@ export const light = {
   breakpoints,
   colors: {
     mainFont: "#050505",
-    secondaryFont: "#093EAE",
-    mainColor: "#86aaf9",
+    secondaryFont: "#E1F3FF",
+    mainColor: "#014D81",
     secondaryColor: "#F5F5F5",
   },
 };

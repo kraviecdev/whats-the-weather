@@ -1,5 +1,5 @@
-import { Sun } from "@styled-icons/bootstrap/Sun";
 import styled, { keyframes } from "styled-components";
+import loader from "./loader.png";
 
 const rotation = keyframes`
   0% {
@@ -9,8 +9,10 @@ const rotation = keyframes`
     transform: rotate(360deg);
   }
 `;
-export const LoaderIcon = styled(Sun)`
+export const LoaderIcon = styled.div`
   width: 22vw;
   height: 22vw;
+  background-size: contain;
+  background-image: url(${loader});
   animation: ${rotation} 5s linear infinite;
 `;

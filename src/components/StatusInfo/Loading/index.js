@@ -1,10 +1,10 @@
-import { StatusParagraph, StatusTitle, StatusWrapper } from "../styled";
+import { StatusWrapper } from "../styled";
 import { LoaderIcon } from "./styled";
+import Heading from "../../Heading";
 
 const Loading = () => (
   <StatusWrapper>
-    <StatusTitle>Checking weather</StatusTitle>
-    <StatusParagraph>Please wait...</StatusParagraph>
+    <Heading />
     <LoaderIcon />
   </StatusWrapper>
 );

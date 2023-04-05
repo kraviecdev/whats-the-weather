@@ -3,31 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 const currentSlice = createSlice({
   name: "current",
   initialState: {
-    cityList: [],
+    cityWeather: null,
+    hourlyWeather: [],
   },
   reducers: {
-    setCityList: (state, { payload: city }) => {
-      state.cityList.push(city);
+    setCityWeather: (state, { payload: city }) => {
+      state.cityWeather = city;
     },
-    removeCityFromCityList: ({ cityList }, { payload: cityId }) => {
-      const cityIndex = cityList.findIndex(({ id }) => id === cityId);
-      cityList.splice(cityIndex, 1);
-    },
-    updateCityDataInCityList: (
-      state,
-      { payload: { cityId, updatedWeatherData } }
-    ) => {
-      const cityIndex = state.cityList.findIndex(({ id }) => id === cityId);
-      state.cityList.splice(cityIndex, 1, updatedWeatherData);
+    setHourlyWeather: (state, { payload: { hourly, index } }) => {
+      state.hourlyWeather = hourly.slice(index, index + 5);
     },
   },
 });
 
-export const { setCityList, removeCityFromCityList, updateCityDataInCityList } =
-  currentSlice.actions;
+export const { setCityWeather, setHourlyWeather } = currentSlice.actions;
 
-const selectCurrentState = (state) => state.current;
-
-export const selectCityList = (state) => selectCurrentState(state).cityList;
+export const selectCityWeather = (state) => state.current.cityWeather;
+export const selectHourlyWeather = (state) => state.current.hourlyWeather;
 
 export default currentSlice.reducer;

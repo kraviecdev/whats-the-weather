@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     color: ${({ theme }) => theme.colors.mainFont};
     background: ${({ theme }) => theme.colors.mainColor};
-    overflow: scroll;
+    overflow: auto;
   }
 
   *, ::after, ::before {

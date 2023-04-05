@@ -1,19 +1,22 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../themes/GlobalStyle";
-import { dark, light } from "../themes/theme";
-import { router } from "./routes";
+import { day } from "../themes/theme";
+import Search from "../components/Search";
+import Heading from "../components/Heading";
+import Main from "../components/Main";
 import { RouterProvider } from "react-router";
-import { useSelector } from "react-redux";
-import { selectIsDarkThemeOn } from "../components/Header/ThemeSwitch/themeSlice";
+import { router } from "./routes";
 
 function App() {
-  const isDarkThemeOn = useSelector(selectIsDarkThemeOn);
-
   return (
-    <ThemeProvider theme={isDarkThemeOn ? dark : light}>
+    <ThemeProvider theme={day}>
       <GlobalStyle />
-      <RouterProvider router={router} />
+      <Main>
+        <Heading mainScreen="true" />
+        <Search />
+        <RouterProvider router={router} />
+      </Main>
     </ThemeProvider>
   );
 }

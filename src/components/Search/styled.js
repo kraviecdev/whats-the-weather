@@ -25,6 +25,12 @@ export const SearchInputWrapper = styled.div`
   padding: 10px;
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.secondaryColor};
+
+  ${({ visible }) =>
+    visible &&
+    css`
+      border-radius: 16px 16px 0 0;
+    `}
 `;
 
 export const SearchInput = styled.input`
@@ -47,7 +53,7 @@ export const SearchDropdownWrapper = styled.div`
   ${({ visible }) =>
     visible &&
     css`
-      border-radius: 16px;
+      border-radius: 0 0 16px 16px;
       padding: 10px;
       position: absolute;
       top: 50px;
@@ -70,8 +76,12 @@ export const SearchDropdownButton = styled.button`
   text-align: left;
   border-top: none;
   border-right: none;
-  border-bottom: 2px solid;
+  border-bottom: 1px solid;
   border-left: none;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
 `;
 
 export const SearchDropdownInfo = styled.span`

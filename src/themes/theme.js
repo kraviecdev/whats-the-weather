@@ -1,21 +1,20 @@
 const breakpoints = {
-  mobileS: 374,
-  mobile: 450,
-  tablet: 768,
-  laptop: 1024,
+  mobile: 451,
+  tablet: 769,
+  laptop: 1025,
 };
 
-export const light = {
+export const day = {
   breakpoints,
   colors: {
-    mainFont: "#050505",
-    secondaryFont: "#E1F3FF",
-    mainColor: "#014D81",
-    secondaryColor: "#F5F5F5",
+    mainFont: "#1E293D",
+    secondaryFont: "#7D879A",
+    mainColor: "#D9DFE3",
+    secondaryColor: "#FFFFFF",
   },
 };
 
-export const dark = {
+export const night = {
   breakpoints,
   colors: {
     mainFont: "#D9D9D9",

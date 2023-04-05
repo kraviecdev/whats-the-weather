@@ -1,108 +1,46 @@
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../../components/Header";
-import Main from "../../components/Main";
-import Section from "../../components/Section";
-import DateComponent from "../../components/DateComponent";
-import InfoTile from "../../components/InfoTile";
-import { getCurrentData } from "./getCurrentData";
+import { getData } from "./getData";
 import {
-  removeCityFromCityList,
-  selectCityList,
-  setCityList,
-  updateCityDataInCityList,
+  selectCityWeather,
+  setCityWeather,
+  setHourlyWeather,
 } from "./currentSlice";
-import {
-  selectSearchValues,
-  setSearch,
-} from "../../components/Search/searchSlice";
-import { useLocation } from "react-router";
-import { toCurrentWeather } from "../../core/routes";
+import { selectSearchValues } from "../../components/Search/searchSlice";
+import WeatherTile from "../../components/WeatherTile";
+import Loading from "../../components/StatusInfo/Loading";
 
 const Current = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
   const searchValues = useSelector(selectSearchValues);
-  const cityList = useSelector(selectCityList);
+  const cityWeather = useSelector(selectCityWeather);
 
-  const currentData = useQuery(["currentData", { searchValues }], () => {
-    if (!!searchValues && location.pathname === toCurrentWeather) {
-      const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
-      return getCurrentData(stringifyCoordinates);
-    }
-  });
-
-  useEffect(() => {
-    if (!!currentData.data) {
-      if (cityList.some((city) => city.id === searchValues.id)) {
-        const city = cityList.find((city) => city.id === searchValues.id);
-
-        const updatedCity = {
-          id: city.id,
-          coordinates: {
-            lat: searchValues.lat,
-            lon: searchValues.lon,
-          },
-          weatherData: currentData.data,
-        };
-
-        dispatch(
-          updateCityDataInCityList({
-            cityId: city.id,
-            updatedWeatherData: updatedCity,
-          })
-        );
-        dispatch(setSearch(null));
-      } else {
-        dispatch(
-          setCityList({
-            id: searchValues.id,
-            coordinates: {
-              lat: currentData.data.location.lat,
-              lon: currentData.data.location.lon,
-            },
-            weatherData: currentData.data,
-          })
-        );
-        dispatch(setSearch(null));
+  const { data, isLoading } = useQuery(
+    ["cityWeather", { searchValues }],
+    () => {
+      if (!!searchValues) {
+        const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
+        return getData(stringifyCoordinates);
       }
     }
-  }, [currentData.data, dispatch, searchValues, cityList]);
+  );
+
+  useEffect(() => {
+    if (!!data) {
+      const hourlyDay = data.forecast.forecastday[0].hour;
+      const currentHour = new Date(
+        data.location.localtime_epoch * 1000
+      ).getHours();
+      dispatch(setCityWeather(data));
+      dispatch(setHourlyWeather({ hourly: hourlyDay, index: currentHour }));
+    }
+  }, [data, dispatch]);
 
   return (
     <>
-      <Header />
-      <Main>
-        <DateComponent />
-        <Section>
-          {cityList.map((city) => (
-            <InfoTile
-              key={city.id}
-              deleteTile={() => dispatch(removeCityFromCityList(city.id))}
-              refreshData={() =>
-                dispatch(
-                  setSearch({
-                    id: city.id,
-                    lat: city.coordinates.lat,
-                    lon: city.coordinates.lon,
-                  })
-                )
-              }
-              icon={city.weatherData.current.condition.icon}
-              city={city.weatherData.location.name}
-              country={city.weatherData.location.country}
-              localT={city.weatherData.current.last_updated}
-              degrees={city.weatherData.current.temp_c}
-              weather={city.weatherData.current.condition.text}
-              realTemp={city.weatherData.current.feelslike_c}
-              humidify={city.weatherData.current.humidity}
-              visibility={city.weatherData.current.vis_km}
-              pressure={city.weatherData.current.pressure_mb}
-            />
-          ))}
-        </Section>
-      </Main>
+      {isLoading && <Loading />}
+      {!!cityWeather && <WeatherTile data={cityWeather} />}
     </>
   );
 };

@@ -9,16 +9,7 @@ const Main = styled.main`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding: 20px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}px) {
-    padding: 10px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    padding: 10px 0;
-  }
+  gap: 30px;
 `;
 
 export default Main;

@@ -45,7 +45,7 @@ const Search = () => {
 
   return (
     <SearchWrapper>
-      <SearchInputWrapper>
+      <SearchInputWrapper visible={isDropdownVisible}>
         <SearchInput
           onChange={({ target }) => setQuery(target.value)}
           placeholder="Search"

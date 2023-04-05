@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { Search } from "@styled-icons/bootstrap/Search";
+import { ReactComponent as Search } from "./search.svg";
 
 const translateY = keyframes`
   0% {
@@ -12,42 +12,18 @@ const translateY = keyframes`
   }
 `;
 
-const visibleSearch = keyframes`
-  from {
-    max-width: 0;
-    display: none;
-  }
-  to {
-    display: block;
-  }
-`;
-
 export const SearchWrapper = styled.div`
   position: relative;
   flex-direction: column;
   display: flex;
-  max-width: max-content;
+  max-width: 100%;
   justify-self: right;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    font-size: 12px;
-  }
-`;
-
-export const SearchIcon = styled(Search)`
-  width: 20px;
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  cursor: pointer;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    width: 12px;
-  }
 `;
 export const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 16px;
   background: ${({ theme }) => theme.colors.secondaryColor};
 `;
 
@@ -56,79 +32,50 @@ export const SearchInput = styled.input`
   background: transparent;
   outline: none;
   margin: 0 6px;
+  width: 100%;
   color: ${({ theme }) => theme.colors.mainFont};
-  max-width: 0;
+`;
+
+export const SearchIcon = styled(Search)`
+  width: 24px;
+  fill: ${({ theme }) => theme.colors.secondaryFont};
+`;
+
+export const SearchDropdownWrapper = styled.div`
   display: none;
 
   ${({ visible }) =>
     visible &&
     css`
-      animation: ${visibleSearch} 0.3s linear;
-      max-width: 180px;
-      display: block;
+      border-radius: 16px;
+      padding: 10px;
+      position: absolute;
+      top: 50px;
+      z-index: 1;
+      width: 100%;
+      background: ${({ theme }) => theme.colors.secondaryColor};
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
 
-      @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-        max-width: 120px;
-      }
+      animation: ${translateY} 0.7s ease-out;
     `}
 `;
 
-export const SearchDropdownWrapper = styled.div`
-  position: absolute;
-  top: 50px;
-  z-index: 1;
-  width: 100%;
-
-  ${({ visibility }) =>
-    visibility &&
-    css`
-      display: none;
-    `}
-`;
-
-export const SearchDropdownInfoList = styled.ul`
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  display: grid;
-  grid-auto-rows: max-content;
-  gap: 6px;
-`;
-
-export const SearchDropdownInfoItem = styled.li`
-  border: 1px solid ${({ theme }) => theme.colors.mainFont};
-  border-radius: 5px;
-
-  animation: ${translateY} 0.7s ease-out;
-`;
-
-export const SearchDropdownInfoButton = styled.button`
+export const SearchDropdownButton = styled.button`
   background: none;
+  padding: 6px;
   cursor: pointer;
   width: 100%;
   text-align: left;
-  border: none;
-  color: ${({ theme }) => theme.colors.mainFont};
-  display: grid;
-  grid-auto-rows: max-content;
-  gap: 2px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 2px solid;
+  border-left: none;
 `;
 
 export const SearchDropdownInfo = styled.span`
-  font-size: 14px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-    font-size: 12px;
-  }
-
-  ${({ cityName }) =>
-    cityName &&
-    css`
-      font-size: 16px;
-      font-weight: 600;
-
-      @media (max-width: ${({ theme }) => theme.breakpoints.mobile}px) {
-        font-size: 14px;
-      }
-    `}
+  color: ${({ theme }) => theme.colors.mainFont};
+  font-weight: 600;
+  line-height: 24px;
 `;

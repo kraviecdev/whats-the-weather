@@ -1,34 +1,33 @@
 import {
   SearchDropdownInfo,
-  SearchDropdownInfoButton,
-  SearchDropdownInfoItem,
-  SearchDropdownInfoList,
+  SearchDropdownButton,
   SearchDropdownWrapper,
   SearchIcon,
   SearchInput,
   SearchInputWrapper,
   SearchWrapper,
 } from "./styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { getSearchData } from "./getSearchData";
 import useDebounce from "./useDebounce";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectIsSearchActive,
+  selectIsDropdownVisible,
   setSearch,
-  toggleSearchActive,
+  toggleDropdownVisibility,
 } from "./searchSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const isSearchActive = useSelector(selectIsSearchActive);
+  const isDropdownVisible = useSelector(selectIsDropdownVisible);
 
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
 
   const searchCity = useQuery(["searchCity", debouncedQuery], () => {
     if (!!query) {
+      dispatch(toggleDropdownVisibility());
       return getSearchData(debouncedQuery);
     }
   });
@@ -40,44 +39,32 @@ const Search = () => {
       lon: autocomplete.lon,
     };
     dispatch(setSearch(searchValues));
-    dispatch(toggleSearchActive());
+    setQuery("");
+    dispatch(toggleDropdownVisibility());
   };
-
-  useEffect(() => {
-    if (!isSearchActive) {
-      setQuery("");
-    }
-  }, [isSearchActive]);
 
   return (
     <SearchWrapper>
       <SearchInputWrapper>
         <SearchInput
-          visible={isSearchActive}
           onChange={({ target }) => setQuery(target.value)}
-          placeholder="Search by city name"
+          placeholder="Search"
           value={query || ""}
         />
-        <SearchIcon onClick={() => dispatch(toggleSearchActive())} />
+        <SearchIcon />
       </SearchInputWrapper>
       {searchCity.data && (
-        <SearchDropdownWrapper visibility={!isSearchActive}>
-          <SearchDropdownInfoList>
-            {searchCity.data.slice(0, 5).map((autocomplete) => (
-              <SearchDropdownInfoItem key={autocomplete.id}>
-                <SearchDropdownInfoButton
-                  onClick={() => handleOnClick(autocomplete)}
-                >
-                  <SearchDropdownInfo cityName>
-                    {autocomplete.name}, {autocomplete.country}
-                  </SearchDropdownInfo>
-                  <SearchDropdownInfo>
-                    lat: {autocomplete.lat} lon: {autocomplete.lon}
-                  </SearchDropdownInfo>
-                </SearchDropdownInfoButton>
-              </SearchDropdownInfoItem>
-            ))}
-          </SearchDropdownInfoList>
+        <SearchDropdownWrapper visible={isDropdownVisible}>
+          {searchCity.data.slice(0, 5).map((autocomplete) => (
+            <SearchDropdownButton
+              key={autocomplete.id}
+              onClick={() => handleOnClick(autocomplete)}
+            >
+              <SearchDropdownInfo>
+                {autocomplete.name}, {autocomplete.country}
+              </SearchDropdownInfo>
+            </SearchDropdownButton>
+          ))}
         </SearchDropdownWrapper>
       )}
     </SearchWrapper>

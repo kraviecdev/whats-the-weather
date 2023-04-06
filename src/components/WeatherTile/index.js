@@ -38,7 +38,10 @@ const WeatherTile = ({ data }) => {
           <SpecialInfo>&#176;C</SpecialInfo>
         </Info>
         <IconInfoWrapper>
-          <Icon />
+          <Icon
+            code={data.current.condition.code}
+            isDay={data.current.is_day}
+          />
           <Info>{data.current.condition.text}</Info>
         </IconInfoWrapper>
       </InfoWrapper>
@@ -58,7 +61,11 @@ const WeatherTile = ({ data }) => {
         {hourlyWeather.map((hourly, index) => (
           <HourlyWrapper key={index}>
             <Info>{hourly.time.split(" ")[1]}</Info>
-            <Icon hourly="true" />
+            <Icon
+              hourly="true"
+              code={hourly.condition.code}
+              isDay={data.current.is_day}
+            />
             <Info hourly="true">{hourly.temp_c}&#176;C</Info>
           </HourlyWrapper>
         ))}

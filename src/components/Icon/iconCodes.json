@@ -1,242 +1,242 @@
 [
   {
     "code": 1000,
-    "day": "sunny.svg",
-    "night": "clear_n.svg"
+    "day": "sunny",
+    "night": "clear_n"
   },
   {
     "code": 1003,
-    "day": "partly_cloudy.svg",
-    "night": "partly_cloudy_n.svg"
+    "day": "partly_cloudy",
+    "night": "partly_cloudy_n"
   },
   {
     "code": 1006,
-    "day": "cloudy.svg",
-    "night": "cloudy.svg"
+    "day": "cloudy",
+    "night": "cloudy"
   },
   {
     "code": 1009,
-    "day": "overcast.svg",
-    "night": "overcast.svg"
+    "day": "overcast",
+    "night": "overcast"
   },
   {
     "code": 1030,
-    "day": "freezing_fog.svg",
-    "night": "freezing_fog.svg"
+    "day": "freezing_fog",
+    "night": "freezing_fog"
   },
   {
     "code": 1063,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1066,
-    "day": "light_sleet_shower.svg",
-    "night": "light_sleet_shower_n.svg"
+    "day": "light_sleet_shower",
+    "night": "light_sleet_shower_n"
   },
   {
     "code": 1069,
-    "day": "light_freezing_rain.svg",
-    "night": "light_freezing_rain_n.svg"
+    "day": "light_freezing_rain",
+    "night": "light_freezing_rain_n"
   },
   {
     "code": 1072,
-    "day": "heavy_showers_of_ice_pellets.svg",
+    "day": "heavy_showers_of_ice_pellets",
     "night": "heavy_showers_of_ice_pellets"
   },
   {
     "code": 1087,
-    "day": "thundery.svg",
-    "night": "thundery.svg"
+    "day": "thundery",
+    "night": "thundery"
   },
   {
     "code": 1114,
-    "day": "light_snow_shower.svg",
-    "night": "light_snow_shower.svg"
+    "day": "light_snow_shower",
+    "night": "light_snow_shower"
   },
   {
     "code": 1117,
-    "day": "heavy_snow_shower.svg",
-    "night": "heavy_snow_shower.svg"
+    "day": "heavy_snow_shower",
+    "night": "heavy_snow_shower"
   },
   {
     "code": 1135,
-    "day": "freezing_fog.svg",
-    "night": "freezing_fog.svg"
+    "day": "freezing_fog",
+    "night": "freezing_fog"
   },
   {
     "code": 1147,
-    "day": "freezing_fog.svg",
-    "night": "freezing_fog.svg"
+    "day": "freezing_fog",
+    "night": "freezing_fog"
   },
   {
     "code": 1150,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1153,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1168,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1171,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1180,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1183,
-    "day": "light_rain.svg",
-    "night": "light_rain_n.svg"
+    "day": "light_rain",
+    "night": "light_rain_n"
   },
   {
     "code": 1186,
-    "day": "light_rain_shower.svg",
-    "night": "light_rain_shower.svg"
+    "day": "light_rain_shower",
+    "night": "light_rain_shower"
   },
   {
     "code": 1189,
-    "day": "light_rain_shower.svg",
-    "night": "light_rain_shower.svg"
+    "day": "light_rain_shower",
+    "night": "light_rain_shower"
   },
   {
     "code": 1192,
-    "day": "heavy_sleet_shower.svg",
-    "night": "heavy_sleet_shower.svg"
+    "day": "heavy_sleet_shower",
+    "night": "heavy_sleet_shower"
   },
   {
     "code": 1195,
-    "day": "heavy_sleet_shower.svg",
-    "night": "heavy_sleet_shower.svg"
+    "day": "heavy_sleet_shower",
+    "night": "heavy_sleet_shower"
   },
   {
     "code": 1198,
-    "day": "light_freezing_rain.svg",
-    "night": "light_freezing_rain_n.svg"
+    "day": "light_freezing_rain",
+    "night": "light_freezing_rain_n"
   },
   {
     "code": 1201,
-    "day": "heavy_sleet.svg",
-    "night": "heavy_sleet.svg"
+    "day": "heavy_sleet",
+    "night": "heavy_sleet"
   },
   {
     "code": 1204,
-    "day": "heavy_sleet_shower.svg",
-    "night": "heavy_sleet_shower.svg"
+    "day": "heavy_sleet_shower",
+    "night": "heavy_sleet_shower"
   },
   {
     "code": 1207,
-    "day": "heavy_sleet.svg",
-    "night": "heavy_sleet.svg"
+    "day": "heavy_sleet",
+    "night": "heavy_sleet"
   },
   {
     "code": 1210,
-    "day": "light_sleet_shower.svg",
-    "night": "light_sleet_shower_n.svg"
+    "day": "light_sleet_shower",
+    "night": "light_sleet_shower_n"
   },
   {
     "code": 1213,
-    "day": "light_sleet_shower.svg",
-    "night": "light_sleet_shower_n.svg"
+    "day": "light_sleet_shower",
+    "night": "light_sleet_shower_n"
   },
   {
     "code": 1216,
-    "day": "light_sleet_shower.svg",
-    "night": "light_sleet_shower_n.svg"
+    "day": "light_sleet_shower",
+    "night": "light_sleet_shower_n"
   },
   {
     "code": 1219,
-    "day": "light_sleet_shower.svg",
-    "night": "light_sleet_shower_n.svg"
+    "day": "light_sleet_shower",
+    "night": "light_sleet_shower_n"
   },
   {
     "code": 1222,
-    "day": "light_snow_shower.svg",
-    "night": "light_snow_shower.svg"
+    "day": "light_snow_shower",
+    "night": "light_snow_shower"
   },
   {
     "code": 1225,
-    "day": "heavy_snow_shower.svg",
-    "night": "heavy_snow_shower.svg"
+    "day": "heavy_snow_shower",
+    "night": "heavy_snow_shower"
   },
   {
     "code": 1237,
-    "day": "heavy_showers_of_ice_pellets.svg",
-    "night": "heavy_showers_of_ice_pellets.svg"
+    "day": "heavy_showers_of_ice_pellets",
+    "night": "heavy_showers_of_ice_pellets"
   },
   {
     "code": 1240,
-    "day": "light_rain_shower.svg",
-    "night": "light_rain_shower.svg"
+    "day": "light_rain_shower",
+    "night": "light_rain_shower"
   },
   {
     "code": 1243,
-    "day": "heavy_sleet_shower.svg",
-    "night": "heavy_sleet_shower.svg"
+    "day": "heavy_sleet_shower",
+    "night": "heavy_sleet_shower"
   },
   {
     "code": 1246,
-    "day": "rain_shower.svg",
-    "night": "rain_shower.svg"
+    "day": "rain_shower",
+    "night": "rain_shower"
   },
   {
     "code": 1249,
-    "day": "light_sleet_shower.svg",
-    "night": "light_sleet_shower_n.svg"
+    "day": "light_sleet_shower",
+    "night": "light_sleet_shower_n"
   },
   {
     "code": 1252,
-    "day": "heavy_sleet_shower.svg",
-    "night": "heavy_sleet_shower.svg"
+    "day": "heavy_sleet_shower",
+    "night": "heavy_sleet_shower"
   },
   {
     "code": 1255,
-    "day": "light_snow_shower.svg",
-    "night": "light_snow_shower.svg"
+    "day": "light_snow_shower",
+    "night": "light_snow_shower"
   },
   {
     "code": 1258,
-    "day": "heavy_snow_shower.svg",
-    "night": "heavy_snow_shower.svg"
+    "day": "heavy_snow_shower",
+    "night": "heavy_snow_shower"
   },
   {
     "code": 1261,
-    "day": "heavy_showers_of_ice_pellets.svg",
-    "night": "heavy_showers_of_ice_pellets.svg"
+    "day": "heavy_showers_of_ice_pellets",
+    "night": "heavy_showers_of_ice_pellets"
   },
   {
     "code": 1264,
-    "day": "heavy_showers_of_ice_pellets.svg",
-    "night": "heavy_showers_of_ice_pellets.svg"
+    "day": "heavy_showers_of_ice_pellets",
+    "night": "heavy_showers_of_ice_pellets"
   },
   {
     "code": 1273,
-    "day": "light_rain_with_thunder.svg",
-    "night": "light_rain_with_thunder.svg"
+    "day": "light_rain_with_thunder",
+    "night": "light_rain_with_thunder"
   },
   {
     "code": 1276,
-    "day": "heavy_rain_with_thunder.svg",
-    "night": "heavy_rain_with_thunder.svg"
+    "day": "heavy_rain_with_thunder",
+    "night": "heavy_rain_with_thunder"
   },
   {
     "code": 1279,
-    "day": "heavy_snow_with_thunder.svg",
-    "night": "heavy_snow_with_thunder.svg"
+    "day": "heavy_snow_with_thunder",
+    "night": "heavy_snow_with_thunder"
   },
   {
     "code": 1282,
-    "day": "heavy_snow_with_thunder.svg",
-    "night": "heavy_snow_with_thunder.svg"
+    "day": "heavy_snow_with_thunder",
+    "night": "heavy_snow_with_thunder"
   }
 ]

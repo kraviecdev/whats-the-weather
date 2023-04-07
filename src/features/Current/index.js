@@ -9,7 +9,7 @@ import {
 } from "./currentSlice";
 import { selectSearchValues } from "../../components/Search/searchSlice";
 import WeatherTile from "../../components/WeatherTile";
-import Loading from "../../components/StatusInfo/Loading";
+import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 
 const Current = () => {
   const dispatch = useDispatch();
@@ -39,8 +39,8 @@ const Current = () => {
 
   return (
     <>
-      {isLoading && <Loading />}
-      {!!cityWeather && <WeatherTile data={cityWeather} />}
+      {isLoading && <LoaderIcon />}
+      {!!cityWeather && !isLoading && <WeatherTile data={cityWeather} />}
     </>
   );
 };

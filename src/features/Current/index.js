@@ -10,6 +10,7 @@ import {
 import { selectSearchValues } from "../../components/Search/searchSlice";
 import WeatherTile from "../../components/WeatherTile";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
+import Section from "../../components/Section";
 
 const Current = () => {
   const dispatch = useDispatch();
@@ -38,10 +39,10 @@ const Current = () => {
   }, [data, dispatch]);
 
   return (
-    <>
+    <Section>
       {isLoading && <LoaderIcon />}
       {!!cityWeather && !isLoading && <WeatherTile data={cityWeather} />}
-    </>
+    </Section>
   );
 };
 

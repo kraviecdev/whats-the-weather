@@ -16,7 +16,7 @@ export const SearchWrapper = styled.div`
   position: relative;
   flex-direction: column;
   display: flex;
-  max-width: 100%;
+  width: 100%;
   justify-self: right;
 `;
 export const SearchInputWrapper = styled.div`

@@ -9,6 +9,8 @@ const Main = styled.main`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
 `;
 

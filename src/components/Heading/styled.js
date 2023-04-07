@@ -2,17 +2,21 @@ import styled, { css } from "styled-components";
 import { ReactComponent as LogoIcon } from "../Heading/logo.svg";
 
 export const HeadingWrapper = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
+  display: none;
 
-  ${({ mainScreen }) =>
-    mainScreen &&
-    css`
-      flex-direction: row;
-      justify-content: center;
-      gap: 12px;
-    `}
+  @media (min-height: 709px) {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    ${({ mainScreen }) =>
+      mainScreen &&
+      css`
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 12px;
+      `}
+  }
 `;
 export const Title = styled.h1`
   text-transform: uppercase;

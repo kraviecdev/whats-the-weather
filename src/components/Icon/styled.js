@@ -27,6 +27,7 @@ import { ReactComponent as Thundery } from "./icons/thundery.svg";
 const shared = css`
   width: 100%;
   height: 100%;
+  fill: ${({ theme }) => theme.colors.mainFont};
 `;
 
 export const IconWrapper = styled.div`

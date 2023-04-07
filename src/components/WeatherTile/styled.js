@@ -5,6 +5,7 @@ export const MainWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: flex-start;
   width: 100%;
   color: ${({ theme }) => theme.colors.mainFont};
 `;

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const IconWrapper = styled.svg`
+export const IconWrapper = styled.img`
   width: 48px;
   height: 48px;
 
@@ -8,6 +8,6 @@ export const IconWrapper = styled.svg`
     hourly &&
     css`
       width: 32px;
-      height: 48px;
+      height: 32px;
     `}
 `;

@@ -6,11 +6,10 @@ const Main = styled.main`
   font-weight: 400;
   letter-spacing: 0.05em;
   max-width: 1024px;
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 30px;
 `;
 

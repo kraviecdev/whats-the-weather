@@ -12,40 +12,44 @@ import { useQuery } from "react-query";
 import { getSearchData } from "./getSearchData";
 import useDebounce from "./useDebounce";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectIsDropdownVisible,
-  setSearch,
-  toggleDropdownVisibility,
-} from "./searchSlice";
+import { selectSearches, setSearch, setSearches } from "./searchSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const isDropdownVisible = useSelector(selectIsDropdownVisible);
+  const savedSearches = useSelector(selectSearches);
 
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
 
   const searchCity = useQuery(["searchCity", debouncedQuery], () => {
     if (!!query) {
-      dispatch(toggleDropdownVisibility());
       return getSearchData(debouncedQuery);
     }
   });
 
   const handleOnClick = (autocomplete) => {
-    const searchValues = {
-      id: autocomplete.id,
-      lat: autocomplete.lat,
-      lon: autocomplete.lon,
-    };
-    dispatch(setSearch(searchValues));
-    setQuery("");
-    dispatch(toggleDropdownVisibility());
+    if (
+      savedSearches.some((savedSearch) => savedSearch.id === autocomplete.id)
+    ) {
+      alert("You already have this city in yor list");
+      setQuery("");
+    } else {
+      const searchValues = {
+        id: autocomplete.id,
+        name: autocomplete.name,
+        lat: autocomplete.lat,
+        lon: autocomplete.lon,
+        fav: false,
+      };
+      dispatch(setSearch(searchValues));
+      dispatch(setSearches(searchValues));
+      setQuery("");
+    }
   };
 
   return (
     <SearchWrapper>
-      <SearchInputWrapper visible={isDropdownVisible}>
+      <SearchInputWrapper visible={!!query}>
         <SearchInput
           onChange={({ target }) => setQuery(target.value)}
           placeholder="Search"
@@ -54,9 +58,10 @@ const Search = () => {
         <SearchIcon />
       </SearchInputWrapper>
       {searchCity.data && (
-        <SearchDropdownWrapper visible={isDropdownVisible}>
+        <SearchDropdownWrapper visible={!!query}>
           {searchCity.data.slice(0, 5).map((autocomplete) => (
             <SearchDropdownButton
+              to={`/weather/${autocomplete.name}`}
               key={autocomplete.id}
               onClick={() => handleOnClick(autocomplete)}
             >

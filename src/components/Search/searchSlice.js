@@ -4,22 +4,21 @@ const searchSlice = createSlice({
   name: "search",
   initialState: {
     searchValues: null,
-    isDropdownVisible: false,
+    searches: [],
   },
   reducers: {
     setSearch: (state, { payload: cityInfo }) => {
       state.searchValues = cityInfo;
     },
-    toggleDropdownVisibility: (state) => {
-      state.isDropdownVisible = !state.isDropdownVisible;
+    setSearches: (state, { payload: searches }) => {
+      state.searches.push(searches);
     },
   },
 });
 
-export const { toggleDropdownVisibility, setSearch } = searchSlice.actions;
+export const { setSearches, setSearch } = searchSlice.actions;
 
 export const selectSearchValues = (state) => state.search.searchValues;
-export const selectIsDropdownVisible = (state) =>
-  state.search.isDropdownVisible;
+export const selectSearches = (state) => state.search.searches;
 
 export default searchSlice.reducer;

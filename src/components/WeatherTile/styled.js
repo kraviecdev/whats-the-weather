@@ -58,10 +58,13 @@ export const InfoWrapper = styled.section`
   ${({ additionalInfo }) =>
     additionalInfo &&
     css`
+      justify-content: space-between;
       gap: 8px;
+      border-right: 1px solid ${({ theme }) => theme.colors.secondaryFont};
 
       &:last-of-type {
-        border-left: 1px solid ${({ theme }) => theme.colors.secondaryFont};
+        justify-self: right;
+        border-right: none;
       }
     `}
 
@@ -69,7 +72,11 @@ export const InfoWrapper = styled.section`
     hourlyWrapper &&
     css`
       display: flex;
-      gap: 0 16px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      gap: 0 34px;
+      padding: 0 0 12px;
+      margin: 12px auto;
     `}
 `;
 export const Info = styled.p`
@@ -81,6 +88,7 @@ export const Info = styled.p`
   ${({ temperature }) =>
     temperature &&
     css`
+      text-align: center;
       font-size: 80px;
       line-height: 96px;
       font-weight: 700;
@@ -107,7 +115,7 @@ export const IconInfoWrapper = styled.div`
 `;
 
 export const HourlyWrapper = styled.div`
-  max-width: max-content;
+  min-width: max-content;
   display: grid;
   justify-items: center;
   gap: 8px;

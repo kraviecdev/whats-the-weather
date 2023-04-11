@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as Search } from "./search.svg";
 
 const translateY = keyframes`
@@ -68,16 +69,14 @@ export const SearchDropdownWrapper = styled.div`
     `}
 `;
 
-export const SearchDropdownButton = styled.button`
-  background: none;
+export const SearchDropdownButton = styled(NavLink)`
   padding: 6px;
   cursor: pointer;
   width: 100%;
   text-align: left;
-  border-top: none;
-  border-right: none;
   border-bottom: 1px solid;
-  border-left: none;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.mainFont};
 
   &:last-of-type {
     border-bottom: none;

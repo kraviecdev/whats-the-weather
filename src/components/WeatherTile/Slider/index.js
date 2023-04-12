@@ -1,15 +1,17 @@
 import { SliderButton, SliderWrapper } from "./styled";
-import { useSelector } from "react-redux";
-import { selectSearches } from "../../Search/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
 
 const Slider = () => {
-  const savedSearches = useSelector(selectSearches);
+  const doneSearches = useSelector(selectDoneSearches);
+  const dispatch = useDispatch();
 
   return (
-    <SliderWrapper multiple={savedSearches.length > 1}>
-      {savedSearches &&
-        savedSearches.map((savedSearch) => (
+    <SliderWrapper multiple={doneSearches.length > 1}>
+      {doneSearches &&
+        doneSearches.map((savedSearch) => (
           <SliderButton
+            onClick={() => dispatch(setSearch(savedSearch))}
             to={`/weather/${savedSearch.name}`}
             key={savedSearch.id}
           />

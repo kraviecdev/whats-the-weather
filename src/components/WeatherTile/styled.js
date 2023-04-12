@@ -77,6 +77,7 @@ export const InfoWrapper = styled.section`
       gap: 0 34px;
       padding: 0 0 12px;
       margin: 12px auto;
+      max-width: 99%;
     `}
 `;
 export const Info = styled.p`

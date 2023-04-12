@@ -7,5 +7,6 @@ export const getData = (coordinates) =>
       q: coordinates,
       aqi: "no",
       alerts: "no",
+      days: 2,
     },
   });

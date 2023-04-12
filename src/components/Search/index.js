@@ -12,11 +12,12 @@ import { useQuery } from "react-query";
 import { getSearchData } from "./getSearchData";
 import useDebounce from "./useDebounce";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSearches, setSearch, setSearches } from "./searchSlice";
+import { selectDoneSearches, setDoneSearches, setSearch } from "./searchSlice";
+import { Navigate } from "react-router-dom";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const savedSearches = useSelector(selectSearches);
+  const doneSearches = useSelector(selectDoneSearches);
 
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
@@ -29,10 +30,10 @@ const Search = () => {
 
   const handleOnClick = (autocomplete) => {
     if (
-      savedSearches.some((savedSearch) => savedSearch.id === autocomplete.id)
+      doneSearches.some((savedSearch) => savedSearch.id === autocomplete.id)
     ) {
-      alert("You already have this city in yor list");
       setQuery("");
+      return <Navigate to={`/weather/${autocomplete.name}`} />;
     } else {
       const searchValues = {
         id: autocomplete.id,
@@ -42,7 +43,7 @@ const Search = () => {
         fav: false,
       };
       dispatch(setSearch(searchValues));
-      dispatch(setSearches(searchValues));
+      dispatch(setDoneSearches(searchValues));
       setQuery("");
     }
   };

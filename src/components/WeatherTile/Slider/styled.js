@@ -19,6 +19,10 @@ export const SliderWrapper = styled.div`
 export const SliderButton = styled(NavLink)`
   width: 8px;
   height: 8px;
-  background: ${({ theme }) => theme.colors.mainFont};
+  background: ${({ theme }) => theme.colors.secondaryFont};
   border-radius: 50%;
+
+  &.active {
+    background: ${({ theme }) => theme.colors.mainFont};
+  }
 `;

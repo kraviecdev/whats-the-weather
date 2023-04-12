@@ -11,7 +11,7 @@ const currentSlice = createSlice({
       state.cityWeather = city;
     },
     setHourlyWeather: (state, { payload: { hourly, index } }) => {
-      state.hourlyWeather = hourly.slice(index, index + 5);
+      state.hourlyWeather = hourly.slice(index);
     },
   },
 });

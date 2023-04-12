@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../themes/GlobalStyle";
 import { day } from "../themes/theme";
-import Search from "../components/Search";
 import Heading from "../components/Heading";
 import Main from "../components/Main";
 import { RouterProvider } from "react-router";
@@ -27,7 +26,6 @@ function App() {
       ) : (
         <Main>
           <Heading mainScreen="true" />
-          <Search />
           <RouterProvider router={router} />
         </Main>
       )}

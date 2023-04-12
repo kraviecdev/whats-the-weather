@@ -9,32 +9,30 @@ import {
   SpecialInfo,
   HourlyWrapper,
 } from "./styled";
-import { useState } from "react";
 import DateComponent from "../Date";
 import { useSelector } from "react-redux";
 import { selectHourlyWeather } from "../../features/Current/currentSlice";
 import Icon from "../Icon";
+import Slider from "./Slider";
 
-const WeatherTile = ({ data }) => {
+const WeatherTile = ({ data, saveInFav, isAddedToFav }) => {
   const hourlyWeather = useSelector(selectHourlyWeather);
-  const [isFavourite, setIsFavourite] = useState(false);
 
   return (
     <MainWrapper>
       <HeadingWrapper>
         <Title>
           {data.location.name}{" "}
-          <FavouriteIcon
-            onClick={() => setIsFavourite(!isFavourite)}
-            added={isFavourite}
-          />
+          <FavouriteIcon onClick={saveInFav} added={isAddedToFav} />
         </Title>
         <DateComponent localtime={data.location.localtime_epoch} />
       </HeadingWrapper>
 
+      <Slider />
+
       <InfoWrapper>
         <Info temperature="true">
-          {data.current.temp_c}
+          {data.current.temp_c.toFixed(0)}
           <SpecialInfo>&#176;C</SpecialInfo>
         </Info>
         <IconInfoWrapper>
@@ -48,7 +46,7 @@ const WeatherTile = ({ data }) => {
 
       <InfoWrapper additionalWrapper="true">
         <InfoWrapper additionalInfo="true">
-          <Info>Feels like: {data.current.feelslike_c}&#176;C</Info>
+          <Info>Feels like: {data.current.feelslike_c.toFixed(0)}&#176;C</Info>
           <Info>Pressure: {data.current.pressure_mb} hPA</Info>
         </InfoWrapper>
         <InfoWrapper additionalInfo="true">
@@ -60,13 +58,13 @@ const WeatherTile = ({ data }) => {
       <InfoWrapper hourlyWrapper="true">
         {hourlyWeather.map((hourly, index) => (
           <HourlyWrapper key={index}>
-            <Info>{hourly.time.split(" ")[1]}</Info>
+            <Info>{index === 0 ? "Now" : hourly.time.split(" ")[1]}</Info>
             <Icon
               hourly="true"
               code={hourly.condition.code}
               isDay={data.current.is_day}
             />
-            <Info hourly="true">{hourly.temp_c}&#176;C</Info>
+            <Info hourly="true">{hourly.temp_c.toFixed(0)}&#176;C</Info>
           </HourlyWrapper>
         ))}
       </InfoWrapper>

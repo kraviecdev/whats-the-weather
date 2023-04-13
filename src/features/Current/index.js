@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "./getData";
+import { getCurrentData } from "../getCurrentData";
 import {
   selectCityWeather,
   setCityWeather,
@@ -17,6 +17,7 @@ import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 import Section from "../../components/Section";
 import Search from "../../components/Search";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
+import { Navigate } from "react-router-dom";
 
 const Current = () => {
   const dispatch = useDispatch();
@@ -31,19 +32,17 @@ const Current = () => {
     () => {
       if (!!searchValues) {
         const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
-        return getData(stringifyCoordinates);
+        return getCurrentData(stringifyCoordinates);
       }
     }
   );
 
   useEffect(() => {
-    if (doneSearches.length > 0) {
+    if (doneSearches.length > 0 && !!searchValues) {
       const searchIndex = doneSearches.findIndex(
         ({ id }) => id === searchValues.id
       );
-      doneSearches[searchIndex].fav === true
-        ? setIsFavourite(true)
-        : setIsFavourite(false);
+      setIsFavourite(doneSearches[searchIndex].fav);
     }
     saveSearchesInLocalStorage(doneSearches);
   }, [doneSearches, searchValues]);
@@ -58,6 +57,10 @@ const Current = () => {
       dispatch(setHourlyWeather({ hourly: hourly, index: currentHour }));
     }
   }, [data, dispatch]);
+
+  if (!searchValues) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>

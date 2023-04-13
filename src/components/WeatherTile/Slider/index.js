@@ -8,19 +8,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
 import { toCurrentPositionWeather } from "../../../core/routes";
 import { useLocation } from "react-router";
+import { selectDisallowed } from "../../../features/CurrentPositionWeather/currentPositionSlice";
 
 const Slider = () => {
   const doneSearches = useSelector(selectDoneSearches);
+  const isDisallowed = useSelector(selectDisallowed);
   const dispatch = useDispatch();
   const location = useLocation();
 
   return (
     <SliderWrapper>
-      <StyledLink currentLocation="true" to={toCurrentPositionWeather}>
-        <LocationIcon
-          activeLocation={location.pathname === toCurrentPositionWeather}
-        />
-      </StyledLink>
+      {!isDisallowed && (
+        <StyledLink currentLocation="true" to={toCurrentPositionWeather}>
+          <LocationIcon
+            activeLocation={location.pathname === toCurrentPositionWeather}
+          />
+        </StyledLink>
+      )}
       {doneSearches &&
         doneSearches.map((savedSearch) => (
           <SliderButton

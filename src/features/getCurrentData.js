@@ -1,6 +1,6 @@
-import { fetchFromApi } from "../../core/fetchFromApi";
+import { fetchFromApi } from "../core/fetchFromApi";
 
-export const getData = (coordinates) =>
+export const getCurrentData = (coordinates) =>
   fetchFromApi({
     path: "/forecast.json",
     params: {

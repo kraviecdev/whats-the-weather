@@ -15,6 +15,11 @@ import { getCurrentData } from "../getCurrentData";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 import WeatherTile from "../../components/WeatherTile";
 import { setHourlyWeather } from "../Current/currentSlice";
+import { Navigate } from "react-router-dom";
+import {
+  selectDoneSearches,
+  setSearch,
+} from "../../components/Search/searchSlice";
 
 const CurrentPositionWeather = () => {
   const isDisallowed = useSelector(selectDisallowed);
@@ -22,6 +27,7 @@ const CurrentPositionWeather = () => {
     selectCurrentPositionCoordinates
   );
   const currentPositionWeather = useSelector(selectCurrentPositionWeather);
+  const doneSearches = useSelector(selectDoneSearches);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,6 +63,11 @@ const CurrentPositionWeather = () => {
       dispatch(setHourlyWeather({ hourly: hourly, index: currentHour }));
     }
   }, [data, dispatch]);
+
+  if (isDisallowed && doneSearches.length > 0) {
+    dispatch(setSearch(doneSearches[0]));
+    return <Navigate to={`/weather/${doneSearches[0].name}`} />;
+  }
 
   return (
     <>

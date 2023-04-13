@@ -1,12 +1,14 @@
 import Section from "../../components/Section";
 import Search from "../../components/Search";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentPositionCoordinates,
   selectCurrentPositionWeather,
+  selectDisallowed,
   setCurrentPositionCoordinates,
   setCurrentPositionWeather,
+  setDisallowed,
 } from "./currentPositionSlice";
 import { useQuery } from "react-query";
 import { getCurrentData } from "../getCurrentData";
@@ -15,13 +17,12 @@ import WeatherTile from "../../components/WeatherTile";
 import { setHourlyWeather } from "../Current/currentSlice";
 
 const CurrentPositionWeather = () => {
+  const isDisallowed = useSelector(selectDisallowed);
   const currentPositionCoordinates = useSelector(
     selectCurrentPositionCoordinates
   );
   const currentPositionWeather = useSelector(selectCurrentPositionWeather);
   const dispatch = useDispatch();
-
-  const [disallow, setDisallow] = useState(false);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -32,9 +33,9 @@ const CurrentPositionWeather = () => {
             lon: position.coords.longitude,
           })
         ),
-      () => setDisallow(true)
+      () => dispatch(setDisallowed())
     );
-  }, [dispatch, setDisallow]);
+  }, [dispatch]);
 
   const { data, isLoading } = useQuery(
     ["currentPositionWeather", { currentPositionCoordinates }],
@@ -65,7 +66,7 @@ const CurrentPositionWeather = () => {
         {!!currentPositionWeather && !isLoading && (
           <WeatherTile data={currentPositionWeather} isAddedToFav={true} />
         )}
-        {disallow && <h3>Enter city name for weather</h3>}
+        {isDisallowed && <h3>Enter city name for weather</h3>}
       </Section>
     </>
   );

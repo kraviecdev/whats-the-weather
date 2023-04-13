@@ -29,8 +29,10 @@ export const Title = styled.h2`
 
 export const FavouriteIcon = styled(Favourite)`
   width: 20px;
+  height: 20px;
   stroke: ${({ theme }) => theme.colors.mainFont};
-  fill: #1e293d4d;
+  fill: ${({ theme }) => theme.colors.mainFont}4d;
+  cursor: pointer;
 
   ${({ added }) =>
     added &&

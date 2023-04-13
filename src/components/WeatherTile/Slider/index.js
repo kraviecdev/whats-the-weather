@@ -1,13 +1,26 @@
-import { SliderButton, SliderWrapper } from "./styled";
+import {
+  LocationIcon,
+  SliderButton,
+  SliderWrapper,
+  StyledLink,
+} from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
+import { toCurrentPositionWeather } from "../../../core/routes";
+import { useLocation } from "react-router";
 
 const Slider = () => {
   const doneSearches = useSelector(selectDoneSearches);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   return (
-    <SliderWrapper multiple={doneSearches.length > 1}>
+    <SliderWrapper>
+      <StyledLink currentLocation="true" to={toCurrentPositionWeather}>
+        <LocationIcon
+          activeLocation={location.pathname === toCurrentPositionWeather}
+        />
+      </StyledLink>
       {doneSearches &&
         doneSearches.map((savedSearch) => (
           <SliderButton

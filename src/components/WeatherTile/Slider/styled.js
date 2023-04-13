@@ -1,19 +1,13 @@
 import styled, { css } from "styled-components";
-import { NavLink } from "react-router-dom";
+import { ReactComponent as Location } from "./location.svg";
+import { Link, NavLink } from "react-router-dom";
 
 export const SliderWrapper = styled.div`
-  visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 24px 0 6px;
   gap: 8px;
-
-  ${({ multiple }) =>
-    multiple &&
-    css`
-      visibility: visible;
-    `}
 `;
 
 export const SliderButton = styled(NavLink)`
@@ -25,4 +19,19 @@ export const SliderButton = styled(NavLink)`
   &.active {
     background: ${({ theme }) => theme.colors.mainFont};
   }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
+export const LocationIcon = styled(Location)`
+  width: 18px;
+  stroke: ${({ theme }) => theme.colors.secondaryFont};
+
+  ${({ activeLocation }) =>
+    activeLocation &&
+    css`
+      stroke: ${({ theme }) => theme.colors.mainFont};
+    `}
 `;

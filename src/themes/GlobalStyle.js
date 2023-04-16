@@ -6,7 +6,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', sans-serif;
     word-wrap: anywhere;
-    min-height: 100vh;
     box-sizing: border-box;
     color: ${({ theme }) => theme.colors.mainFont};
     background: ${({ theme }) => theme.colors.mainColor};
@@ -18,10 +17,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   #root {
-    padding: 20px;
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.laptop}px) {
-      padding: 10px;
-    }
+    padding: 16px;
+    height: 100vh;
   }
 `;

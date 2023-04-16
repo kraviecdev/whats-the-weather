@@ -15,6 +15,7 @@ export const HeadingWrapper = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 0 12px;
 `;
 export const Title = styled.h2`
   font-size: 24px;
@@ -47,7 +48,6 @@ export const InfoWrapper = styled.section`
   align-items: center;
   justify-content: center;
   margin: 12px 0;
-  gap: 18px;
 
   ${({ additionalWrapper }) =>
     additionalWrapper &&
@@ -84,8 +84,7 @@ export const InfoWrapper = styled.section`
 `;
 export const Info = styled.p`
   font-size: 14px;
-  font-weight: 600;
-  line-height: 18px;
+  font-weight: 400;
   margin: 0;
 
   ${({ temperature }) =>
@@ -93,15 +92,20 @@ export const Info = styled.p`
     css`
       text-align: center;
       font-size: 80px;
-      line-height: 96px;
       font-weight: 700;
     `}
 
   ${({ hourly }) =>
     hourly &&
     css`
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
+    `}
+
+  ${({ first }) =>
+    first &&
+    css`
+      font-weight: 900;
     `}
 `;
 

@@ -9,7 +9,6 @@ export const DateInfo = styled.p`
   padding: 8px 4px;
   margin: 0;
   font-size: 16px;
-  font-weight: 700;
   border-top: 1px solid ${({ theme }) => theme.colors.secondaryFont};
 
   ${({ additional }) =>

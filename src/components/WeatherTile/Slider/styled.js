@@ -6,7 +6,6 @@ export const SliderWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 24px 0 6px;
   gap: 8px;
 `;
 

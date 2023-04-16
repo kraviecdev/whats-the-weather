@@ -13,6 +13,15 @@ const translateY = keyframes`
   }
 `;
 
+const borderChange = keyframes`
+ 0% {
+   border-radius: 16px;
+ }
+  100% {
+    border-radius: 16px 16px 0 0;
+  }
+`;
+
 export const SearchWrapper = styled.div`
   position: relative;
   flex-direction: column;
@@ -23,13 +32,15 @@ export const SearchWrapper = styled.div`
 export const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 8px 10px;
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.secondaryColor};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
   ${({ visible }) =>
     visible &&
     css`
+      animation: ${borderChange} 0.7s ease-in;
       border-radius: 16px 16px 0 0;
     `}
 `;
@@ -64,6 +75,7 @@ export const SearchDropdownWrapper = styled.div`
       display: flex;
       flex-direction: column;
       gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
       animation: ${translateY} 0.7s ease-out;
     `}

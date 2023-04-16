@@ -46,25 +46,37 @@ const WeatherTile = ({ data, saveInFav, isAddedToFav }) => {
 
       <InfoWrapper additionalWrapper="true">
         <InfoWrapper additionalInfo="true">
-          <Info>Feels like: {data.current.feelslike_c.toFixed(0)}&#176;C</Info>
-          <Info>Pressure: {data.current.pressure_mb} hPA</Info>
+          <Info>
+            Feels like: <b>{data.current.feelslike_c.toFixed(0)}&#176;C</b>
+          </Info>
+          <Info>
+            Pressure: <b>{data.current.pressure_mb} hPA</b>
+          </Info>
         </InfoWrapper>
         <InfoWrapper additionalInfo="true">
-          <Info>Humidify: {data.current.humidity}%</Info>
-          <Info>Wind speed: {data.current.gust_kph} km/h</Info>
+          <Info>
+            Humidify: <b>{data.current.humidity}%</b>
+          </Info>
+          <Info>
+            Wind speed: <b>{data.current.gust_kph} km/h</b>
+          </Info>
         </InfoWrapper>
       </InfoWrapper>
 
       <InfoWrapper hourlyWrapper="true">
         {hourlyWeather.map((hourly, index) => (
           <HourlyWrapper key={index}>
-            <Info>{index === 0 ? "Now" : hourly.time.split(" ")[1]}</Info>
+            <Info first={index === 0}>
+              {index === 0 ? "Now" : hourly.time.split(" ")[1]}
+            </Info>
             <Icon
               hourly="true"
               code={hourly.condition.code}
               isDay={data.current.is_day}
             />
-            <Info hourly="true">{hourly.temp_c.toFixed(0)}&#176;C</Info>
+            <Info first={index === 0} hourly="true">
+              {hourly.temp_c.toFixed(0)}&#176;C
+            </Info>
           </HourlyWrapper>
         ))}
       </InfoWrapper>

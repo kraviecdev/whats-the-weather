@@ -50,7 +50,7 @@ const Search = () => {
 
   return (
     <SearchWrapper>
-      <SearchInputWrapper visible={!!query}>
+      <SearchInputWrapper visible={!!searchCity.data}>
         <SearchInput
           onChange={({ target }) => setQuery(target.value)}
           placeholder="Search"

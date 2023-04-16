@@ -1,14 +1,14 @@
 import { AdditionalTitleContent, HeadingWrapper, Logo, Title } from "./styled";
 
 const Heading = ({ mainScreen }) => (
-  <HeadingWrapper mainScreen={mainScreen}>
-    <Title mainScreen={mainScreen}>
+  <HeadingWrapper mainscreen={mainScreen}>
+    <Title mainscreen={mainScreen}>
       What's the
-      <AdditionalTitleContent mainScreen={mainScreen}>
+      <AdditionalTitleContent mainscreen={mainScreen}>
         Weather
       </AdditionalTitleContent>
     </Title>
-    <Logo mainScreen={mainScreen} />
+    <Logo mainscreen={mainScreen} />
   </HeadingWrapper>
 );
 

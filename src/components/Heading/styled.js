@@ -9,8 +9,8 @@ export const HeadingWrapper = styled.div`
     flex-direction: column-reverse;
     align-items: center;
 
-    ${({ mainScreen }) =>
-      mainScreen &&
+    ${({ mainscreen }) =>
+      mainscreen &&
       css`
         flex-direction: row;
         justify-content: space-between;
@@ -29,8 +29,8 @@ export const Title = styled.h1`
   font-weight: 900;
   font-size: 24px;
 
-  ${({ mainScreen }) =>
-    mainScreen &&
+  ${({ mainscreen }) =>
+    mainscreen &&
     css`
       font-size: 18px;
     `}
@@ -39,8 +39,8 @@ export const Title = styled.h1`
 export const AdditionalTitleContent = styled.span`
   font-size: 32px;
 
-  ${({ mainScreen }) =>
-    mainScreen &&
+  ${({ mainscreen }) =>
+    mainscreen &&
     css`
       font-size: 24px;
     `}
@@ -50,8 +50,8 @@ export const Logo = styled(LogoIcon)`
   width: 122px;
   fill: ${({ theme }) => theme.colors.mainFont};
 
-  ${({ mainScreen }) =>
-    mainScreen &&
+  ${({ mainscreen }) =>
+    mainscreen &&
     css`
       width: 50px;
       height: 38px;

@@ -19,9 +19,9 @@ const Slider = () => {
   return (
     <SliderWrapper>
       {!isDisallowed && (
-        <StyledLink currentLocation="true" to={toCurrentPositionWeather}>
+        <StyledLink currentlocation="true" to={toCurrentPositionWeather}>
           <LocationIcon
-            activeLocation={location.pathname === toCurrentPositionWeather}
+            activelocation={location.pathname === toCurrentPositionWeather}
           />
         </StyledLink>
       )}

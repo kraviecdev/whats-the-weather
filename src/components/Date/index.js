@@ -13,8 +13,9 @@ const DateComponent = ({ localtime }) => {
 
   return (
     <DateWrapper>
-      <DateInfo>{day},</DateInfo>
-      <DateInfo additional="true">{fullDateFormat}</DateInfo>
+      <DateInfo>
+        <b>{day}</b>, {fullDateFormat}
+      </DateInfo>
     </DateWrapper>
   );
 };

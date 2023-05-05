@@ -5,8 +5,6 @@ export const getCurrentData = (coordinates) =>
     path: "/forecast.json",
     params: {
       q: coordinates,
-      aqi: "no",
-      alerts: "no",
       days: 2,
     },
   });

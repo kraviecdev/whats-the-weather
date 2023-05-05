@@ -20,6 +20,7 @@ import {
   selectDoneSearches,
   setSearch,
 } from "../../components/Search/searchSlice";
+// import ForecastButton from "../../components/ForecastButton";
 
 const CurrentPositionWeather = () => {
   const isDisallowed = useSelector(selectDisallowed);
@@ -75,10 +76,11 @@ const CurrentPositionWeather = () => {
       <Section>
         {isLoading && <LoaderIcon />}
         {!!currentPositionWeather && !isLoading && (
-          <WeatherTile data={currentPositionWeather} isAddedToFav={true} />
+          <WeatherTile data={currentPositionWeather} isAddedToFav="true" />
         )}
         {isDisallowed && <h3>Enter city name for weather</h3>}
       </Section>
+      {/*<ForecastButton />*/}
     </>
   );
 };

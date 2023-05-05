@@ -18,6 +18,7 @@ import Section from "../../components/Section";
 import Search from "../../components/Search";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
 import { Navigate } from "react-router-dom";
+// import ForecastButton from "../../components/ForecastButton";
 
 const Current = () => {
   const dispatch = useDispatch();
@@ -75,6 +76,7 @@ const Current = () => {
           />
         )}
       </Section>
+      {/*<ForecastButton />*/}
     </>
   );
 };

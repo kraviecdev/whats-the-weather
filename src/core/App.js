@@ -25,7 +25,7 @@ function App() {
         <Loading />
       ) : (
         <Main>
-          <Heading mainScreen="true" />
+          <Heading main="true" />
           <RouterProvider router={router} />
         </Main>
       )}

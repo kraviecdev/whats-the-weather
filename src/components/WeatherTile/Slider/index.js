@@ -21,7 +21,7 @@ const Slider = () => {
       {!isDisallowed && (
         <StyledLink currentlocation="true" to={toCurrentPositionWeather}>
           <LocationIcon
-            activelocation={location.pathname === toCurrentPositionWeather}
+            active={location.pathname === toCurrentPositionWeather}
           />
         </StyledLink>
       )}

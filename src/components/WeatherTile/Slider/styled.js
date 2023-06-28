@@ -28,8 +28,8 @@ export const LocationIcon = styled(Location)`
   width: 18px;
   stroke: ${({ theme }) => theme.colors.secondaryFont};
 
-  ${({ activelocation }) =>
-    activelocation &&
+  ${({ active }) =>
+    active &&
     css`
       stroke: ${({ theme }) => theme.colors.mainFont};
     `}

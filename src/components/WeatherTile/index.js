@@ -10,14 +10,10 @@ import {
   HourlyWrapper,
 } from "./styled";
 import DateComponent from "../Date";
-import { useSelector } from "react-redux";
-import { selectHourlyWeather } from "../../features/Current/currentSlice";
 import Icon from "../Icon";
 import Slider from "./Slider";
 
-const WeatherTile = ({ data, saveInFav, isAddedToFav }) => {
-  const hourlyWeather = useSelector(selectHourlyWeather);
-
+const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
   return (
     <MainWrapper>
       <HeadingWrapper>
@@ -64,21 +60,22 @@ const WeatherTile = ({ data, saveInFav, isAddedToFav }) => {
       </InfoWrapper>
 
       <InfoWrapper hourlyWrapper="true">
-        {hourlyWeather.map((hourly, index) => (
-          <HourlyWrapper key={index}>
-            <Info first={index === 0}>
-              {index === 0 ? "Now" : hourly.time.split(" ")[1]}
-            </Info>
-            <Icon
-              hourly="true"
-              code={hourly.condition.code}
-              isDay={data.current.is_day}
-            />
-            <Info first={index === 0} hourly="true">
-              {hourly.temp_c.toFixed(0)}&#176;C
-            </Info>
-          </HourlyWrapper>
-        ))}
+        {hourlyData &&
+          hourlyData.map((hourly, index) => (
+            <HourlyWrapper key={index}>
+              <Info first={index === 0}>
+                {index === 0 ? "Now" : hourly.time.split(" ")[1]}
+              </Info>
+              <Icon
+                hourly="true"
+                code={hourly.condition.code}
+                isDay={data.current.is_day}
+              />
+              <Info first={index === 0} hourly="true">
+                {hourly.temp_c.toFixed(0)}&#176;C
+              </Info>
+            </HourlyWrapper>
+          ))}
       </InfoWrapper>
     </MainWrapper>
   );

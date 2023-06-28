@@ -9,12 +9,25 @@ export const HeadingWrapper = styled.div`
     flex-direction: column-reverse;
     align-items: center;
 
-    ${({ mainscreen }) =>
-      mainscreen &&
+    ${({ main }) =>
+      main &&
       css`
         flex-direction: row;
         justify-content: space-between;
         gap: 12px;
+
+        h1 {
+          font-size: 18px;
+        }
+
+        span {
+          font-size: 24px;
+        }
+
+        svg {
+          width: 50px;
+          height: 38px;
+        }
       `}
   }
 `;
@@ -28,32 +41,13 @@ export const Title = styled.h1`
   justify-content: center;
   font-weight: 900;
   font-size: 24px;
-
-  ${({ mainscreen }) =>
-    mainscreen &&
-    css`
-      font-size: 18px;
-    `}
 `;
 
 export const AdditionalTitleContent = styled.span`
   font-size: 32px;
-
-  ${({ mainscreen }) =>
-    mainscreen &&
-    css`
-      font-size: 24px;
-    `}
 `;
 
 export const Logo = styled(LogoIcon)`
   width: 122px;
   fill: ${({ theme }) => theme.colors.mainFont};
-
-  ${({ mainscreen }) =>
-    mainscreen &&
-    css`
-      width: 50px;
-      height: 38px;
-    `}
 `;

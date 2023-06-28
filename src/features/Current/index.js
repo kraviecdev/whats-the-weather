@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentData } from "../getCurrentData";
 import {
   selectCityWeather,
+  selectHourlyWeather,
   setCityWeather,
   setHourlyWeather,
 } from "./currentSlice";
@@ -25,6 +26,7 @@ const Current = () => {
   const searchValues = useSelector(selectSearchValues);
   const cityWeather = useSelector(selectCityWeather);
   const doneSearches = useSelector(selectDoneSearches);
+  const hourlyWeather = useSelector(selectHourlyWeather);
 
   const [isFavourite, setIsFavourite] = useState(false);
 
@@ -73,6 +75,7 @@ const Current = () => {
             data={cityWeather}
             saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
             isAddedToFav={isFavourite}
+            hourlyData={hourlyWeather}
           />
         )}
       </Section>

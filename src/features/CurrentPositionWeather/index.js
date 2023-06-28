@@ -14,7 +14,7 @@ import { useQuery } from "react-query";
 import { getCurrentData } from "../getCurrentData";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 import WeatherTile from "../../components/WeatherTile";
-import { setHourlyWeather } from "../Current/currentSlice";
+import { selectHourlyWeather, setHourlyWeather } from "../Current/currentSlice";
 import { Navigate } from "react-router-dom";
 import {
   selectDoneSearches,
@@ -29,6 +29,7 @@ const CurrentPositionWeather = () => {
   );
   const currentPositionWeather = useSelector(selectCurrentPositionWeather);
   const doneSearches = useSelector(selectDoneSearches);
+  const hourlyWeather = useSelector(selectHourlyWeather);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -76,7 +77,11 @@ const CurrentPositionWeather = () => {
       <Section>
         {isLoading && <LoaderIcon />}
         {!!currentPositionWeather && !isLoading && (
-          <WeatherTile data={currentPositionWeather} isAddedToFav="true" />
+          <WeatherTile
+            data={currentPositionWeather}
+            isAddedToFav="true"
+            hourlyData={hourlyWeather}
+          />
         )}
         {isDisallowed && <h3>Enter city name for weather</h3>}
       </Section>

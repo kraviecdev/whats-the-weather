@@ -4,7 +4,7 @@ import Heading from "../../Heading";
 
 const Loading = () => (
   <StatusWrapper>
-    <Heading mainscreen="false" />
+    <Heading main="false" />
     <LoaderIcon />
   </StatusWrapper>
 );

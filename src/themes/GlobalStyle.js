@@ -5,10 +5,13 @@ export const GlobalStyle = createGlobalStyle`
   ${normalize}
   body {
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.001em;
     word-wrap: anywhere;
-    box-sizing: border-box;
     color: ${({ theme }) => theme.colors.mainFont};
     background: ${({ theme }) => theme.colors.mainColor};
+    box-sizing: border-box;
     overflow: auto;
   }
 

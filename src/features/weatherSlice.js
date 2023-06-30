@@ -9,8 +9,8 @@ const weatherSlice = createSlice({
     hourlyWeather: [],
   },
   reducers: {
-    setGeoAgreement: (state) => {
-      state.geoAgreement = true;
+    setGeoAgreement: (state, { payload: permission }) => {
+      state.geoAgreement = permission;
     },
     setGeoCoordinates: (state, { payload: coordinates }) => {
       state.geoCoordinates = coordinates;
@@ -18,8 +18,16 @@ const weatherSlice = createSlice({
     setWeatherData: (state, { payload: apiData }) => {
       state.weatherData = apiData;
     },
-    setHourlyWeatherData: (state, { payload: { hourlyData, index } }) => {
-      state.hourlyWeather = hourlyData.slice(index);
+    setHourlyWeatherData: (state) => {
+      const {
+        forecast: {
+          forecastday: [firstDay, secondDay],
+        },
+      } = state.weatherData;
+
+      const hourlyData = [...firstDay.hour, ...secondDay.hour];
+
+      state.hourlyWeather = hourlyData;
     },
   },
 });

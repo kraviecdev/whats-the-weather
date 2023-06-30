@@ -17,13 +17,12 @@ const weatherSlice = createSlice({
     },
     setWeatherData: (state, { payload: apiData }) => {
       state.weatherData = apiData;
-    },
-    setHourlyWeatherData: (state) => {
+
       const {
         forecast: {
           forecastday: [firstDay, secondDay],
         },
-      } = state.weatherData;
+      } = apiData;
 
       const hourlyData = [...firstDay.hour, ...secondDay.hour];
 

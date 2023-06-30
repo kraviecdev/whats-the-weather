@@ -18,7 +18,6 @@ import {
   selectWeatherData,
   setGeoAgreement,
   setGeoCoordinates,
-  setHourlyWeatherData,
   setWeatherData,
 } from "../weatherSlice";
 
@@ -69,10 +68,8 @@ const CurrentPositionWeather = () => {
   useEffect(() => {
     if (!!data) {
       dispatch(setWeatherData(data));
-    } else if (!!weatherData) {
-      dispatch(setHourlyWeatherData());
     }
-  }, [data, weatherData, dispatch]);
+  }, [data, dispatch]);
 
   if (geoAgreement === false && doneSearches.length > 0) {
     dispatch(setSearch(doneSearches[0]));

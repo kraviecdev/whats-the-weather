@@ -16,7 +16,6 @@ import {
 import {
   selectHourlyWeatherData,
   selectWeatherData,
-  setHourlyWeatherData,
   setWeatherData,
 } from "../weatherSlice";
 // import ForecastButton from "../../components/ForecastButton";
@@ -53,10 +52,8 @@ const CurrentWeather = () => {
   useEffect(() => {
     if (!!data) {
       dispatch(setWeatherData(data));
-    } else if (!!weatherData) {
-      dispatch(setHourlyWeatherData());
     }
-  }, [data, weatherData, dispatch]);
+  }, [data, dispatch]);
 
   if (!searchValues) {
     return <Navigate to={"/"} />;

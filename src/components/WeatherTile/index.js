@@ -14,6 +14,8 @@ import Icon from "../Icon";
 import Slider from "./Slider";
 
 const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
+  const currentHour = new Date().getHours();
+
   return (
     <MainWrapper>
       <HeadingWrapper>
@@ -61,7 +63,7 @@ const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
 
       <InfoWrapper hourlyWrapper="true">
         {hourlyData &&
-          hourlyData.map((hourly, index) => (
+          hourlyData.slice(currentHour).map((hourly, index) => (
             <HourlyWrapper key={index}>
               <Info first={index === 0}>
                 {index === 0 ? "Now" : hourly.time.split(" ")[1]}

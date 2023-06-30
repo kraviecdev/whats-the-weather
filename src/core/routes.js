@@ -4,7 +4,7 @@ import {
   Navigate,
   Route,
 } from "react-router-dom";
-import Current from "../features/Current";
+import CurrentWeather from "../features/CurrentWeather";
 import CurrentPositionWeather from "../features/CurrentPositionWeather";
 
 export const toCurrentPositionWeather = "/weather";
@@ -13,7 +13,7 @@ const toCurrentCityWeather = "/weather/:city";
 export const router = createHashRouter(
   createRoutesFromElements(
     <>
-      <Route path={toCurrentCityWeather} element={<Current />} />
+      <Route path={toCurrentCityWeather} element={<CurrentWeather />} />
       <Route
         path={toCurrentPositionWeather}
         element={<CurrentPositionWeather />}

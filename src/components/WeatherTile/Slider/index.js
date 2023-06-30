@@ -6,19 +6,19 @@ import {
 } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
+import { selectGeoAgreement } from "../../../features/weatherSlice";
 import { toCurrentPositionWeather } from "../../../core/routes";
 import { useLocation } from "react-router";
-import { selectDisallowed } from "../../../features/CurrentPositionWeather/currentPositionSlice";
 
 const Slider = () => {
   const doneSearches = useSelector(selectDoneSearches);
-  const isDisallowed = useSelector(selectDisallowed);
+  const geoAgreement = useSelector(selectGeoAgreement);
   const dispatch = useDispatch();
   const location = useLocation();
 
   return (
     <SliderWrapper>
-      {!isDisallowed && (
+      {!geoAgreement && (
         <StyledLink currentlocation="true" to={toCurrentPositionWeather}>
           <LocationIcon
             active={location.pathname === toCurrentPositionWeather}

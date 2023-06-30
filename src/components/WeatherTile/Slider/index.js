@@ -18,7 +18,7 @@ const Slider = () => {
 
   return (
     <SliderWrapper>
-      {!geoAgreement && (
+      {geoAgreement && (
         <StyledLink currentlocation="true" to={toCurrentPositionWeather}>
           <LocationIcon
             active={location.pathname === toCurrentPositionWeather}

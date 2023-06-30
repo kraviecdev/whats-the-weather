@@ -3,12 +3,6 @@ import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentData } from "../getCurrentData";
 import {
-  selectCityWeather,
-  selectHourlyWeather,
-  setCityWeather,
-  setHourlyWeather,
-} from "./currentSlice";
-import {
   selectDoneSearches,
   selectSearchValues,
   toggleSearchToFavourite,
@@ -19,19 +13,25 @@ import Section from "../../components/Section";
 import Search from "../../components/Search";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
 import { Navigate } from "react-router-dom";
+import {
+  selectHourlyWeatherData,
+  selectWeatherData,
+  setHourlyWeatherData,
+  setWeatherData,
+} from "../weatherSlice";
 // import ForecastButton from "../../components/ForecastButton";
 
 const Current = () => {
   const dispatch = useDispatch();
   const searchValues = useSelector(selectSearchValues);
-  const cityWeather = useSelector(selectCityWeather);
   const doneSearches = useSelector(selectDoneSearches);
-  const hourlyWeather = useSelector(selectHourlyWeather);
+  const weatherData = useSelector(selectWeatherData);
+  const hourlyWeatherData = useSelector(selectHourlyWeatherData);
 
   const [isFavourite, setIsFavourite] = useState(false);
 
   const { data, isLoading } = useQuery(
-    ["cityWeather", { searchValues }],
+    ["searchedCityWeather", { searchValues }],
     () => {
       if (!!searchValues) {
         const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
@@ -56,8 +56,8 @@ const Current = () => {
       const nextDay = data.forecast.forecastday[1].hour;
       const hourly = [].concat(currentDay, nextDay);
       const currentHour = data.location.localtime.split(" ")[1].split(":")[0];
-      dispatch(setCityWeather(data));
-      dispatch(setHourlyWeather({ hourly: hourly, index: currentHour }));
+      dispatch(setWeatherData(data));
+      dispatch(setHourlyWeatherData({ hourly: hourly, index: currentHour }));
     }
   }, [data, dispatch]);
 
@@ -70,12 +70,12 @@ const Current = () => {
       <Search />
       <Section>
         {isLoading && <LoaderIcon />}
-        {!!cityWeather && !isLoading && (
+        {!!weatherData && !isLoading && (
           <WeatherTile
-            data={cityWeather}
+            data={weatherData}
             saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
             isAddedToFav={isFavourite}
-            hourlyData={hourlyWeather}
+            hourlyData={hourlyWeatherData}
           />
         )}
       </Section>

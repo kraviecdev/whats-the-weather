@@ -1,55 +1,54 @@
-import Section from "../../components/Section";
-import Search from "../../components/Search";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCurrentPositionCoordinates,
-  selectCurrentPositionWeather,
-  selectDisallowed,
-  setCurrentPositionCoordinates,
-  setCurrentPositionWeather,
-  setDisallowed,
-} from "./currentPositionSlice";
 import { useQuery } from "react-query";
 import { getCurrentData } from "../getCurrentData";
-import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
-import WeatherTile from "../../components/WeatherTile";
-import { selectHourlyWeather, setHourlyWeather } from "../Current/currentSlice";
 import { Navigate } from "react-router-dom";
+import Section from "../../components/Section";
+import Search from "../../components/Search";
+import WeatherTile from "../../components/WeatherTile";
+import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 import {
   selectDoneSearches,
   setSearch,
 } from "../../components/Search/searchSlice";
+import {
+  selectGeoAgreement,
+  selectGeoCoordinates,
+  selectHourlyWeatherData,
+  selectWeatherData,
+  setGeoAgreement,
+  setGeoCoordinates,
+  setHourlyWeatherData,
+  setWeatherData,
+} from "../weatherSlice";
 // import ForecastButton from "../../components/ForecastButton";
 
 const CurrentPositionWeather = () => {
-  const isDisallowed = useSelector(selectDisallowed);
-  const currentPositionCoordinates = useSelector(
-    selectCurrentPositionCoordinates
-  );
-  const currentPositionWeather = useSelector(selectCurrentPositionWeather);
+  const geoAgreement = useSelector(selectGeoAgreement);
+  const geoCoordinates = useSelector(selectGeoCoordinates);
+  const geoWeatherDate = useSelector(selectWeatherData);
+  const geoHourlyWeatherData = useSelector(selectHourlyWeatherData);
   const doneSearches = useSelector(selectDoneSearches);
-  const hourlyWeather = useSelector(selectHourlyWeather);
   const dispatch = useDispatch();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) =>
         dispatch(
-          setCurrentPositionCoordinates({
+          setGeoCoordinates({
             lat: position.coords.latitude,
             lon: position.coords.longitude,
           })
         ),
-      () => dispatch(setDisallowed())
+      () => dispatch(setGeoAgreement())
     );
   }, [dispatch]);
 
   const { data, isLoading } = useQuery(
-    ["currentPositionWeather", { currentPositionCoordinates }],
+    ["currentPositionWeather", { geoCoordinates }],
     () => {
-      if (!!currentPositionCoordinates) {
-        const stringifyCoordinates = `${currentPositionCoordinates.lat.toString()},${currentPositionCoordinates.lon.toString()}`;
+      if (!!geoCoordinates) {
+        const stringifyCoordinates = `${geoCoordinates.lat.toString()},${geoCoordinates.lon.toString()}`;
         return getCurrentData(stringifyCoordinates);
       }
     }
@@ -61,12 +60,12 @@ const CurrentPositionWeather = () => {
       const nextDay = data.forecast.forecastday[1].hour;
       const hourly = [].concat(currentDay, nextDay);
       const currentHour = data.location.localtime.split(" ")[1].split(":")[0];
-      dispatch(setCurrentPositionWeather(data));
-      dispatch(setHourlyWeather({ hourly: hourly, index: currentHour }));
+      dispatch(setWeatherData(data));
+      dispatch(setHourlyWeatherData({ hourly: hourly, index: currentHour }));
     }
   }, [data, dispatch]);
 
-  if (isDisallowed && doneSearches.length > 0) {
+  if (geoAgreement && doneSearches.length > 0) {
     dispatch(setSearch(doneSearches[0]));
     return <Navigate to={`/weather/${doneSearches[0].name}`} />;
   }
@@ -76,14 +75,14 @@ const CurrentPositionWeather = () => {
       <Search />
       <Section>
         {isLoading && <LoaderIcon />}
-        {!!currentPositionWeather && !isLoading && (
+        {!!geoWeatherDate && !isLoading && (
           <WeatherTile
-            data={currentPositionWeather}
+            data={geoWeatherDate}
             isAddedToFav="true"
-            hourlyData={hourlyWeather}
+            hourlyData={geoHourlyWeatherData}
           />
         )}
-        {isDisallowed && <h3>Enter city name for weather</h3>}
+        {geoAgreement && <h3>Enter city name for weather</h3>}
       </Section>
       {/*<ForecastButton />*/}
     </>

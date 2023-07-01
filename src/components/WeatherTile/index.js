@@ -14,7 +14,8 @@ import Icon from "../Icon";
 import Slider from "./Slider";
 
 const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
-  const currentHour = new Date().getHours();
+  const localtime = new Date(data.location.localtime).getTime();
+  const currentHour = new Date(localtime).getHours();
 
   return (
     <MainWrapper>
@@ -23,7 +24,7 @@ const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
           {data.location.name}{" "}
           <FavouriteIcon onClick={saveInFav} added={isAddedToFav} />
         </Title>
-        <DateComponent localtime={data.location.localtime_epoch} />
+        <DateComponent localtime={localtime} />
       </HeadingWrapper>
 
       <Slider />

@@ -64,21 +64,23 @@ const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
 
       <InfoWrapper hourlyWrapper="true">
         {hourlyData &&
-          hourlyData.slice(currentHour, 24).map((hourly, index) => (
-            <HourlyWrapper key={index}>
-              <Info first={index === 0}>
-                {index === 0 ? "Now" : hourly.time.split(" ")[1]}
-              </Info>
-              <Icon
-                hourly="true"
-                code={hourly.condition.code}
-                isDay={data.current.is_day}
-              />
-              <Info first={index === 0} hourly="true">
-                {hourly.temp_c.toFixed(0)}&#176;C
-              </Info>
-            </HourlyWrapper>
-          ))}
+          hourlyData
+            .slice(currentHour, currentHour + 24)
+            .map((hourly, index) => (
+              <HourlyWrapper key={index}>
+                <Info first={index === 0}>
+                  {index === 0 ? "Now" : hourly.time.split(" ")[1]}
+                </Info>
+                <Icon
+                  hourly="true"
+                  code={hourly.condition.code}
+                  isDay={data.current.is_day}
+                />
+                <Info first={index === 0} hourly="true">
+                  {hourly.temp_c.toFixed(0)}&#176;C
+                </Info>
+              </HourlyWrapper>
+            ))}
       </InfoWrapper>
     </MainWrapper>
   );

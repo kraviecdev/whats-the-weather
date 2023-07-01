@@ -64,7 +64,7 @@ const WeatherTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
 
       <InfoWrapper hourlyWrapper="true">
         {hourlyData &&
-          hourlyData.slice(currentHour).map((hourly, index) => (
+          hourlyData.slice(currentHour, 24).map((hourly, index) => (
             <HourlyWrapper key={index}>
               <Info first={index === 0}>
                 {index === 0 ? "Now" : hourly.time.split(" ")[1]}

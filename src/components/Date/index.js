@@ -2,7 +2,7 @@ import React from "react";
 import { DateWrapper, DateInfo } from "./styled";
 
 const DateComponent = ({ localtime }) => {
-  const timestamp = new Date(localtime * 1000);
+  const timestamp = new Date(localtime);
   const day = new Intl.DateTimeFormat("en", { weekday: "long" }).format(
     timestamp
   );

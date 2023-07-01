@@ -31,12 +31,8 @@ const weatherSlice = createSlice({
   },
 });
 
-export const {
-  setGeoAgreement,
-  setGeoCoordinates,
-  setWeatherData,
-  setHourlyWeatherData,
-} = weatherSlice.actions;
+export const { setGeoAgreement, setGeoCoordinates, setWeatherData } =
+  weatherSlice.actions;
 
 export const selectGeoAgreement = (state) => state.weather.geoAgreement;
 export const selectGeoCoordinates = (state) => state.weather.geoCoordinates;

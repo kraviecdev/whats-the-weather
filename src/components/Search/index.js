@@ -32,6 +32,10 @@ const Search = () => {
     if (
       doneSearches.some((savedSearch) => savedSearch.id === autocomplete.id)
     ) {
+      const search = doneSearches.find(
+        (savedSearch) => savedSearch.id === autocomplete.id
+      );
+      dispatch(setSearch(search));
       setQuery("");
       return <Navigate to={`/weather/${autocomplete.name}`} />;
     } else {

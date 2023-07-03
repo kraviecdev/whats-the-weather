@@ -60,7 +60,7 @@ const CurrentPositionWeather = () => {
     () => {
       if (!!geoCoordinates) {
         const stringifyCoordinates = `${geoCoordinates.lat.toString()},${geoCoordinates.lon.toString()}`;
-        return getCurrentData(stringifyCoordinates);
+        return getCurrentData(stringifyCoordinates, 2);
       }
     }
   );

@@ -1,10 +1,10 @@
 import { fetchFromApi } from "../core/fetchFromApi";
 
-export const getCurrentData = (coordinates) =>
+export const getCurrentData = (coordinates, days) =>
   fetchFromApi({
     path: "/forecast.json",
     params: {
       q: coordinates,
-      days: 2,
+      days: days,
     },
   });

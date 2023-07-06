@@ -10,7 +10,7 @@ export const day = {
     mainFont: "#1E293D",
     secondaryFont: "#7D879A",
     mainColor: "#D9DFE3",
-    secondaryColor: "#FFFFFF",
+    secondaryColor: "#F6FBFF",
   },
 };
 

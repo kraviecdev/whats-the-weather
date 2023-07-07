@@ -11,6 +11,7 @@ export const ButtonLink = styled(NavLink)`
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
   color: ${({ theme }) => theme.colors.mainFont};
   background: ${({ theme }) => theme.colors.secondaryColor};
+  max-width: max-content;
 `;
 export const UpIcon = styled(VectorUp)`
   width: 44px;

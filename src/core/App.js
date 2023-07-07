@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../themes/GlobalStyle";
 import { day } from "../themes/theme";
-import Heading from "../components/Heading";
-import Main from "../components/Main";
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
 import Loading from "../components/StatusInfo/Loading";
@@ -21,14 +19,7 @@ function App() {
   return (
     <ThemeProvider theme={day}>
       <GlobalStyle />
-      {loadingScreen ? (
-        <Loading />
-      ) : (
-        <Main>
-          <Heading main="true" />
-          <RouterProvider router={router} />
-        </Main>
-      )}
+      {loadingScreen ? <Loading /> : <RouterProvider router={router} />}
     </ThemeProvider>
   );
 }

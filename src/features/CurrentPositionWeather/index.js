@@ -20,6 +20,7 @@ import {
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
 import WeatherApp from "../index";
+import Button from "../../components/Button";
 
 const CurrentPositionWeather = () => {
   const geoAgreement = useSelector(selectGeoAgreement);
@@ -81,11 +82,14 @@ const CurrentPositionWeather = () => {
       {isLoading && <LoaderIcon />}
       {isError && <Error />}
       {!!weatherData && !isLoading && (
-        <WeatherTile
-          data={weatherData}
-          hourlyData={hourlyWeatherData}
-          isAddedToFav={true}
-        />
+        <>
+          <WeatherTile
+            data={weatherData}
+            hourlyData={hourlyWeatherData}
+            isAddedToFav={true}
+          />
+          <Button name={"14-day forecast"} forecast={true} />
+        </>
       )}
       {geoAgreement === false && <h3>Enter city name for weather</h3>}
     </WeatherApp>

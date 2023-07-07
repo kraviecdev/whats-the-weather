@@ -18,6 +18,7 @@ import {
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
 import WeatherApp from "../index";
+import Button from "../../components/Button";
 // import Button from "../../components/Button";
 
 const CurrentWeather = () => {
@@ -64,12 +65,15 @@ const CurrentWeather = () => {
       {isLoading && <LoaderIcon />}
       {isError && <Error />}
       {!!weatherData && !isLoading && (
-        <WeatherTile
-          data={weatherData}
-          saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
-          isAddedToFav={isFavourite}
-          hourlyData={hourlyWeatherData}
-        />
+        <>
+          <WeatherTile
+            data={weatherData}
+            saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
+            isAddedToFav={isFavourite}
+            hourlyData={hourlyWeatherData}
+          />
+          <Button name={"14-day forecast"} forecast={true} />
+        </>
       )}
     </WeatherApp>
   );

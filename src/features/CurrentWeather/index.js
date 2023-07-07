@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { getCurrentData } from "../getCurrentData";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
-import Section from "../../components/Section";
-import Search from "../../components/Search";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 import WeatherTile from "../../components/WeatherTile";
 import {
@@ -19,6 +17,7 @@ import {
   setWeatherData,
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
+import WeatherApp from "../index";
 // import Button from "../../components/Button";
 
 const CurrentWeather = () => {
@@ -61,22 +60,18 @@ const CurrentWeather = () => {
   }
 
   return (
-    <>
-      <Search />
-      <Section>
-        {isLoading && <LoaderIcon />}
-        {isError && <Error />}
-        {!!weatherData && !isLoading && (
-          <WeatherTile
-            data={weatherData}
-            saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
-            isAddedToFav={isFavourite}
-            hourlyData={hourlyWeatherData}
-          />
-        )}
-      </Section>
-      {/*<Button />*/}
-    </>
+    <WeatherApp>
+      {isLoading && <LoaderIcon />}
+      {isError && <Error />}
+      {!!weatherData && !isLoading && (
+        <WeatherTile
+          data={weatherData}
+          saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
+          isAddedToFav={isFavourite}
+          hourlyData={hourlyWeatherData}
+        />
+      )}
+    </WeatherApp>
   );
 };
 

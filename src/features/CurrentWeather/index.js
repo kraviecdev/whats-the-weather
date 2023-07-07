@@ -18,7 +18,8 @@ import {
   selectWeatherData,
   setWeatherData,
 } from "../weatherSlice";
-// import ForecastButton from "../../components/ForecastButton";
+import Error from "../../components/StatusInfo/Error";
+// import Button from "../../components/Button";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const CurrentWeather = () => {
 
   const [isFavourite, setIsFavourite] = useState(false);
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     ["searchedCityWeather", { searchValues }],
     () => {
       if (!!searchValues) {
@@ -64,6 +65,7 @@ const CurrentWeather = () => {
       <Search />
       <Section>
         {isLoading && <LoaderIcon />}
+        {isError && <Error />}
         {!!weatherData && !isLoading && (
           <WeatherTile
             data={weatherData}
@@ -73,7 +75,7 @@ const CurrentWeather = () => {
           />
         )}
       </Section>
-      {/*<ForecastButton />*/}
+      {/*<Button />*/}
     </>
   );
 };

@@ -20,6 +20,7 @@ import {
   setGeoCoordinates,
   setWeatherData,
 } from "../weatherSlice";
+import Error from "../../components/StatusInfo/Error";
 
 const CurrentPositionWeather = () => {
   const geoAgreement = useSelector(selectGeoAgreement);
@@ -55,7 +56,7 @@ const CurrentPositionWeather = () => {
     }
   }, [geoAgreement, dispatch]);
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, isError } = useQuery(
     ["currentPositionWeather", { geoCoordinates }],
     () => {
       if (!!geoCoordinates) {
@@ -71,7 +72,7 @@ const CurrentPositionWeather = () => {
     }
   }, [data, dispatch]);
 
-  if (geoAgreement === false && doneSearches.length > 0) {
+  if (doneSearches.length > 0 && geoAgreement === false) {
     dispatch(setSearch(doneSearches[0]));
     return <Navigate to={`/weather/${doneSearches[0].name}`} />;
   }
@@ -81,6 +82,7 @@ const CurrentPositionWeather = () => {
       <Search />
       <Section>
         {isLoading && <LoaderIcon />}
+        {isError && <Error />}
         {!!weatherData && !isLoading && (
           <WeatherTile
             data={weatherData}

@@ -11,6 +11,7 @@ export const day = {
     secondaryFont: "#7D879A",
     mainColor: "#D9DFE3",
     secondaryColor: "#F6FBFF",
+    errorColor: "#a33c3c",
   },
 };
 

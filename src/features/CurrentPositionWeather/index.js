@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { getCurrentData } from "../getCurrentData";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
-import WeatherTile from "../../components/WeatherTile";
+import CurrentTile from "../../components/WeatherTile/CurrentTile";
 import {
   selectDoneSearches,
   setSearch,
@@ -78,19 +78,19 @@ const CurrentPositionWeather = () => {
   }
 
   return (
-    <WeatherApp current={true}>
+    <WeatherApp current="true">
       {isLoading && <LoaderIcon />}
       {isError && <Error />}
       {!!weatherData && !isLoading && (
         <>
-          <WeatherTile
+          <CurrentTile
             data={weatherData}
             hourlyData={hourlyWeatherData}
-            isAddedToFav={true}
+            isAddedToFav="true"
           />
           <Button
             name={"14-day forecast"}
-            forecast={true}
+            forecast="true"
             path={`/forecast/${weatherData.location.name}`}
           />
         </>

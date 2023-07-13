@@ -8,7 +8,7 @@ const WeatherApp = ({ children, current }) => {
     <Main>
       {current && (
         <>
-          <Heading main={true} />
+          <Heading main="true" />
           <Search />
         </>
       )}

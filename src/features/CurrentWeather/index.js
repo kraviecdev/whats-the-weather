@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { getCurrentData } from "../getCurrentData";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
-import WeatherTile from "../../components/WeatherTile";
+import CurrentTile from "../../components/WeatherTile/CurrentTile";
 import {
   selectDoneSearches,
   selectSearchValues,
@@ -61,12 +61,12 @@ const CurrentWeather = () => {
   }
 
   return (
-    <WeatherApp current={true}>
+    <WeatherApp current="true">
       {isLoading && <LoaderIcon />}
       {isError && <Error />}
       {!!weatherData && !isLoading && (
         <>
-          <WeatherTile
+          <CurrentTile
             data={weatherData}
             saveInFav={() => dispatch(toggleSearchToFavourite(searchValues.id))}
             isAddedToFav={isFavourite}
@@ -74,7 +74,7 @@ const CurrentWeather = () => {
           />
           <Button
             name={"14-day forecast"}
-            forecast={true}
+            forecast="true"
             path={`/forecast/${weatherData.location.name}`}
           />
         </>

@@ -35,7 +35,7 @@ const CurrentWeather = () => {
     () => {
       if (!!searchValues) {
         const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
-        return getCurrentData(stringifyCoordinates, 2);
+        return getCurrentData(stringifyCoordinates, 3);
       }
     }
   );

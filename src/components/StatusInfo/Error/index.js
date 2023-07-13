@@ -7,10 +7,12 @@ const Error = () => {
     <StatusWrapper>
       <ErrorIcon />
       <ErrorInfoWrapper>
-        <ErrorInfo contrast="true">Error!</ErrorInfo>
-        <ErrorInfo>Something went wrong. Try again later.</ErrorInfo>
+        <div>
+          <ErrorInfo contrast="true">Error!</ErrorInfo>
+          <ErrorInfo>Something went wrong. Try again later.</ErrorInfo>
+        </div>
+        <Button name={"Try again"} path={"/"} />
       </ErrorInfoWrapper>
-      <Button name={"Try again"} path={"/"} />
     </StatusWrapper>
   );
 };

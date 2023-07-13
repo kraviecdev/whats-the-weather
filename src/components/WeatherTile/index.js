@@ -24,7 +24,7 @@ const WeatherTile = ({
           <FavouriteIcon onClick={favOnClick} added={savedInFav} />
         </Title>
         {localtime && <DateComponent localtime={localtime} />}
-        {forecast && <Info>14-day forecast</Info>}
+        {forecast && <Info>3-day forecast</Info>}
       </HeadingWrapper>
       {children}
     </MainWrapper>

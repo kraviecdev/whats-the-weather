@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const weatherSlice = createSlice({
   name: "weather",
   initialState: {
-    geoAgreement: false,
+    geoAgreement: null,
     geoCoordinates: null,
     weatherData: null,
     hourlyWeather: [],
+    forecastData: [],
   },
   reducers: {
     setGeoAgreement: (state, { payload: permission }) => {
@@ -20,13 +21,19 @@ const weatherSlice = createSlice({
 
       const {
         forecast: {
-          forecastday: [firstDay, secondDay],
+          forecastday: [firstDay, secondDay, thirdDay],
         },
       } = apiData;
 
-      const hourlyData = [...firstDay.hour, ...secondDay.hour];
+      const hourlyData = [
+        ...firstDay.hour,
+        ...secondDay.hour,
+        ...thirdDay.hour,
+      ];
 
       state.hourlyWeather = hourlyData;
+
+      state.forecastData = apiData.forecast.forecastday;
     },
   },
 });

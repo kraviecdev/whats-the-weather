@@ -88,7 +88,11 @@ const CurrentPositionWeather = () => {
             hourlyData={hourlyWeatherData}
             isAddedToFav={true}
           />
-          <Button name={"14-day forecast"} forecast={true} />
+          <Button
+            name={"14-day forecast"}
+            forecast={true}
+            path={`/forecast/${weatherData.location.name}`}
+          />
         </>
       )}
       {geoAgreement === false && <h3>Enter city name for weather</h3>}

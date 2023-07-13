@@ -72,7 +72,11 @@ const CurrentWeather = () => {
             isAddedToFav={isFavourite}
             hourlyData={hourlyWeatherData}
           />
-          <Button name={"14-day forecast"} forecast={true} />
+          <Button
+            name={"14-day forecast"}
+            forecast={true}
+            path={`/forecast/${weatherData.location.name}`}
+          />
         </>
       )}
     </WeatherApp>

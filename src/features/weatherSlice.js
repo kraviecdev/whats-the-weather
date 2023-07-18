@@ -45,5 +45,6 @@ export const selectGeoAgreement = (state) => state.weather.geoAgreement;
 export const selectGeoCoordinates = (state) => state.weather.geoCoordinates;
 export const selectWeatherData = (state) => state.weather.weatherData;
 export const selectHourlyWeatherData = (state) => state.weather.hourlyWeather;
+export const selectForecastData = (state) => state.weather.forecastData;
 
 export default weatherSlice.reducer;

@@ -24,11 +24,9 @@ export const ButtonLink = styled(NavLink)`
     forecast &&
     css`
       font-weight: 400;
-      position: absolute;
       padding: 16px;
       border-radius: 0;
-      bottom: 0;
-      width: 100%;
+      width: 100vw;
       box-shadow: 0px -4px 20px 0px rgba(0, 0, 0, 0.25);
       background: linear-gradient(
         180deg,
@@ -38,6 +36,15 @@ export const ButtonLink = styled(NavLink)`
 
       svg {
         display: block;
+      }
+    `}
+
+  ${({ forecastBack }) =>
+    forecastBack &&
+    css`
+      svg {
+        display: block;
+        transform: rotate(180deg);
       }
     `}
 `;

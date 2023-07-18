@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   #root {
-    padding: 16px;
     height: 100vh;
   }
 `;

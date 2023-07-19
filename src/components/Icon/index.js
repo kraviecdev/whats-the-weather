@@ -26,7 +26,7 @@ import {
   SunnyIcon,
   ThunderyIcon,
 } from "./styled";
-const Icon = ({ code, isDay, hourly }) => {
+const Icon = ({ code, isDay, hourly, forecast }) => {
   const iconObject = iconCodes.find((icon) => icon.code === code);
   const icon = isDay === 1 ? iconObject.day : iconObject.night;
 
@@ -59,7 +59,7 @@ const Icon = ({ code, isDay, hourly }) => {
     }[icon]);
 
   return (
-    <IconWrapper hourly={hourly}>
+    <IconWrapper hourly={hourly} forecast={forecast}>
       <WeatherIcon />
     </IconWrapper>
   );

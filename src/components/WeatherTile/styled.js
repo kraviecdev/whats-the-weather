@@ -1,5 +1,8 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as Favourite } from "./favourite.svg";
+import { ReactComponent as Humidify } from "./humidify.svg";
+import { ReactComponent as Wind } from "./wind.svg";
+import { ReactComponent as Pressure } from "./pressure.svg";
 
 export const MainWrapper = styled.article`
   display: flex;
@@ -41,6 +44,24 @@ export const FavouriteIcon = styled(Favourite)`
       fill: #e5b91a;
       stroke: #ffb800;
     `}
+`;
+
+export const HumidifyIcon = styled(Humidify)`
+  width: 12px;
+  height: 12px;
+  fill: ${({ theme }) => theme.colors.mainFont};
+`;
+
+export const WindIcon = styled(Wind)`
+  width: 12px;
+  height: 12px;
+  fill: ${({ theme }) => theme.colors.mainFont};
+`;
+
+export const PressureIcon = styled(Pressure)`
+  width: 12px;
+  height: 12px;
+  fill: ${({ theme }) => theme.colors.mainFont};
 `;
 
 export const InfoWrapper = styled.section`
@@ -117,8 +138,28 @@ export const SpecialInfo = styled.span`
 export const IconInfoWrapper = styled.div`
   display: grid;
   justify-items: center;
-  align-items: center;
+  align-content: center;
   gap: 8px;
+
+  ${({ forecast }) =>
+    forecast &&
+    css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+
+      span {
+        font-size: 12px;
+        font-weight: 700;
+        align-self: flex-start;
+      }
+      p {
+        font-size: 24px;
+        font-weight: 700;
+        padding: 0 0 0 8px;
+      }
+    `}
 `;
 
 export const HourlyWrapper = styled.div`

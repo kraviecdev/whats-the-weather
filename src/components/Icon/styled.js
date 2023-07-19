@@ -40,6 +40,13 @@ export const IconWrapper = styled.div`
       width: 32px;
       height: 32px;
     `}
+
+  ${({ forecast }) =>
+    forecast &&
+    css`
+      width: 24px;
+      height: 24px;
+    `}
 `;
 export const ClearNightIcon = styled(ClearNight)`
   ${shared}

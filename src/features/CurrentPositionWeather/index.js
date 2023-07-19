@@ -89,7 +89,7 @@ const CurrentPositionWeather = () => {
             isAddedToFav="true"
           />
           <Button
-            name={"14-day forecast"}
+            name={"Forecast"}
             forecast="true"
             path={`/forecast/${weatherData.location.name}`}
           />

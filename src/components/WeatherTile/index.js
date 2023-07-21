@@ -1,11 +1,5 @@
-import {
-  FavouriteIcon,
-  HeadingWrapper,
-  Info,
-  MainWrapper,
-  Title,
-} from "./styled";
-import DateComponent from "../Date";
+import { MainWrapper } from "./styled";
+import WeatherTileHeading from "./WeatherTileHeading";
 
 const WeatherTile = ({
   title,
@@ -16,16 +10,14 @@ const WeatherTile = ({
   children,
 }) => {
   return (
-    <MainWrapper>
-      <HeadingWrapper>
-        <Title>
-          {title}
-          {""}
-          <FavouriteIcon onClick={favOnClick} added={savedInFav} />
-        </Title>
-        {localtime && <DateComponent localtime={localtime} />}
-        {forecast && <Info>3-day forecast</Info>}
-      </HeadingWrapper>
+    <MainWrapper forecast={forecast}>
+      <WeatherTileHeading
+        title={title}
+        favOnClick={favOnClick}
+        savedInFav={savedInFav}
+        localtime={localtime}
+        forecast={forecast}
+      />
       {children}
     </MainWrapper>
   );

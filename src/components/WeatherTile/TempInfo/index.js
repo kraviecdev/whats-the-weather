@@ -12,7 +12,7 @@ const TempInfo = ({
   isDay,
 }) => {
   return (
-    <WeatherTileWrapper forecastInfoWrapper={secondary}>
+    <WeatherTileWrapper noGap={main} forecastInfoWrapper={secondary}>
       <Info biggestCenter={main} medium={secondary}>
         {temperature}
         {""}

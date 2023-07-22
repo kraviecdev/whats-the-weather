@@ -2,7 +2,7 @@ import Slider from "../Slider";
 import WeatherTile from "../index";
 import TempInfo from "../TempInfo";
 import ConditionsInfo from "../ConditionsInfo";
-import { WeatherTileSection } from "../WeatherTileSection";
+import { WeatherTileSection } from "../styled";
 import HourlyInfo from "../HourlyInfo";
 
 const CurrentTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {

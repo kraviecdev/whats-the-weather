@@ -1,5 +1,4 @@
-import { WeatherTileWrapper } from "../WeatherTileWrapper";
-import { Info } from "../styled";
+import { Info, WeatherTileWrapper } from "../styled";
 import { TempInfoSpecial } from "./styled";
 import Icon from "../Icon";
 

@@ -1,6 +1,4 @@
-import { WeatherTileSection } from "../WeatherTileSection";
-import { WeatherTileWrapper } from "../WeatherTileWrapper";
-import { Info } from "../styled";
+import { Info, WeatherTileWrapper, WeatherTileSection } from "../styled";
 import { HumidityIcon, PressureIcon, WindIcon } from "./styled";
 
 const ConditionsInfo = ({ basic, secondary, children, data }) => {

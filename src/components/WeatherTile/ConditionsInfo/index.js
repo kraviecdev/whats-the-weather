@@ -3,15 +3,7 @@ import { WeatherTileWrapper } from "../WeatherTileWrapper";
 import { Info } from "../styled";
 import { HumidityIcon, PressureIcon, WindIcon } from "./styled";
 
-const ConditionsInfo = ({
-  basic,
-  secondary,
-  children,
-  feelslike,
-  pressure,
-  humidity,
-  wind,
-}) => {
+const ConditionsInfo = ({ basic, secondary, children, data }) => {
   {
     return (
       <>
@@ -19,19 +11,19 @@ const ConditionsInfo = ({
           <WeatherTileSection additionalContentSection borderBottom>
             <WeatherTileWrapper additionalInfoWrapper>
               <Info>
-                Feels like: <b>{feelslike}&#176;C</b>
+                Feels like: <b>{data.current.feelslike_c.toFixed(0)}&#176;C</b>
               </Info>
               <Info>
-                Pressure: <b>{pressure} hPA</b>
+                Pressure: <b>{data.current.pressure_mb} hPA</b>
               </Info>
             </WeatherTileWrapper>
 
             <WeatherTileWrapper additionalInfoWrapper>
               <Info>
-                Humidity: <b>{humidity}%</b>
+                Humidity: <b>{data.current.humidity}%</b>
               </Info>
               <Info>
-                Wind speed: <b>{wind} km/h</b>
+                Wind speed: <b>{data.current.gust_kph} km/h</b>
               </Info>
             </WeatherTileWrapper>
           </WeatherTileSection>
@@ -44,13 +36,13 @@ const ConditionsInfo = ({
 
             <WeatherTileWrapper additionalInfoWrapper>
               <Info>
-                <PressureIcon /> {pressure} hPA
+                <PressureIcon /> {data.current.pressure_mb} hPA
               </Info>
               <Info>
-                <HumidityIcon /> {humidity}%
+                <HumidityIcon /> {data.current.humidity}%
               </Info>
               <Info>
-                <WindIcon /> {wind} km/h
+                <WindIcon /> {data.current.gust_kph} km/h
               </Info>
             </WeatherTileWrapper>
           </WeatherTileSection>

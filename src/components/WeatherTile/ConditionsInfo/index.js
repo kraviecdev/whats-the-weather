@@ -1,7 +1,15 @@
 import { Info, WeatherTileWrapper, WeatherTileSection } from "../styled";
 import { HumidityIcon, PressureIcon, WindIcon } from "./styled";
 
-const ConditionsInfo = ({ basic, secondary, children, data }) => {
+const ConditionsInfo = ({
+  basic,
+  secondary,
+  children,
+  feelsLike,
+  pressure,
+  humidity,
+  wind,
+}) => {
   {
     return (
       <>
@@ -9,38 +17,38 @@ const ConditionsInfo = ({ basic, secondary, children, data }) => {
           <WeatherTileSection additionalContentSection borderBottom>
             <WeatherTileWrapper additionalInfoWrapper>
               <Info>
-                Feels like: <b>{data.current.feelslike_c.toFixed(0)}&#176;C</b>
+                Feels like: <b>{feelsLike}&#176;C</b>
               </Info>
               <Info>
-                Pressure: <b>{data.current.pressure_mb} hPA</b>
+                Pressure: <b>{pressure} hPA</b>
               </Info>
             </WeatherTileWrapper>
 
             <WeatherTileWrapper additionalInfoWrapper>
               <Info>
-                Humidity: <b>{data.current.humidity}%</b>
+                Humidity: <b>{humidity}%</b>
               </Info>
               <Info>
-                Wind speed: <b>{data.current.gust_kph} km/h</b>
+                Wind speed: <b>{} km/h</b>
               </Info>
             </WeatherTileWrapper>
           </WeatherTileSection>
         )}
         {secondary && (
           <WeatherTileSection additionalContentSection>
-            <WeatherTileWrapper additionalInfoWrapper>
+            <WeatherTileWrapper additionalInfoWrapper noMargin>
               {children}
             </WeatherTileWrapper>
 
-            <WeatherTileWrapper additionalInfoWrapper>
+            <WeatherTileWrapper additionalInfoWrapper noMargin>
               <Info>
-                <PressureIcon /> {data.current.pressure_mb} hPA
+                <PressureIcon /> {pressure} hPA
               </Info>
               <Info>
-                <HumidityIcon /> {data.current.humidity}%
+                <HumidityIcon /> {humidity}%
               </Info>
               <Info>
-                <WindIcon /> {data.current.gust_kph} km/h
+                <WindIcon /> {wind} km/h
               </Info>
             </WeatherTileWrapper>
           </WeatherTileSection>

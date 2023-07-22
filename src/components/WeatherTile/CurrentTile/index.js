@@ -19,10 +19,22 @@ const CurrentTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
       <Slider />
 
       <WeatherTileSection>
-        <TempInfo data={data} conditionText="true" main="true" />
+        <TempInfo
+          temp={data.current.temp_c.toFixed(0)}
+          iconCode={data.current.condition.code}
+          isDay={data.current.is_day}
+          conditionText={data.current.condition.text}
+          main="true"
+        />
       </WeatherTileSection>
 
-      <ConditionsInfo basic="true" data={data} />
+      <ConditionsInfo
+        basic="true"
+        feelsLike={data.current.feelslike_c.toFixed(0)}
+        pressure={data.current.pressure_mb}
+        humidity={data.current.humidity}
+        wind={data.current.gust_kph}
+      />
 
       <HourlyInfo hourlyData={hourlyData} currentHour={currentHour} />
     </WeatherTile>

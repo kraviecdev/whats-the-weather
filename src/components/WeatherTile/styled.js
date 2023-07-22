@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const MainWrapper = styled.article`
+export const ArticleWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,10 @@ export const MainWrapper = styled.article`
   ${({ additionalArticleWrapper }) =>
     additionalArticleWrapper &&
     css`
+      padding: 4px 16px;
       flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
       background: ${({ theme }) => theme.colors.secondaryColor};
       border-radius: 16px;
     `}
@@ -56,24 +59,32 @@ export const WeatherTileWrapper = styled.div`
   flex-direction: column;
   gap: 8px;
 
-  ${({ noGap }) =>
-    noGap &&
-    css`
-      gap: 0;
-    `}
-
   ${({ additionalInfoWrapper }) =>
     additionalInfoWrapper &&
     css`
+      padding: 0 12px 0 0;
       margin: 12px 0;
       align-items: flex-start;
       justify-content: space-between;
       border-right: 1px solid ${({ theme }) => theme.colors.secondaryFont};
 
       &:last-of-type {
+        padding: 0 0 0 12px;
         justify-self: right;
         border-right: none;
       }
+    `}
+
+  ${({ noMargin }) =>
+    noMargin &&
+    css`
+      margin: 0 0 0 0;
+    `}
+
+  ${({ noGap }) =>
+    noGap &&
+    css`
+      gap: 0;
     `}
 
   ${({ hourlyInfoWrapper }) =>

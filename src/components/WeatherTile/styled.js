@@ -8,6 +8,14 @@ export const ArticleWrapper = styled.article`
   width: 100%;
   color: ${({ theme }) => theme.colors.mainFont};
 
+  ${({ tileView }) =>
+    tileView &&
+    css`
+      height: 90%;
+      justify-content: flex-start;
+      gap: 8px;
+    `}
+
   ${({ additionalArticleWrapper }) =>
     additionalArticleWrapper &&
     css`

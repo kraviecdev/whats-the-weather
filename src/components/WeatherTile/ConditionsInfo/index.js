@@ -29,7 +29,7 @@ const ConditionsInfo = ({
                 Humidity: <b>{humidity}%</b>
               </Info>
               <Info>
-                Wind speed: <b>{} km/h</b>
+                Wind speed: <b>{wind} km/h</b>
               </Info>
             </WeatherTileWrapper>
           </WeatherTileSection>

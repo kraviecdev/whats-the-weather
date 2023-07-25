@@ -11,7 +11,7 @@ export const ArticleWrapper = styled.article`
   ${({ tileView }) =>
     tileView &&
     css`
-      height: 90%;
+      padding: 16px;
       justify-content: flex-start;
       gap: 8px;
     `}
@@ -19,12 +19,15 @@ export const ArticleWrapper = styled.article`
   ${({ additionalArticleWrapper }) =>
     additionalArticleWrapper &&
     css`
+      margin: 0 auto;
       padding: 4px 16px;
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-start;
       background: ${({ theme }) => theme.colors.secondaryColor};
       border-radius: 16px;
+      max-width: max-content;
+      min-width: 343px;
     `}
 `;
 
@@ -57,6 +60,23 @@ export const WeatherTileSection = styled.section`
       padding: 0 0 12px;
       margin: 12px auto;
       max-width: 99%;
+    `}
+  
+  ${({ forecastSection }) =>
+    forecastSection &&
+    css`
+      transform: translateY(-51px);
+      background: ${({ theme }) => theme.colors.mainColor};
+      height: 100%;
+      margin: 0;
+      align-items: start;
+      transition: 0.7s ease-in-out;
+
+      ${({ activeSection }) =>
+        activeSection &&
+        css`
+          transform: translateY(-100vh);
+        `}
     `}
 `;
 

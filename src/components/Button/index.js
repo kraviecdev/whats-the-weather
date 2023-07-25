@@ -1,15 +1,11 @@
 import { ButtonLink, UpIcon } from "./styled";
-import { useLocation } from "react-router";
 
-const Button = ({ handleOnClick, path, name, forecast }) => {
-  const location = useLocation();
-
+const Button = ({ handleOnClick, name, forecast, forecastBack }) => {
   return (
     <ButtonLink
-      to={path}
       onClick={handleOnClick}
       forecast={forecast}
-      forecastBack={location.pathname.split("/")[1] === "forecast"}
+      forecastBack={forecastBack}
     >
       {name} <UpIcon />
     </ButtonLink>

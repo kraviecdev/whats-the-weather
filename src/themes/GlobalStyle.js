@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   #root {
+    overflow: hidden;
     height: 100vh;
   }
 `;

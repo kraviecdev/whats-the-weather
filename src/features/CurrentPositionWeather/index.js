@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import {
   setSearch,
 } from "../../components/Search/searchSlice";
 import {
+  selectForecastData,
   selectGeoAgreement,
   selectGeoCoordinates,
   selectHourlyWeatherData,
@@ -21,14 +22,19 @@ import {
 import Error from "../../components/StatusInfo/Error";
 import WeatherApp from "../index";
 import Button from "../../components/Button";
+import ForecastTile from "../../components/WeatherTile/ForecastTile";
+import { WeatherTileSection } from "../../components/WeatherTile/styled";
 
 const CurrentPositionWeather = () => {
   const geoAgreement = useSelector(selectGeoAgreement);
   const geoCoordinates = useSelector(selectGeoCoordinates);
   const weatherData = useSelector(selectWeatherData);
+  const forecastData = useSelector(selectForecastData);
   const hourlyWeatherData = useSelector(selectHourlyWeatherData);
   const doneSearches = useSelector(selectDoneSearches);
   const dispatch = useDispatch();
+
+  const [isForecast, setIsForecast] = useState(false);
 
   useEffect(() => {
     const requestGeolocationPermission = () => {
@@ -78,25 +84,37 @@ const CurrentPositionWeather = () => {
   }
 
   return (
-    <WeatherApp current="true">
-      {isLoading && <LoaderIcon />}
-      {isError && <Error />}
-      {!!weatherData && !isLoading && (
-        <>
+    <>
+      <WeatherApp current="true">
+        {isLoading && <LoaderIcon />}
+        {isError && <Error />}
+        {!!weatherData && !isLoading && (
           <CurrentTile
             data={weatherData}
             hourlyData={hourlyWeatherData}
             isAddedToFav="true"
           />
-          <Button
-            name={"Forecast"}
-            forecast="true"
-            path={`/forecast/${weatherData.location.name}`}
-          />
-        </>
-      )}
-      {geoAgreement === false && <h3>Enter city name for weather</h3>}
-    </WeatherApp>
+        )}
+        {geoAgreement === false && <h3>Enter city name for weather</h3>}
+      </WeatherApp>
+      <WeatherTileSection
+        forecastSection
+        id="forecast"
+        activeSection={isForecast}
+      >
+        <Button
+          name={isForecast ? "Current weather" : "Forecast"}
+          forecast="true"
+          forecastBack={isForecast}
+          handleOnClick={() => setIsForecast(!isForecast)}
+        />
+        <ForecastTile
+          data={weatherData}
+          forecastData={forecastData}
+          isAddedToFav="true"
+        />
+      </WeatherTileSection>
+    </>
   );
 };
 

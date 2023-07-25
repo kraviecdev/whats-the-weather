@@ -1,8 +1,9 @@
 import { ReactComponent as VectorUp } from "./up.svg";
 import styled, { css } from "styled-components";
-import { NavLink } from "react-router-dom";
 
-export const ButtonLink = styled(NavLink)`
+export const ButtonLink = styled.button`
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

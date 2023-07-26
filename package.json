@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://patrick36212.github.io/whats-the-weather/",
   "dependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

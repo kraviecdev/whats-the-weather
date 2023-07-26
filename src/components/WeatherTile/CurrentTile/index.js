@@ -5,7 +5,7 @@ import ConditionsInfo from "../ConditionsInfo";
 import { WeatherTileSection } from "../styled";
 import HourlyInfo from "../HourlyInfo";
 
-const CurrentTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
+const CurrentTile = ({ data, favOnClick, savedInFav, hourlyData }) => {
   const localtime = new Date(data.location.localtime).getTime();
   const currentHour = new Date(localtime).getHours();
 
@@ -13,8 +13,8 @@ const CurrentTile = ({ data, saveInFav, isAddedToFav, hourlyData }) => {
     <WeatherTile
       localtime={localtime}
       title={data.location.name}
-      favOnClick={saveInFav}
-      savedInFav={isAddedToFav}
+      favOnClick={favOnClick}
+      savedInFav={savedInFav}
     >
       <Slider />
 

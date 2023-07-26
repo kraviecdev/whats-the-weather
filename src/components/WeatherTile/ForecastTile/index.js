@@ -3,12 +3,12 @@ import ConditionsInfo from "../ConditionsInfo";
 import TempInfo from "../TempInfo";
 import { ArticleWrapper, Info, WeatherTileSection } from "../styled";
 
-const ForecastTile = ({ data, saveInFav, isAddedToFav, forecastData }) => {
+const ForecastTile = ({ data, savedInFav, favOnClick, forecastData }) => {
   return (
     <WeatherTile
       title={data.location.name}
-      savedInFav={saveInFav}
-      favOnClick={isAddedToFav}
+      savedInFav={savedInFav}
+      favOnClick={favOnClick}
       tileView
       forecast="true"
     >

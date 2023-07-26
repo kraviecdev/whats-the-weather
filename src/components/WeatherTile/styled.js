@@ -61,23 +61,6 @@ export const WeatherTileSection = styled.section`
       margin: 12px auto;
       max-width: 99%;
     `}
-  
-  ${({ forecastSection }) =>
-    forecastSection &&
-    css`
-      transform: translateY(-51px);
-      background: ${({ theme }) => theme.colors.mainColor};
-      height: 100%;
-      margin: 0;
-      align-items: start;
-      transition: 0.7s ease-in-out;
-
-      ${({ activeSection }) =>
-        activeSection &&
-        css`
-          transform: translateY(-100vh);
-        `}
-    `}
 `;
 
 export const WeatherTileWrapper = styled.div`

@@ -23,7 +23,7 @@ import Error from "../../components/StatusInfo/Error";
 import WeatherApp from "../index";
 import Button from "../../components/Button";
 import ForecastTile from "../../components/WeatherTile/ForecastTile";
-import { WeatherTileSection } from "../../components/WeatherTile/styled";
+import Section from "../../components/Section";
 
 const CurrentPositionWeather = () => {
   const geoAgreement = useSelector(selectGeoAgreement);
@@ -92,28 +92,26 @@ const CurrentPositionWeather = () => {
           <CurrentTile
             data={weatherData}
             hourlyData={hourlyWeatherData}
-            isAddedToFav="true"
+            savedInFav="true"
           />
         )}
         {geoAgreement === false && <h3>Enter city name for weather</h3>}
       </WeatherApp>
-      <WeatherTileSection
-        forecastSection
-        id="forecast"
-        activeSection={isForecast}
-      >
-        <Button
-          name={isForecast ? "Current weather" : "Forecast"}
-          forecast="true"
-          forecastBack={isForecast}
-          handleOnClick={() => setIsForecast(!isForecast)}
-        />
-        <ForecastTile
-          data={weatherData}
-          forecastData={forecastData}
-          isAddedToFav="true"
-        />
-      </WeatherTileSection>
+      {!!weatherData && (
+        <Section forecastSection activeSection={isForecast}>
+          <Button
+            name={isForecast ? "Current weather" : "Forecast"}
+            forecast="true"
+            forecastBack={isForecast}
+            handleOnClick={() => setIsForecast(!isForecast)}
+          />
+          <ForecastTile
+            data={weatherData}
+            forecastData={forecastData}
+            savedInFav="true"
+          />
+        </Section>
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { Info, WeatherTileWrapper } from "../styled";
 import { TempInfoSpecial } from "./styled";
-import Icon from "../Icon";
+import IconInfo from "./IconInfo";
 
 const TempInfo = ({
   main,
@@ -9,6 +9,7 @@ const TempInfo = ({
   temp,
   iconCode,
   isDay,
+  children,
 }) => {
   return (
     <WeatherTileWrapper noGap={main} forecastInfoWrapper={secondary}>
@@ -17,10 +18,17 @@ const TempInfo = ({
         {""}
         <TempInfoSpecial smallerBold={secondary}>&#176;C</TempInfoSpecial>
       </Info>
-      <WeatherTileWrapper>
-        <Icon code={iconCode} isDay={isDay} forecast={secondary} />
-        {conditionText && <Info>{conditionText}</Info>}
-      </WeatherTileWrapper>
+      {main && (
+        <IconInfo
+          conditionText={conditionText}
+          iconCode={iconCode}
+          secondary={secondary}
+          isDay={isDay}
+        />
+      )}
+      {secondary && (
+        <IconInfo iconCode={1000} secondary={secondary} isDay={isDay} />
+      )}
     </WeatherTileWrapper>
   );
 };

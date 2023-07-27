@@ -1,5 +1,5 @@
 import { Info, WeatherTileWrapper, WeatherTileSection } from "../styled";
-import Icon from "../Icon";
+import Icon from "../TempInfo/IconInfo/Icon";
 
 const HourlyInfo = ({ hourlyData, currentHour }) => {
   return (

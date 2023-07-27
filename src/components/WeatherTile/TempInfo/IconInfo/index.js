@@ -1,5 +1,5 @@
 import { Info, WeatherTileWrapper } from "../../styled";
-import Icon from "../../Icon";
+import Icon from "./Icon";
 
 const IconInfo = ({ iconCode, isDay, secondary, conditionText }) => {
   return (

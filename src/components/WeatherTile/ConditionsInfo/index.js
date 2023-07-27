@@ -12,7 +12,11 @@ const ConditionsInfo = ({
   visibility,
 }) => {
   return (
-    <WeatherTileSection additionalContentSection borderBottom={basic}>
+    <WeatherTileSection
+      additionalContentSection
+      borderBottom={basic}
+      forecast={secondary}
+    >
       {basic && (
         <WeatherTileWrapper additionalInfoWrapper>
           <Info>

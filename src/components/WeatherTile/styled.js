@@ -61,6 +61,12 @@ export const WeatherTileSection = styled.section`
       margin: 12px auto;
       max-width: 99%;
     `}
+  
+  ${({ forecast }) =>
+    forecast &&
+    css`
+      grid-template-columns: repeat(2, max-content);
+    `}
 `;
 
 export const WeatherTileWrapper = styled.div`

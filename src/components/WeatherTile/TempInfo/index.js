@@ -9,7 +9,6 @@ const TempInfo = ({
   temp,
   iconCode,
   isDay,
-  children,
 }) => {
   return (
     <WeatherTileWrapper noGap={main} forecastInfoWrapper={secondary}>

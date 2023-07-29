@@ -23,6 +23,8 @@ import { ReactComponent as PartlyCloudyNight } from "./icons/partly_cloudy_n.svg
 import { ReactComponent as RainShower } from "./icons/rain_shower.svg";
 import { ReactComponent as Sunny } from "./icons/sunny.svg";
 import { ReactComponent as Thundery } from "./icons/thundery.svg";
+import { ReactComponent as MinTemp } from "./icons/min_temp.svg";
+import { ReactComponent as MaxTemp } from "./icons/max_temp.svg";
 
 const shared = css`
   width: 100%;
@@ -141,5 +143,13 @@ export const SunnyIcon = styled(Sunny)`
 `;
 
 export const ThunderyIcon = styled(Thundery)`
+  ${shared}
+`;
+
+export const MinIcon = styled(MinTemp)`
+  ${shared}
+`;
+
+export const MaxIcon = styled(MaxTemp)`
   ${shared}
 `;

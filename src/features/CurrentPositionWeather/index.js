@@ -102,7 +102,7 @@ const CurrentPositionWeather = () => {
           <Button
             name={isForecast ? "Current weather" : "Forecast"}
             forecast="true"
-            forecastBack={isForecast}
+            iconDown={isForecast}
             handleOnClick={() => setIsForecast(!isForecast)}
           />
           <ForecastTile

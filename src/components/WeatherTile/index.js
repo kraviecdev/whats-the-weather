@@ -2,7 +2,6 @@ import { ArticleWrapper } from "./styled";
 import WeatherTileHeading from "./WeatherTileHeading";
 
 const WeatherTile = ({
-  tileView,
   title,
   favOnClick,
   savedInFav,
@@ -11,7 +10,7 @@ const WeatherTile = ({
   children,
 }) => {
   return (
-    <ArticleWrapper tileView={tileView}>
+    <ArticleWrapper>
       <WeatherTileHeading
         title={title}
         favOnClick={favOnClick}

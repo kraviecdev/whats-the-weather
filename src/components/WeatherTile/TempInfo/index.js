@@ -26,7 +26,7 @@ const TempInfo = ({
         />
       )}
       {secondary && (
-        <IconInfo iconCode={1000} secondary={secondary} isDay={isDay} />
+        <IconInfo iconCode={iconCode} secondary={secondary} isDay={isDay} />
       )}
     </WeatherTileWrapper>
   );

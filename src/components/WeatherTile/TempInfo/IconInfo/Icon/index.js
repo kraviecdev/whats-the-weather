@@ -19,6 +19,8 @@ import {
   LightSleetShowerIcon,
   LightSleetShowerNightIcon,
   LightSnowShowerIcon,
+  MaxIcon,
+  MinIcon,
   OvercastIcon,
   PartlyCloudyIcon,
   PartlyCloudyNightIcon,
@@ -56,6 +58,8 @@ const Icon = ({ code, isDay, hourly, forecast }) => {
       rain_shower: <RainShowerIcon />,
       sunny: <SunnyIcon />,
       thundery: <ThunderyIcon />,
+      min_temp: <MinIcon />,
+      max_temp: <MaxIcon />,
     }[icon]);
 
   return (

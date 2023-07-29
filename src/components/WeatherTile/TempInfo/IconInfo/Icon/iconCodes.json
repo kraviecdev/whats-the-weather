@@ -1,5 +1,15 @@
 [
   {
+    "code": 100,
+    "day": "max_temp",
+    "night": "max_temp"
+  },
+  {
+    "code": 200,
+    "day": "min_temp",
+    "night": "min_temp"
+  },
+  {
     "code": 1000,
     "day": "sunny",
     "night": "clear_n"

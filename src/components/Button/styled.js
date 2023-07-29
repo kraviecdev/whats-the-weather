@@ -40,8 +40,29 @@ export const ButtonLink = styled.button`
       }
     `}
 
-  ${({ forecastBack }) =>
-    forecastBack &&
+  ${({ articleButton }) =>
+    articleButton &&
+    css`
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-shadow: none;
+      border-radius: 0 0 16px 16px;
+      background: linear-gradient(
+        180deg,
+        ${({ theme }) => theme.colors.mainColor}7F 0%,
+        ${({ theme }) => theme.colors.secondaryColor} 100%
+      );
+
+      svg {
+        display: block;
+        transform: rotate(0);
+      }
+    `}
+  
+  ${({ iconDown }) =>
+    iconDown &&
     css`
       svg {
         display: block;

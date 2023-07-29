@@ -1,11 +1,12 @@
 import { ButtonLink, UpIcon } from "./styled";
 
-const Button = ({ handleOnClick, name, forecast, forecastBack }) => {
+const Button = ({ handleOnClick, name, forecast, iconDown, articleButton }) => {
   return (
     <ButtonLink
       onClick={handleOnClick}
       forecast={forecast}
-      forecastBack={forecastBack}
+      iconDown={iconDown}
+      articleButton={articleButton}
     >
       {name} <UpIcon />
     </ButtonLink>

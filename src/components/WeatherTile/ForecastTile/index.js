@@ -16,6 +16,7 @@ const ForecastTile = ({ data, savedInFav, favOnClick, forecastData }) => {
       savedInFav={savedInFav}
       favOnClick={favOnClick}
       forecast="true"
+      forecastArticleWrapper="true"
     >
       <ArticleWrapper tileView>
         {forecastData &&

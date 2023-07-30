@@ -33,13 +33,25 @@ const weatherSlice = createSlice({
 
       state.hourlyWeather = hourlyData;
 
+      apiData.forecast.forecastday.forEach((day) => {
+        day.isAdditionalContentClosed = true;
+      });
+
       state.forecastData = apiData.forecast.forecastday;
+    },
+    setAdditionalContentStatus: (state, { payload: index }) => {
+      state.forecastData[index].isAdditionalContentClosed =
+        !state.forecastData[index].isAdditionalContentClosed;
     },
   },
 });
 
-export const { setGeoAgreement, setGeoCoordinates, setWeatherData } =
-  weatherSlice.actions;
+export const {
+  setGeoAgreement,
+  setGeoCoordinates,
+  setWeatherData,
+  setAdditionalContentStatus,
+} = weatherSlice.actions;
 
 export const selectGeoAgreement = (state) => state.weather.geoAgreement;
 export const selectGeoCoordinates = (state) => state.weather.geoCoordinates;

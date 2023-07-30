@@ -7,10 +7,11 @@ const WeatherTile = ({
   savedInFav,
   localtime,
   forecast,
+  forecastArticleWrapper,
   children,
 }) => {
   return (
-    <ArticleWrapper>
+    <ArticleWrapper forecastArticleWrapper={forecastArticleWrapper}>
       <WeatherTileHeading
         title={title}
         favOnClick={favOnClick}

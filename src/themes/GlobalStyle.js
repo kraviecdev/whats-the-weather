@@ -21,6 +21,30 @@ export const GlobalStyle = createGlobalStyle`
   
   #root {
     overflow: hidden;
-    height: 100vh;
+    height: 100dvh;
+
+    /* ===== Scrollbar CSS ===== */
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: ${({ theme }) => theme.colors.mainFont} 
+      ${({ theme }) => theme.colors.mainColor};
+    }
+
+    /* Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background-clip: padding-box;
+      background-color: ${({ theme }) => theme.colors.mainFont};
+      border-radius: 10px;
+    }
   }
 `;

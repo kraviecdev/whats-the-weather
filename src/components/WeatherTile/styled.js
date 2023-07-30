@@ -3,31 +3,49 @@ import styled, { css } from "styled-components";
 export const ArticleWrapper = styled.article`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-self: flex-start;
   width: 100%;
   color: ${({ theme }) => theme.colors.mainFont};
 
+  ${({ forecastArticleWrapper }) =>
+    forecastArticleWrapper &&
+    css`
+      height: 100%;
+      overflow-y: hidden;
+    `}
+
   ${({ tileView }) =>
     tileView &&
     css`
+      max-width: 1024px;
+      margin: 0 auto;
+      overflow-y: scroll;
       padding: 16px;
-      justify-content: flex-start;
       gap: 8px;
     `}
 
-  ${({ additionalArticleWrapper }) =>
-    additionalArticleWrapper &&
+  ${({ tileArticle }) =>
+    tileArticle &&
+    css`
+      position: relative;
+      padding: 16px 16px 32px;
+      background: ${({ theme }) => theme.colors.secondaryColor};
+      border-radius: 16px;
+
+      @media (min-width: 768px) {
+        align-self: center;
+        max-width: 50%;
+      }
+    `}
+
+  ${({ internalArticleWrapper }) =>
+    internalArticleWrapper &&
     css`
       margin: 0 auto;
-      padding: 4px 16px;
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-start;
-      background: ${({ theme }) => theme.colors.secondaryColor};
-      border-radius: 16px;
-      max-width: max-content;
-      min-width: 343px;
     `}
 `;
 
@@ -36,6 +54,7 @@ export const WeatherTileSection = styled.section`
   align-items: center;
   justify-content: center;
   margin: 12px 0;
+  transition: 0.7s ease-in-out;
 
   ${({ borderBottom }) =>
     borderBottom &&
@@ -53,13 +72,22 @@ export const WeatherTileSection = styled.section`
   ${({ hourlyContentSection }) =>
     hourlyContentSection &&
     css`
-      display: flex;
-      justify-content: flex-start;
+      justify-content: start;
+      grid-auto-flow: column;
+      grid-auto-rows: max-content;
+      grid-column-gap: 34px;
       overflow-x: auto;
-      gap: 0 34px;
       padding: 0 0 12px;
-      margin: 12px auto;
-      max-width: 99%;
+      height: 114px;
+    `}
+  
+  ${({ hourlyForecast }) =>
+    hourlyForecast &&
+    css`
+      overflow-y: hidden;
+      opacity: 0;
+      height: 0;
+      margin: 0;
     `}
   
   ${({ forecast }) =>

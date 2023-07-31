@@ -10,6 +10,8 @@ import {
   setSearch,
 } from "../../components/Search/searchSlice";
 import {
+  addContentHidden,
+  clearState,
   selectForecastData,
   selectGeoAgreement,
   selectGeoCoordinates,
@@ -51,6 +53,7 @@ const CurrentPositionWeather = () => {
     if (!geoAgreement) {
       requestGeolocationPermission();
     } else {
+      dispatch(clearState());
       navigator.geolocation.getCurrentPosition((position) =>
         dispatch(
           setGeoCoordinates({
@@ -75,6 +78,7 @@ const CurrentPositionWeather = () => {
   useEffect(() => {
     if (!!data) {
       dispatch(setWeatherData(data));
+      dispatch(addContentHidden());
     }
   }, [data, dispatch]);
 
@@ -100,7 +104,7 @@ const CurrentPositionWeather = () => {
       {!!weatherData && (
         <Section forecastSection activeSection={isForecast}>
           <Button
-            name={isForecast ? "Current weather" : "Forecast"}
+            name={"Forecast"}
             forecast="true"
             iconDown={isForecast}
             handleOnClick={() => setIsForecast(!isForecast)}

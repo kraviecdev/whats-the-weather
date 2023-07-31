@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 const Section = styled.section`
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;

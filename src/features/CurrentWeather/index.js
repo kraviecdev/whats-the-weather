@@ -12,6 +12,7 @@ import {
   toggleSearchToFavourite,
 } from "../../components/Search/searchSlice";
 import {
+  addContentHidden,
   selectForecastData,
   selectHourlyWeatherData,
   selectWeatherData,
@@ -58,6 +59,7 @@ const CurrentWeather = () => {
   useEffect(() => {
     if (!!data) {
       dispatch(setWeatherData(data));
+      dispatch(addContentHidden());
     }
   }, [data, dispatch]);
 

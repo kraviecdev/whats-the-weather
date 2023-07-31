@@ -10,6 +10,12 @@ const weatherSlice = createSlice({
     forecastData: [],
   },
   reducers: {
+    clearState: (state) => {
+      state.geoCoordinates = null;
+      state.weatherData = null;
+      state.hourlyWeather = [];
+      state.forecastData = [];
+    },
     setGeoAgreement: (state, { payload: permission }) => {
       state.geoAgreement = permission;
     },
@@ -33,24 +39,27 @@ const weatherSlice = createSlice({
 
       state.hourlyWeather = hourlyData;
 
-      apiData.forecast.forecastday.forEach((day) => {
-        day.isAdditionalContentClosed = true;
-      });
-
       state.forecastData = apiData.forecast.forecastday;
     },
-    setAdditionalContentStatus: (state, { payload: index }) => {
-      state.forecastData[index].isAdditionalContentClosed =
-        !state.forecastData[index].isAdditionalContentClosed;
+    addContentHidden: (state) => {
+      state.forecastData.forEach((day) => {
+        day.isContentHidden = true;
+      });
+    },
+    setContentHidden: (state, { payload: index }) => {
+      state.forecastData[index].isContentHidden =
+        !state.forecastData[index].isContentHidden;
     },
   },
 });
 
 export const {
+  clearState,
   setGeoAgreement,
   setGeoCoordinates,
   setWeatherData,
-  setAdditionalContentStatus,
+  addContentHidden,
+  setContentHidden,
 } = weatherSlice.actions;
 
 export const selectGeoAgreement = (state) => state.weather.geoAgreement;

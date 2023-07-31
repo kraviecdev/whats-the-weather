@@ -6,7 +6,7 @@ import {
 } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
-import { selectGeoAgreement } from "../../../features/weatherSlice";
+import { clearState, selectGeoAgreement } from "../../../features/weatherSlice";
 import { toCurrentPositionWeather } from "../../../core/routes";
 import { useLocation } from "react-router";
 
@@ -15,6 +15,11 @@ const Slider = () => {
   const geoAgreement = useSelector(selectGeoAgreement);
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const handleSearchOnClick = (savedSearch) => {
+    dispatch(clearState());
+    dispatch(setSearch(savedSearch));
+  };
 
   return (
     <SliderWrapper>
@@ -28,7 +33,7 @@ const Slider = () => {
       {doneSearches &&
         doneSearches.map((savedSearch) => (
           <SliderButton
-            onClick={() => dispatch(setSearch(savedSearch))}
+            onClick={() => handleSearchOnClick(savedSearch)}
             to={`/weather/${savedSearch.name}`}
             key={savedSearch.id}
           />

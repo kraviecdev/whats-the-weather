@@ -5,7 +5,7 @@ import { ArticleWrapper, Info, WeatherTileSection } from "../styled";
 import Button from "../../Button";
 import HourlyInfo from "../HourlyInfo";
 import { useDispatch } from "react-redux";
-import { setAdditionalContentStatus } from "../../../features/weatherSlice";
+import { setContentHidden } from "../../../features/weatherSlice";
 
 const ForecastTile = ({ data, savedInFav, favOnClick, forecastData }) => {
   const dispatch = useDispatch();
@@ -54,14 +54,12 @@ const ForecastTile = ({ data, savedInFav, favOnClick, forecastData }) => {
               </ArticleWrapper>
               <HourlyInfo
                 hourlyData={forecast.hour}
-                hourlyForecast={forecast.isAdditionalContentClosed}
+                hourlyForecast={forecast.isContentHidden}
               />
               <Button
                 articleButton
-                iconDown={forecast.isAdditionalContentClosed}
-                handleOnClick={() =>
-                  dispatch(setAdditionalContentStatus(index))
-                }
+                iconDown={forecast.isContentHidden}
+                handleOnClick={() => dispatch(setContentHidden(index))}
               />
             </ArticleWrapper>
           ))}

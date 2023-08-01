@@ -11,7 +11,7 @@ const CurrentTile = ({ data, favOnClick, savedInFav, hourlyData }) => {
 
   return (
     <WeatherTile
-      localtime={localtime}
+      localtime={data.location.localtime_epoch}
       title={data.location.name}
       favOnClick={favOnClick}
       savedInFav={savedInFav}

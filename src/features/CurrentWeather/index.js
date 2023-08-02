@@ -90,7 +90,7 @@ const CurrentWeather = () => {
             name={"Forecast"}
             forecast="true"
             iconDown={isForecast}
-            handleOnClick={() => dispatch(setIsForecast())}
+            handleOnClick={() => dispatch(setIsForecast(!isForecast))}
           />
           <ForecastTile
             data={weatherData}

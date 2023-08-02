@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -16,9 +16,11 @@ import {
   selectGeoAgreement,
   selectGeoCoordinates,
   selectHourlyWeatherData,
+  selectIsForecast,
   selectWeatherData,
   setGeoAgreement,
   setGeoCoordinates,
+  setIsForecast,
   setWeatherData,
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
@@ -28,15 +30,15 @@ import ForecastTile from "../../components/WeatherTile/ForecastTile";
 import Section from "../../components/Section";
 
 const CurrentPositionWeather = () => {
+  const dispatch = useDispatch();
+
   const geoAgreement = useSelector(selectGeoAgreement);
   const geoCoordinates = useSelector(selectGeoCoordinates);
   const weatherData = useSelector(selectWeatherData);
   const forecastData = useSelector(selectForecastData);
   const hourlyWeatherData = useSelector(selectHourlyWeatherData);
   const doneSearches = useSelector(selectDoneSearches);
-  const dispatch = useDispatch();
-
-  const [isForecast, setIsForecast] = useState(false);
+  const isForecast = useSelector(selectIsForecast);
 
   useEffect(() => {
     const requestGeolocationPermission = () => {
@@ -107,7 +109,7 @@ const CurrentPositionWeather = () => {
             name={"Forecast"}
             forecast="true"
             iconDown={isForecast}
-            handleOnClick={() => setIsForecast(!isForecast)}
+            handleOnClick={() => dispatch(setIsForecast(!isForecast))}
           />
           <ForecastTile
             data={weatherData}

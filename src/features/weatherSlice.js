@@ -7,6 +7,7 @@ const weatherSlice = createSlice({
     geoCoordinates: null,
     weatherData: null,
     hourlyWeather: [],
+    isForecast: false,
     forecastData: [],
   },
   reducers: {
@@ -41,6 +42,9 @@ const weatherSlice = createSlice({
 
       state.forecastData = apiData.forecast.forecastday;
     },
+    setIsForecast: (state, { payload: status }) => {
+      state.isForecast = status;
+    },
     addContentHidden: (state) => {
       state.forecastData.forEach((day) => {
         day.isContentHidden = true;
@@ -58,6 +62,7 @@ export const {
   setGeoAgreement,
   setGeoCoordinates,
   setWeatherData,
+  setIsForecast,
   addContentHidden,
   setContentHidden,
 } = weatherSlice.actions;
@@ -67,5 +72,6 @@ export const selectGeoCoordinates = (state) => state.weather.geoCoordinates;
 export const selectWeatherData = (state) => state.weather.weatherData;
 export const selectHourlyWeatherData = (state) => state.weather.hourlyWeather;
 export const selectForecastData = (state) => state.weather.forecastData;
+export const selectIsForecast = (state) => state.weather.isForecast;
 
 export default weatherSlice.reducer;

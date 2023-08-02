@@ -15,7 +15,9 @@ import {
   addContentHidden,
   selectForecastData,
   selectHourlyWeatherData,
+  selectIsForecast,
   selectWeatherData,
+  setIsForecast,
   setWeatherData,
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
@@ -31,8 +33,7 @@ const CurrentWeather = () => {
   const weatherData = useSelector(selectWeatherData);
   const forecastData = useSelector(selectForecastData);
   const hourlyWeatherData = useSelector(selectHourlyWeatherData);
-
-  const [isForecast, setIsForecast] = useState(false);
+  const isForecast = useSelector(selectIsForecast);
 
   const [isFavourite, setIsFavourite] = useState(false);
 
@@ -73,21 +74,14 @@ const CurrentWeather = () => {
         {isLoading && <LoaderIcon />}
         {isError && <Error />}
         {!!weatherData && !isLoading && (
-          <>
-            <CurrentTile
-              data={weatherData}
-              favOnClick={() =>
-                dispatch(toggleSearchToFavourite(searchValues.id))
-              }
-              savedInFav={isFavourite}
-              hourlyData={hourlyWeatherData}
-            />
-            <Button
-              name={"Forecast"}
-              forecast="true"
-              path={`/forecast/${weatherData.location.name}`}
-            />
-          </>
+          <CurrentTile
+            data={weatherData}
+            favOnClick={() =>
+              dispatch(toggleSearchToFavourite(searchValues.id))
+            }
+            savedInFav={isFavourite}
+            hourlyData={hourlyWeatherData}
+          />
         )}
       </WeatherApp>
       {!!weatherData && (
@@ -96,7 +90,7 @@ const CurrentWeather = () => {
             name={"Forecast"}
             forecast="true"
             iconDown={isForecast}
-            handleOnClick={() => setIsForecast(!isForecast)}
+            handleOnClick={() => dispatch(setIsForecast())}
           />
           <ForecastTile
             data={weatherData}

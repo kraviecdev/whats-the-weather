@@ -6,12 +6,12 @@ import { WeatherTileSection } from "../styled";
 import HourlyInfo from "../HourlyInfo";
 
 const CurrentTile = ({ data, favOnClick, savedInFav, hourlyData }) => {
-  const localtime = new Date(data.location.localtime).getTime();
+  const localtime = data.location.localtime_epoch * 1000;
   const currentHour = new Date(localtime).getHours();
 
   return (
     <WeatherTile
-      localtime={data.location.localtime_epoch}
+      localtime={localtime}
       title={data.location.name}
       favOnClick={favOnClick}
       savedInFav={savedInFav}

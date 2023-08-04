@@ -3,6 +3,10 @@ import normalize from "styled-normalize";
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
+  html {
+    overscroll-behavior: none;
+  }
+  
   body {
     font-family: 'Inter', sans-serif;
     font-size: 16px;

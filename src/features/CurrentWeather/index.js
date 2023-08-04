@@ -70,8 +70,16 @@ const CurrentWeather = () => {
 
   return (
     <WeatherApp current="true">
-      {isLoading && <LoaderIcon />}
-      {isError && <Error />}
+      {isLoading && (
+        <Section>
+          <LoaderIcon />
+        </Section>
+      )}
+      {isError && (
+        <Section>
+          <Error />
+        </Section>
+      )}
       {!!weatherData && !isLoading && (
         <>
           <Section>

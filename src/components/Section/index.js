@@ -2,10 +2,14 @@ import styled, { css } from "styled-components";
 
 const Section = styled.section`
   display: flex;
-  flex-grow: 1;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  min-height: calc(100dvh - 87px);
+
+  @media (min-height: 709px) {
+    min-height: calc(100dvh - 153px);
+  }
 
   ${({ forecastSection }) =>
     forecastSection &&

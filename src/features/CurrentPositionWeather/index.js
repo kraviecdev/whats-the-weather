@@ -20,7 +20,7 @@ import {
   selectWeatherData,
   setGeoAgreement,
   setGeoCoordinates,
-  setIsForecast,
+  setForecastSection,
   setWeatherData,
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
@@ -90,35 +90,35 @@ const CurrentPositionWeather = () => {
   }
 
   return (
-    <>
-      <WeatherApp current="true">
-        {isLoading && <LoaderIcon />}
-        {isError && <Error />}
-        {!!weatherData && !isLoading && (
-          <CurrentTile
-            data={weatherData}
-            hourlyData={hourlyWeatherData}
-            savedInFav="true"
-          />
-        )}
-        {geoAgreement === false && <h3>Enter city name for weather</h3>}
-      </WeatherApp>
-      {!!weatherData && (
-        <Section forecastSection activeSection={isForecast}>
-          <Button
-            name={"Forecast"}
-            forecast="true"
-            iconDown={isForecast}
-            handleOnClick={() => dispatch(setIsForecast(!isForecast))}
-          />
-          <ForecastTile
-            data={weatherData}
-            forecastData={forecastData}
-            savedInFav="true"
-          />
-        </Section>
+    <WeatherApp current="true">
+      {isLoading && <LoaderIcon />}
+      {isError && <Error />}
+      {!!weatherData && !isLoading && (
+        <>
+          <Section>
+            <CurrentTile
+              data={weatherData}
+              hourlyData={hourlyWeatherData}
+              savedInFav="true"
+            />
+          </Section>
+          <Section forecastSection activeSection={isForecast}>
+            <Button
+              name={"Forecast"}
+              forecast="true"
+              iconDown={isForecast}
+              handleOnClick={() => dispatch(setForecastSection(!isForecast))}
+            />
+            <ForecastTile
+              data={weatherData}
+              forecastData={forecastData}
+              savedInFav="true"
+            />
+          </Section>
+        </>
       )}
-    </>
+      {geoAgreement === false && <h3>Enter city name for weather</h3>}
+    </WeatherApp>
   );
 };
 

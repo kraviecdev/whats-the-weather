@@ -17,7 +17,7 @@ import {
   selectHourlyWeatherData,
   selectIsForecast,
   selectWeatherData,
-  setIsForecast,
+  setForecastSection,
   setWeatherData,
 } from "../weatherSlice";
 import Error from "../../components/StatusInfo/Error";
@@ -69,40 +69,40 @@ const CurrentWeather = () => {
   }
 
   return (
-    <>
-      <WeatherApp current="true">
-        {isLoading && <LoaderIcon />}
-        {isError && <Error />}
-        {!!weatherData && !isLoading && (
-          <CurrentTile
-            data={weatherData}
-            favOnClick={() =>
-              dispatch(toggleSearchToFavourite(searchValues.id))
-            }
-            savedInFav={isFavourite}
-            hourlyData={hourlyWeatherData}
-          />
-        )}
-      </WeatherApp>
-      {!!weatherData && (
-        <Section forecastSection activeSection={isForecast}>
-          <Button
-            name={"Forecast"}
-            forecast="true"
-            iconDown={isForecast}
-            handleOnClick={() => dispatch(setIsForecast(!isForecast))}
-          />
-          <ForecastTile
-            data={weatherData}
-            forecastData={forecastData}
-            favOnClick={() =>
-              dispatch(toggleSearchToFavourite(searchValues.id))
-            }
-            savedInFav={isFavourite}
-          />
-        </Section>
+    <WeatherApp current="true">
+      {isLoading && <LoaderIcon />}
+      {isError && <Error />}
+      {!!weatherData && !isLoading && (
+        <>
+          <Section>
+            <CurrentTile
+              data={weatherData}
+              favOnClick={() =>
+                dispatch(toggleSearchToFavourite(searchValues.id))
+              }
+              savedInFav={isFavourite}
+              hourlyData={hourlyWeatherData}
+            />
+          </Section>
+          <Section forecastSection activeSection={isForecast}>
+            <Button
+              name={"Forecast"}
+              forecast="true"
+              iconDown={isForecast}
+              handleOnClick={() => dispatch(setForecastSection(!isForecast))}
+            />
+            <ForecastTile
+              data={weatherData}
+              forecastData={forecastData}
+              favOnClick={() =>
+                dispatch(toggleSearchToFavourite(searchValues.id))
+              }
+              savedInFav={isFavourite}
+            />
+          </Section>
+        </>
       )}
-    </>
+    </WeatherApp>
   );
 };
 

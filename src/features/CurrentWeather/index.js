@@ -37,16 +37,6 @@ const CurrentWeather = () => {
 
   const [isFavourite, setIsFavourite] = useState(false);
 
-  const handleForecastSectionButton = () => {
-    if (isForecast === "open") {
-      dispatch(setForecastSection("closed"));
-    }
-
-    if (isForecast === "closed") {
-      dispatch(setForecastSection("open"));
-    }
-  };
-
   const { data, isLoading, isError } = useQuery(
     ["searchedCityWeather", { searchValues }],
     () => {
@@ -102,12 +92,12 @@ const CurrentWeather = () => {
               hourlyData={hourlyWeatherData}
             />
           </Section>
-          <Section forecastSection activeSection={isForecast === "open"}>
+          <Section forecastSection activeSection={isForecast}>
             <Button
               name={"Forecast"}
               forecast="true"
-              iconDown={isForecast === "open"}
-              handleOnClick={() => handleForecastSectionButton()}
+              iconDown={isForecast}
+              handleOnClick={() => dispatch(setForecastSection())}
             />
             <ForecastTile
               data={weatherData}

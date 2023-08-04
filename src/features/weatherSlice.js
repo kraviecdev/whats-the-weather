@@ -7,7 +7,7 @@ const weatherSlice = createSlice({
     geoCoordinates: null,
     weatherData: null,
     hourlyWeather: [],
-    isForecastSection: "closed",
+    isForecastSection: false,
     forecastData: [],
   },
   reducers: {
@@ -42,8 +42,8 @@ const weatherSlice = createSlice({
 
       state.forecastData = apiData.forecast.forecastday;
     },
-    setForecastSection: (state, { payload: status }) => {
-      state.isForecastSection = status;
+    setForecastSection: (state) => {
+      state.isForecastSection = !state.isForecastSection;
     },
     addContentHidden: (state) => {
       state.forecastData.forEach((day) => {

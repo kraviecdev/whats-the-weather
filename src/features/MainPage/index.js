@@ -19,7 +19,6 @@ import { useQuery } from "react-query";
 import { getSearchData } from "../../components/Search/getSearchData";
 import Section from "../../components/Section";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
-import search from "../../components/Search";
 
 const MainPage = () => {
   const dispatch = useDispatch();

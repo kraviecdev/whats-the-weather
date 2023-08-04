@@ -9,11 +9,10 @@ const Section = styled.section`
   ${({ forecastSection }) =>
     forecastSection &&
     css`
-      position: absolute;
+      position: fixed;
       left: 0;
-      bottom: 0;
+      top: 0;
       max-width: 100%;
-      min-height: 100dvh;
       justify-content: flex-start;
       transform: translateY(calc(100dvh - 51px));
       gap: 12px;

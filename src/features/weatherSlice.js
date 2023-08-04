@@ -7,7 +7,7 @@ const weatherSlice = createSlice({
     geoCoordinates: null,
     weatherData: null,
     hourlyWeather: [],
-    isForecastSection: false,
+    isForecastSection: "closed",
     forecastData: [],
   },
   reducers: {

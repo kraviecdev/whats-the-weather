@@ -5,20 +5,17 @@ import {
   Route,
 } from "react-router-dom";
 import CurrentWeather from "../features/CurrentWeather";
-import CurrentPositionWeather from "../features/CurrentPositionWeather";
+import MainPage from "../features/MainPage";
 
-export const toCurrentPositionWeather = "/location";
+export const toMainPage = "/weather";
 const toCurrentCityWeather = "/weather/:city";
 
 export const router = createHashRouter(
   createRoutesFromElements(
     <>
+      <Route path={toMainPage} element={<MainPage />} />
       <Route path={toCurrentCityWeather} element={<CurrentWeather />} />
-      <Route
-        path={toCurrentPositionWeather}
-        element={<CurrentPositionWeather />}
-      />
-      <Route path="/" element={<Navigate to={toCurrentPositionWeather} />} />
+      <Route path="/" element={<Navigate to={toMainPage} />} />
     </>
   )
 );

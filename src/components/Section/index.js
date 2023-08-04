@@ -5,26 +5,25 @@ const Section = styled.section`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  min-height: calc(100dvh - 87px);
-
-  @media (min-height: 709px) {
-    min-height: calc(100dvh - 153px);
-  }
 
   ${({ forecastSection }) =>
     forecastSection &&
     css`
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      max-width: 100%;
+      min-height: 100dvh;
       justify-content: flex-start;
-      height: 100%;
+      transform: translateY(calc(100dvh - 51px));
       gap: 12px;
-      transform: translateY(-51px);
       background: ${({ theme }) => theme.colors.mainColor};
       transition: 0.7s ease-in-out;
 
       ${({ activeSection }) =>
         activeSection &&
         css`
-          transform: translateY(-100dvh);
+          transform: translateY(0);
         `}
     `}
 `;

@@ -28,7 +28,6 @@ import Button from "../../components/Button";
 import ForecastTile from "../../components/WeatherTile/ForecastTile";
 import Section from "../../components/Section";
 import { useSwipeable } from "react-swipeable";
-import { TouchEventsArea } from "../../components/WeatherTile/styled";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();

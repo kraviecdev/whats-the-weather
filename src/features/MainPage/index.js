@@ -14,7 +14,7 @@ import {
   setLocationSearch,
   setSearch,
 } from "../../components/Search/searchSlice";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getSearchData } from "../../components/Search/getSearchData";
 import Section from "../../components/Section";
@@ -22,6 +22,7 @@ import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
 
 const MainPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const geoAgreement = useSelector(selectGeoAgreement);
   const geoCoordinates = useSelector(selectGeoCoordinates);
@@ -80,25 +81,30 @@ const MainPage = () => {
     }
   });
 
-  if (!!searchValues) {
-    if (
-      doneSearches.some((savedSearch) => savedSearch.id === searchValues.id)
-    ) {
-      const search = doneSearches.find(
-        (savedSearch) => savedSearch.id === searchValues.id
-      );
-      dispatch(setSearch(search));
-      return <Navigate to={`/weather/${searchValues.name}`} />;
-    } else {
-      dispatch(setLocationSearch(searchValues));
-      return <Navigate to={`/weather/${searchValues.name}`} />;
-    }
-  }
+  useEffect(() => {
+    if (!!searchValues) {
+      if (
+        doneSearches.some((savedSearch) => savedSearch.id === searchValues.id)
+      ) {
+        const search = doneSearches.find(
+          (savedSearch) => savedSearch.id === searchValues.id
+        );
 
-  if (geoAgreement === false && doneSearches.length > 0) {
-    dispatch(setSearch(doneSearches[0]));
-    return <Navigate to={`/weather/${doneSearches[0].name}`} />;
-  }
+        dispatch(setSearch(search));
+        navigate(`/weather/${search.name}`);
+      } else {
+        dispatch(setLocationSearch(searchValues));
+        navigate(`/weather/${searchValues.name}`);
+      }
+    }
+  }, [searchValues]);
+
+  useEffect(() => {
+    if (geoAgreement === false && doneSearches.length > 0) {
+      dispatch(setSearch(doneSearches[0]));
+      navigate(`/weather/${doneSearches[0].name}`);
+    }
+  }, [geoAgreement]);
 
   return (
     <WeatherApp current="true">

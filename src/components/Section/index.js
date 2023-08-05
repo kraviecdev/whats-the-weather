@@ -5,10 +5,12 @@ const Section = styled.section`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  height: 100%;
 
   ${({ forecastSection }) =>
     forecastSection &&
     css`
+      z-index: 999;
       position: fixed;
       left: 0;
       top: 0;

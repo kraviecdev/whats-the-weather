@@ -1,13 +1,29 @@
+import { useSwipeable } from "react-swipeable";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsForecast, setForecastSection } from "./weatherSlice";
+import Main from "../components/Main";
 import Heading from "../components/Heading";
 import Search from "../components/Search";
-import Main from "../components/Main";
-import { useLocation } from "react-router";
 
 const WeatherApp = ({ children, current }) => {
-  const location = useLocation();
+  const dispatch = useDispatch();
+  const isForecast = useSelector(selectIsForecast);
+
+  const swipeHandlers = useSwipeable({
+    onSwipedUp: () => {
+      if (isForecast === false) {
+        dispatch(setForecastSection());
+      }
+    },
+    onSwipedDown: () => {
+      if (isForecast === true) {
+        dispatch(setForecastSection());
+      }
+    },
+  });
 
   return (
-    <Main forecast={location.pathname.split("/")[1] === "forecast"}>
+    <Main {...swipeHandlers}>
       {current && (
         <>
           <Heading main="true" />

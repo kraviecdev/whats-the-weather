@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getCurrentData } from "../getCurrentData";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
 import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
@@ -9,10 +9,12 @@ import CurrentTile from "../../components/WeatherTile/CurrentTile";
 import {
   selectDoneSearches,
   selectSearchValues,
+  setSearch,
   toggleSearchToFavourite,
 } from "../../components/Search/searchSlice";
 import {
   addContentHidden,
+  clearState,
   selectForecastData,
   selectHourlyWeatherData,
   selectIsForecast,
@@ -25,9 +27,12 @@ import WeatherApp from "../index";
 import Button from "../../components/Button";
 import ForecastTile from "../../components/WeatherTile/ForecastTile";
 import Section from "../../components/Section";
+import { useSwipeable } from "react-swipeable";
+import { TouchEventsArea } from "../../components/WeatherTile/styled";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchValues = useSelector(selectSearchValues);
   const doneSearches = useSelector(selectDoneSearches);
   const weatherData = useSelector(selectWeatherData);
@@ -36,6 +41,31 @@ const CurrentWeather = () => {
   const isForecast = useSelector(selectIsForecast);
 
   const [isFavourite, setIsFavourite] = useState(false);
+
+  const handleVerticalSwipes = useSwipeable({
+    onSwipedRight: () => {
+      const cityIndex = doneSearches.findIndex(
+        ({ id }) => id === searchValues.id
+      );
+
+      if (cityIndex !== 0) {
+        dispatch(clearState());
+        dispatch(setSearch(doneSearches[cityIndex - 1]));
+        navigate(`/weather/${doneSearches[cityIndex - 1].name}`);
+      }
+    },
+    onSwipedLeft: () => {
+      const cityIndex = doneSearches.findIndex(
+        ({ id }) => id === searchValues.id
+      );
+
+      if (cityIndex !== doneSearches.length - 1) {
+        dispatch(clearState());
+        dispatch(setSearch(doneSearches[cityIndex + 1]));
+        navigate(`/weather/${doneSearches[cityIndex + 1].name}`);
+      }
+    },
+  });
 
   const { data, isLoading, isError } = useQuery(
     ["searchedCityWeather", { searchValues }],
@@ -64,9 +94,11 @@ const CurrentWeather = () => {
     }
   }, [data, dispatch]);
 
-  if (!searchValues) {
-    return <Navigate to={"/"} />;
-  }
+  useEffect(() => {
+    if (searchValues === null) {
+      navigate(`/`);
+    }
+  }, [searchValues]);
 
   return (
     <WeatherApp current="true">
@@ -90,6 +122,7 @@ const CurrentWeather = () => {
               }
               savedInFav={isFavourite}
               hourlyData={hourlyWeatherData}
+              touchHandlers={handleVerticalSwipes}
             />
           </Section>
           <Section forecastSection activeSection={isForecast}>

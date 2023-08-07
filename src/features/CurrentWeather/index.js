@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
 import { getCurrentData } from "../getCurrentData";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
-import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
-import CurrentTile from "../../components/WeatherTile/CurrentTile";
 import {
   selectDoneSearches,
   selectSearchValues,
@@ -15,23 +14,28 @@ import {
 import {
   addContentHidden,
   clearState,
+  selectApplicationStatus,
   selectForecastData,
   selectHourlyWeatherData,
   selectIsForecast,
   selectWeatherData,
+  setApplicationStatus,
   setForecastSection,
   setWeatherData,
 } from "../weatherSlice";
-import Error from "../../components/StatusInfo/Error";
 import WeatherApp from "../index";
 import Button from "../../components/Button";
+import CurrentTile from "../../components/WeatherTile/CurrentTile";
 import ForecastTile from "../../components/WeatherTile/ForecastTile";
 import Section from "../../components/Section";
-import { useSwipeable } from "react-swipeable";
+import Error from "../../components/StatusInfo/Error";
+import Loading from "../../components/StatusInfo/Loading";
 
 const CurrentWeather = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const applicationStatus = useSelector(selectApplicationStatus);
   const searchValues = useSelector(selectSearchValues);
   const doneSearches = useSelector(selectDoneSearches);
   const weatherData = useSelector(selectWeatherData);
@@ -66,7 +70,7 @@ const CurrentWeather = () => {
     },
   });
 
-  const { data, isLoading, isError } = useQuery(
+  const { data, isError, isLoading } = useQuery(
     ["searchedCityWeather", { searchValues }],
     () => {
       if (!!searchValues) {
@@ -77,41 +81,40 @@ const CurrentWeather = () => {
   );
 
   useEffect(() => {
+    if (!!data) {
+      dispatch(setWeatherData(data));
+      dispatch(addContentHidden());
+
+      setTimeout(() => {
+        dispatch(setApplicationStatus("success"));
+      }, 500);
+    }
+  }, [data, dispatch]);
+
+  useEffect(() => {
     if (doneSearches.length > 0 && !!searchValues) {
-      const searchIndex = doneSearches.findIndex(
-        ({ id }) => id === searchValues.id
-      );
-      setIsFavourite(doneSearches[searchIndex].fav);
+      const savedCity = doneSearches.find(({ id }) => id === searchValues.id);
+      setIsFavourite(savedCity.fav);
     }
     saveSearchesInLocalStorage(doneSearches);
   }, [doneSearches, searchValues]);
 
   useEffect(() => {
-    if (!!data) {
-      dispatch(setWeatherData(data));
-      dispatch(addContentHidden());
-    }
-  }, [data, dispatch]);
-
-  useEffect(() => {
     if (searchValues === null) {
-      navigate(`/`);
+      if (doneSearches.length > 0) {
+        dispatch(setSearch(doneSearches[0]));
+        navigate(`/weather/${doneSearches[0].name}`);
+      } else {
+        navigate(`/`);
+      }
     }
   }, [searchValues]);
 
   return (
     <WeatherApp current="true">
-      {isLoading && (
-        <Section>
-          <LoaderIcon />
-        </Section>
-      )}
-      {isError && (
-        <Section>
-          <Error />
-        </Section>
-      )}
-      {!!weatherData && !isLoading && (
+      {(applicationStatus === "loading" || isLoading) && <Loading />}
+      {isError && <Error />}
+      {applicationStatus === "success" && (
         <>
           <Section>
             <CurrentTile
@@ -127,7 +130,6 @@ const CurrentWeather = () => {
           <Section forecastSection activeSection={isForecast}>
             <Button
               name={"Forecast"}
-              forecast="true"
               iconDown={isForecast}
               handleOnClick={() => dispatch(setForecastSection())}
             />

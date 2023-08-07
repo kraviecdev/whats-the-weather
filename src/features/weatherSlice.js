@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const weatherSlice = createSlice({
   name: "weather",
   initialState: {
+    applicationStatus: "loading",
     geoAgreement: null,
     geoCoordinates: null,
     weatherData: null,
@@ -11,7 +12,11 @@ const weatherSlice = createSlice({
     forecastData: [],
   },
   reducers: {
+    setApplicationStatus: (state, { payload: status }) => {
+      state.applicationStatus = status;
+    },
     clearState: (state) => {
+      state.applicationStatus = "loading";
       state.geoCoordinates = null;
       state.weatherData = null;
       state.hourlyWeather = [];
@@ -58,6 +63,7 @@ const weatherSlice = createSlice({
 });
 
 export const {
+  setApplicationStatus,
   clearState,
   setGeoAgreement,
   setGeoCoordinates,
@@ -67,6 +73,8 @@ export const {
   setContentHidden,
 } = weatherSlice.actions;
 
+export const selectApplicationStatus = (state) =>
+  state.weather.applicationStatus;
 export const selectGeoAgreement = (state) => state.weather.geoAgreement;
 export const selectGeoCoordinates = (state) => state.weather.geoCoordinates;
 export const selectWeatherData = (state) => state.weather.weatherData;

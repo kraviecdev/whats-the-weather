@@ -19,7 +19,11 @@ function App() {
   return (
     <ThemeProvider theme={day}>
       <GlobalStyle />
-      {loadingScreen ? <Loading /> : <RouterProvider router={router} />}
+      {loadingScreen ? (
+        <Loading start="true" />
+      ) : (
+        <RouterProvider router={router} />
+      )}
     </ThemeProvider>
   );
 }

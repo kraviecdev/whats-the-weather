@@ -14,7 +14,7 @@ const CurrentTile = ({
   touchHandlers,
 }) => {
   const localtime = data.location.localtime_epoch * 1000;
-  const currentHour = new Date(localtime).getHours();
+  const currentHour = new Date(data.location.localtime).getHours();
 
   return (
     <WeatherTile

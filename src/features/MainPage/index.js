@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearState,
+  selectApplicationStatus,
   selectGeoAgreement,
   selectGeoCoordinates,
+  setApplicationStatus,
   setGeoAgreement,
   setGeoCoordinates,
 } from "../weatherSlice";
@@ -18,12 +20,14 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getSearchData } from "../../components/Search/getSearchData";
 import Section from "../../components/Section";
-import { LoaderIcon } from "../../components/StatusInfo/Loading/styled";
+import Loading from "../../components/StatusInfo/Loading";
+import Error from "../../components/StatusInfo/Error";
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const applicationStatus = useSelector(selectApplicationStatus);
   const geoAgreement = useSelector(selectGeoAgreement);
   const geoCoordinates = useSelector(selectGeoCoordinates);
   const searchValues = useSelector(selectSearchValues);
@@ -45,6 +49,7 @@ const MainPage = () => {
       requestGeolocationPermission();
     } else {
       dispatch(clearState());
+
       navigator.geolocation.getCurrentPosition((position) =>
         dispatch(
           setGeoCoordinates({
@@ -54,17 +59,14 @@ const MainPage = () => {
         )
       );
     }
-  }, [geoAgreement, dispatch]);
+  }, [geoAgreement]);
 
-  const { data, isLoading, isError } = useQuery(
-    ["currentPositionCity", { geoCoordinates }],
-    () => {
-      if (!!geoCoordinates) {
-        const stringifyCoordinates = `${geoCoordinates.lat.toString()},${geoCoordinates.lon.toString()}`;
-        return getSearchData(stringifyCoordinates);
-      }
+  const { data } = useQuery(["currentPositionCity", { geoCoordinates }], () => {
+    if (!!geoCoordinates) {
+      const stringifyCoordinates = `${geoCoordinates.lat.toString()},${geoCoordinates.lon.toString()}`;
+      return getSearchData(stringifyCoordinates);
     }
-  );
+  });
 
   useEffect(() => {
     if (!!data) {
@@ -79,19 +81,20 @@ const MainPage = () => {
 
       dispatch(setSearch(searchValues));
     }
-  });
+  }, [data]);
 
   useEffect(() => {
     if (!!searchValues) {
-      if (
-        doneSearches.some((savedSearch) => savedSearch.id === searchValues.id)
-      ) {
-        const search = doneSearches.find(
-          (savedSearch) => savedSearch.id === searchValues.id
-        );
+      if (doneSearches.length > 0) {
+        const isSaved = doneSearches.some(({ id }) => id === searchValues.id);
 
-        dispatch(setSearch(search));
-        navigate(`/weather/${search.name}`);
+        if (!!isSaved) {
+          const savedCity = doneSearches.find(
+            ({ id }) => id === searchValues.id
+          );
+          dispatch(setSearch(savedCity));
+          navigate(`/weather/${savedCity.name}`);
+        }
       } else {
         dispatch(setLocationSearch(searchValues));
         navigate(`/weather/${searchValues.name}`);
@@ -100,17 +103,27 @@ const MainPage = () => {
   }, [searchValues]);
 
   useEffect(() => {
-    if (geoAgreement === false && doneSearches.length > 0) {
-      dispatch(setSearch(doneSearches[0]));
-      navigate(`/weather/${doneSearches[0].name}`);
+    if (geoAgreement === false) {
+      if (doneSearches.length === 0) {
+        dispatch(setApplicationStatus("info"));
+      } else {
+        dispatch(setSearch(doneSearches[0]));
+        navigate(`/weather/${doneSearches[0].name}`);
+      }
     }
   }, [geoAgreement]);
+
+  const Status = () =>
+    ({
+      loading: <Loading />,
+      error: <Error />,
+      info: <h3>Enter city name for weather</h3>,
+    }[applicationStatus]);
 
   return (
     <WeatherApp current="true">
       <Section>
-        {isLoading && <LoaderIcon />}
-        {isError && <h3>Enter city name for weather</h3>}
+        <Status />
       </Section>
     </WeatherApp>
   );

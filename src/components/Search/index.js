@@ -13,10 +13,12 @@ import { getSearchData } from "./getSearchData";
 import useDebounce from "./useDebounce";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches, setDoneSearches, setSearch } from "./searchSlice";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { clearState } from "../../features/weatherSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const doneSearches = useSelector(selectDoneSearches);
 
   const [query, setQuery] = useState("");
@@ -29,15 +31,12 @@ const Search = () => {
   });
 
   const handleOnClick = (autocomplete) => {
-    if (
-      doneSearches.some((savedSearch) => savedSearch.id === autocomplete.id)
-    ) {
-      const search = doneSearches.find(
-        (savedSearch) => savedSearch.id === autocomplete.id
-      );
+    if (doneSearches.some(({ id }) => id === autocomplete.id)) {
+      const search = doneSearches.find(({ id }) => id === autocomplete.id);
+      dispatch(clearState());
       dispatch(setSearch(search));
       setQuery("");
-      return <Navigate to={`/weather/${autocomplete.name}`} />;
+      navigate(`/weather/${autocomplete.name}`);
     } else {
       const searchValues = {
         id: autocomplete.id,
@@ -46,6 +45,7 @@ const Search = () => {
         lon: autocomplete.lon,
         fav: false,
       };
+      dispatch(clearState());
       dispatch(setSearch(searchValues));
       dispatch(setDoneSearches(searchValues));
       setQuery("");

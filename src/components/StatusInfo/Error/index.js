@@ -1,6 +1,5 @@
 import { StatusWrapper } from "../styled";
-import { ErrorIcon, ErrorInfo, ErrorInfoWrapper } from "./styled";
-import Button from "../../Button";
+import { ErrorButton, ErrorIcon, ErrorInfo, ErrorInfoWrapper } from "./styled";
 
 const Error = () => {
   return (
@@ -11,7 +10,7 @@ const Error = () => {
           <ErrorInfo contrast="true">Error!</ErrorInfo>
           <ErrorInfo>Something went wrong. Try again later.</ErrorInfo>
         </div>
-        <Button name={"Try again"} path={"/"} />
+        <ErrorButton to={"/"}>Main page</ErrorButton>
       </ErrorInfoWrapper>
     </StatusWrapper>
   );

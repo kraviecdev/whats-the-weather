@@ -2,9 +2,9 @@ import { StatusWrapper } from "../styled";
 import { LoaderIcon } from "./styled";
 import Heading from "../../Heading";
 
-const Loading = () => (
+const Loading = ({ start }) => (
   <StatusWrapper>
-    <Heading main="false" />
+    {start && <Heading />}
     <LoaderIcon />
   </StatusWrapper>
 );

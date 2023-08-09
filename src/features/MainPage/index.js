@@ -22,6 +22,7 @@ import { getSearchData } from "../../components/Search/getSearchData";
 import Section from "../../components/Section";
 import Loading from "../../components/StatusInfo/Loading";
 import Error from "../../components/StatusInfo/Error";
+import Info from "../../components/StatusInfo/Info";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -117,7 +118,7 @@ const MainPage = () => {
     ({
       loading: <Loading />,
       error: <Error />,
-      info: <h3>Enter city name for weather</h3>,
+      info: <Info />,
     }[applicationStatus]);
 
   return (

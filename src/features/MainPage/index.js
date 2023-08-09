@@ -46,7 +46,7 @@ const MainPage = () => {
       );
     };
 
-    if (!geoAgreement) {
+    if (geoAgreement === null) {
       requestGeolocationPermission();
     } else {
       dispatch(clearState());
@@ -60,7 +60,7 @@ const MainPage = () => {
         )
       );
     }
-  }, [geoAgreement]);
+  }, [geoAgreement, dispatch]);
 
   const { data } = useQuery(["currentPositionCity", { geoCoordinates }], () => {
     if (!!geoCoordinates) {
@@ -82,7 +82,7 @@ const MainPage = () => {
 
       dispatch(setSearch(searchValues));
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   useEffect(() => {
     if (!!searchValues) {
@@ -101,7 +101,7 @@ const MainPage = () => {
         navigate(`/weather/${searchValues.name}`);
       }
     }
-  }, [searchValues]);
+  }, [searchValues, dispatch]);
 
   useEffect(() => {
     if (geoAgreement === false) {
@@ -112,7 +112,7 @@ const MainPage = () => {
         navigate(`/weather/${doneSearches[0].name}`);
       }
     }
-  }, [geoAgreement]);
+  }, [geoAgreement, dispatch]);
 
   const Status = () =>
     ({

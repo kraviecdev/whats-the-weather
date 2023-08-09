@@ -1,17 +1,17 @@
-import { StatusWrapper } from "../styled";
-import { ErrorButton, ErrorIcon, ErrorInfo, ErrorInfoWrapper } from "./styled";
+import { StatusInfo, StatusInfoWrapper, StatusWrapper } from "../styled";
+import { ErrorButton, ErrorIcon } from "./styled";
 
 const Error = () => {
   return (
     <StatusWrapper>
       <ErrorIcon />
-      <ErrorInfoWrapper>
+      <StatusInfoWrapper>
         <div>
-          <ErrorInfo contrast="true">Error!</ErrorInfo>
-          <ErrorInfo>Something went wrong. Try again later.</ErrorInfo>
+          <StatusInfo contrast="true">Error!</StatusInfo>
+          <StatusInfo>Something went wrong. Try again later.</StatusInfo>
         </div>
         <ErrorButton to={"/"}>Main page</ErrorButton>
-      </ErrorInfoWrapper>
+      </StatusInfoWrapper>
     </StatusWrapper>
   );
 };

@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
-import { getCurrentData } from "../getCurrentData";
+import { getWeatherData } from "../getWeatherData";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
 import {
   selectDoneSearches,
@@ -31,7 +31,7 @@ import Section from "../../components/Section";
 import Error from "../../components/StatusInfo/Error";
 import Loading from "../../components/StatusInfo/Loading";
 
-const CurrentWeather = () => {
+const WeatherPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ const CurrentWeather = () => {
     () => {
       if (!!searchValues) {
         const stringifyCoordinates = `${searchValues.lat.toString()},${searchValues.lon.toString()}`;
-        return getCurrentData(stringifyCoordinates, 3);
+        return getWeatherData(stringifyCoordinates, 3);
       }
     }
   );
@@ -89,7 +89,8 @@ const CurrentWeather = () => {
         dispatch(setApplicationStatus("success"));
       }, 500);
     }
-  }, [data, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   useEffect(() => {
     if (doneSearches.length > 0 && !!searchValues) {
@@ -108,10 +109,11 @@ const CurrentWeather = () => {
         navigate(`/`);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValues]);
 
   return (
-    <WeatherApp current="true">
+    <WeatherApp>
       {(applicationStatus === "loading" || isLoading) && <Loading />}
       {isError && <Error />}
       {applicationStatus === "success" && (
@@ -148,4 +150,4 @@ const CurrentWeather = () => {
   );
 };
 
-export default CurrentWeather;
+export default WeatherPage;

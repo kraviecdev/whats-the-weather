@@ -4,7 +4,7 @@ import {
   Navigate,
   Route,
 } from "react-router-dom";
-import CurrentWeather from "../features/CurrentWeather";
+import WeatherPage from "../features/WeatherPage";
 import MainPage from "../features/MainPage";
 
 export const toMainPage = "/weather";
@@ -14,7 +14,7 @@ export const router = createHashRouter(
   createRoutesFromElements(
     <>
       <Route path={toMainPage} element={<MainPage />} />
-      <Route path={toCurrentCityWeather} element={<CurrentWeather />} />
+      <Route path={toCurrentCityWeather} element={<WeatherPage />} />
       <Route path="/" element={<Navigate to={toMainPage} />} />
     </>
   )

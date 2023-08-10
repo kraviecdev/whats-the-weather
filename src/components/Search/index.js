@@ -1,3 +1,10 @@
+import { useState } from "react";
+import { useQuery } from "react-query";
+import { getSearchData } from "./getSearchData";
+import useDebounce from "./useDebounce";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDoneSearches, setDoneSearches, setSearch } from "./searchSlice";
+import { clearState } from "../../features/weatherSlice";
 import {
   SearchDropdownInfo,
   SearchDropdownButton,
@@ -7,24 +14,15 @@ import {
   SearchInputWrapper,
   SearchWrapper,
 } from "./styled";
-import { useState } from "react";
-import { useQuery } from "react-query";
-import { getSearchData } from "./getSearchData";
-import useDebounce from "./useDebounce";
-import { useDispatch, useSelector } from "react-redux";
-import { selectDoneSearches, setDoneSearches, setSearch } from "./searchSlice";
-import { useNavigate } from "react-router-dom";
-import { clearState } from "../../features/weatherSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const doneSearches = useSelector(selectDoneSearches);
 
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
 
-  const searchCity = useQuery(["searchCity", debouncedQuery], () => {
+  const { data } = useQuery(["searchCity", debouncedQuery], () => {
     if (!!query) {
       return getSearchData(debouncedQuery);
     }
@@ -33,10 +31,10 @@ const Search = () => {
   const handleOnClick = (autocomplete) => {
     if (doneSearches.some(({ id }) => id === autocomplete.id)) {
       const search = doneSearches.find(({ id }) => id === autocomplete.id);
+
       dispatch(clearState());
       dispatch(setSearch(search));
       setQuery("");
-      navigate(`/weather/${autocomplete.name}`);
     } else {
       const searchValues = {
         id: autocomplete.id,
@@ -45,6 +43,7 @@ const Search = () => {
         lon: autocomplete.lon,
         fav: false,
       };
+
       dispatch(clearState());
       dispatch(setSearch(searchValues));
       dispatch(setDoneSearches(searchValues));
@@ -54,29 +53,37 @@ const Search = () => {
 
   return (
     <SearchWrapper>
-      <SearchInputWrapper visible={!!searchCity.data}>
+      <SearchInputWrapper visible={!!debouncedQuery}>
         <SearchInput
+          pattern="^[A-Za-z\s]+$"
           onChange={({ target }) => setQuery(target.value)}
-          placeholder="Search"
+          placeholder="Search for weather forecast"
           value={query || ""}
         />
         <SearchIcon />
       </SearchInputWrapper>
-      {searchCity.data && (
-        <SearchDropdownWrapper visible={!!query}>
-          {searchCity.data.slice(0, 5).map((autocomplete) => (
-            <SearchDropdownButton
-              to={`/weather/${autocomplete.name}`}
-              key={autocomplete.id}
-              onClick={() => handleOnClick(autocomplete)}
-            >
-              <SearchDropdownInfo>
-                {autocomplete.name}, {autocomplete.country}
-              </SearchDropdownInfo>
-            </SearchDropdownButton>
-          ))}
-        </SearchDropdownWrapper>
-      )}
+      {data &&
+        (data.length === 0 ? (
+          <SearchDropdownWrapper>
+            <SearchDropdownInfo invalid>
+              Sorry, we can't find city for this value.
+            </SearchDropdownInfo>
+          </SearchDropdownWrapper>
+        ) : (
+          <SearchDropdownWrapper>
+            {data.slice(0, 5).map((autocomplete) => (
+              <SearchDropdownButton
+                to={`/weather/${autocomplete.name}`}
+                key={autocomplete.id}
+                onClick={() => handleOnClick(autocomplete)}
+              >
+                <SearchDropdownInfo>
+                  {autocomplete.name}, {autocomplete.country}
+                </SearchDropdownInfo>
+              </SearchDropdownButton>
+            ))}
+          </SearchDropdownWrapper>
+        ))}
     </SearchWrapper>
   );
 };

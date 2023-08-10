@@ -60,25 +60,19 @@ export const SearchIcon = styled(Search)`
 `;
 
 export const SearchDropdownWrapper = styled.div`
-  display: none;
+  border-radius: 0 0 16px 16px;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  z-index: 1;
+  width: 100%;
+  background: ${({ theme }) => theme.colors.secondaryColor};
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 
-  ${({ visible }) =>
-    visible &&
-    css`
-      border-radius: 0 0 16px 16px;
-      padding: 10px;
-      position: absolute;
-      top: 50px;
-      z-index: 1;
-      width: 100%;
-      background: ${({ theme }) => theme.colors.secondaryColor};
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-
-      animation: ${translateY} 0.7s ease-out;
-    `}
+  animation: ${translateY} 0.7s ease-out;
 `;
 
 export const SearchDropdownButton = styled(NavLink)`
@@ -99,4 +93,10 @@ export const SearchDropdownInfo = styled.span`
   color: ${({ theme }) => theme.colors.mainFont};
   font-weight: 600;
   line-height: 24px;
+
+  ${({ invalid }) =>
+    invalid &&
+    css`
+      color: ${({ theme }) => theme.colors.errorColor};
+    `}
 `;

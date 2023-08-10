@@ -1,8 +1,9 @@
-import WeatherApp from "../index";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { getSearchData } from "../../components/Search/getSearchData";
 import {
-  clearState,
   selectApplicationStatus,
   selectGeoAgreement,
   selectGeoCoordinates,
@@ -16,9 +17,7 @@ import {
   setLocationSearch,
   setSearch,
 } from "../../components/Search/searchSlice";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "react-query";
-import { getSearchData } from "../../components/Search/getSearchData";
+import WeatherApp from "../index";
 import Section from "../../components/Section";
 import Loading from "../../components/StatusInfo/Loading";
 import Error from "../../components/StatusInfo/Error";
@@ -35,32 +34,22 @@ const MainPage = () => {
   const doneSearches = useSelector(selectDoneSearches);
 
   useEffect(() => {
-    const requestGeolocationPermission = () => {
+    if (!geoAgreement) {
       navigator.geolocation.getCurrentPosition(
-        () => {
+        (position) => {
           dispatch(setGeoAgreement(true));
+          dispatch(
+            setGeoCoordinates({
+              lat: position.coords.latitude,
+              lon: position.coords.longitude,
+            })
+          );
         },
-        () => {
-          dispatch(setGeoAgreement(false));
-        }
-      );
-    };
-
-    if (geoAgreement === null) {
-      requestGeolocationPermission();
-    } else {
-      dispatch(clearState());
-
-      navigator.geolocation.getCurrentPosition((position) =>
-        dispatch(
-          setGeoCoordinates({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          })
-        )
+        () => dispatch(setGeoAgreement(false))
       );
     }
-  }, [geoAgreement, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [geoAgreement]);
 
   const { data } = useQuery(["currentPositionCity", { geoCoordinates }], () => {
     if (!!geoCoordinates) {
@@ -82,7 +71,8 @@ const MainPage = () => {
 
       dispatch(setSearch(searchValues));
     }
-  }, [data, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   useEffect(() => {
     if (!!searchValues) {
@@ -101,7 +91,8 @@ const MainPage = () => {
         navigate(`/weather/${searchValues.name}`);
       }
     }
-  }, [searchValues, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValues]);
 
   useEffect(() => {
     if (geoAgreement === false) {
@@ -112,7 +103,8 @@ const MainPage = () => {
         navigate(`/weather/${doneSearches[0].name}`);
       }
     }
-  }, [geoAgreement, dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [geoAgreement]);
 
   const Status = () =>
     ({
@@ -122,7 +114,7 @@ const MainPage = () => {
     }[applicationStatus]);
 
   return (
-    <WeatherApp current="true">
+    <WeatherApp>
       <Section>
         <Status />
       </Section>

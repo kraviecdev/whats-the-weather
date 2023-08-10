@@ -9,7 +9,7 @@ export const StatusWrapper = styled.div`
   color: ${({ theme }) => theme.colors.secondaryFont};
 `;
 
-export const StatusHeader = styled.h2`
+export const StatusHeader = styled.h3`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@ export const StatusInfoWrapper = styled.div`
   ${({ hidden }) =>
     hidden &&
     css`
-      transform: translateY(calc(100% - 70px));
+      transform: translateY(calc(100% - 60px));
 
       ${({ isClicked }) =>
         isClicked &&

@@ -5,7 +5,7 @@ import Main from "../components/Main";
 import Heading from "../components/Heading";
 import Search from "../components/Search";
 
-const WeatherApp = ({ children, current }) => {
+const WeatherApp = ({ children }) => {
   const dispatch = useDispatch();
   const isForecast = useSelector(selectIsForecast);
 
@@ -24,12 +24,8 @@ const WeatherApp = ({ children, current }) => {
 
   return (
     <Main {...swipeHandlers}>
-      {current && (
-        <>
-          <Heading main="true" />
-          <Search />
-        </>
-      )}
+      <Heading main="true" />
+      <Search />
       {children}
     </Main>
   );

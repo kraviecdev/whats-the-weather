@@ -7,6 +7,12 @@ export const StatusWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   color: ${({ theme }) => theme.colors.secondaryFont};
+  
+  ${({ info }) =>
+    info &&
+    css`
+      justify-content: flex-start;
+    `}}
 `;
 
 export const StatusHeader = styled.h3`

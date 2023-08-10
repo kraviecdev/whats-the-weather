@@ -1,12 +1,31 @@
-import { StatusHeader, StatusInfo, StatusInfoWrapper } from "../styled";
+import {
+  StatusHeader,
+  StatusInfo,
+  StatusInfoWrapper,
+  StatusWrapper,
+} from "../styled";
 import { UpIcon } from "../../Button/styled";
 import { useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
 const Info = () => {
   const [isClicked, setIsClicked] = useState(false);
 
+  const swipeHandlers = useSwipeable({
+    onSwipedUp: () => {
+      if (isClicked === false) {
+        setIsClicked(true);
+      }
+    },
+    onSwipedDown: () => {
+      if (isClicked === true) {
+        setIsClicked(false);
+      }
+    },
+  });
+
   return (
-    <>
+    <StatusWrapper info="true" {...swipeHandlers}>
       <div>
         <StatusHeader>Hello there!</StatusHeader>
         <StatusInfo>
@@ -31,7 +50,7 @@ const Info = () => {
           settings.
         </StatusInfo>
       </StatusInfoWrapper>
-    </>
+    </StatusWrapper>
   );
 };
 

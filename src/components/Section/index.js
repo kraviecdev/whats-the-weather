@@ -5,11 +5,18 @@ const Section = styled.section`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+
+  ${({ searchSection }) =>
+    searchSection &&
+    css`
+      flex-direction: row;
+      gap: 8px;
+    `}
 
   ${({ forecastSection }) =>
     forecastSection &&
     css`
+      height: 100%;
       z-index: 999;
       position: fixed;
       left: 0;

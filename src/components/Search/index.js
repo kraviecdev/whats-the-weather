@@ -7,13 +7,15 @@ import { selectDoneSearches, setDoneSearches, setSearch } from "./searchSlice";
 import { clearState } from "../../features/weatherSlice";
 import {
   SearchDropdownInfo,
-  SearchDropdownButton,
+  SearchNavigationButton,
   SearchDropdownWrapper,
   SearchIcon,
   SearchInput,
   SearchInputWrapper,
   SearchWrapper,
+  TilesIcon,
 } from "./styled";
+import Section from "../Section";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -52,39 +54,44 @@ const Search = () => {
   };
 
   return (
-    <SearchWrapper>
-      <SearchInputWrapper visible={!!debouncedQuery}>
-        <SearchInput
-          pattern="^[A-Za-z\s]+$"
-          onChange={({ target }) => setQuery(target.value)}
-          placeholder="Search for weather forecast"
-          value={query || ""}
-        />
-        <SearchIcon />
-      </SearchInputWrapper>
-      {data &&
-        (data.length === 0 ? (
-          <SearchDropdownWrapper>
-            <SearchDropdownInfo invalid>
-              Sorry, we can't find city for this value.
-            </SearchDropdownInfo>
-          </SearchDropdownWrapper>
-        ) : (
-          <SearchDropdownWrapper>
-            {data.slice(0, 5).map((autocomplete) => (
-              <SearchDropdownButton
-                to={`/weather/${autocomplete.name}`}
-                key={autocomplete.id}
-                onClick={() => handleOnClick(autocomplete)}
-              >
-                <SearchDropdownInfo>
-                  {autocomplete.name}, {autocomplete.country}
-                </SearchDropdownInfo>
-              </SearchDropdownButton>
-            ))}
-          </SearchDropdownWrapper>
-        ))}
-    </SearchWrapper>
+    <Section searchSection="true">
+      <SearchWrapper>
+        <SearchInputWrapper visible={!!debouncedQuery}>
+          <SearchInput
+            pattern="^[A-Za-z\s]+$"
+            onChange={({ target }) => setQuery(target.value)}
+            placeholder="Search for weather forecast"
+            value={query || ""}
+          />
+          <SearchIcon />
+        </SearchInputWrapper>
+        {data &&
+          (data.length === 0 ? (
+            <SearchDropdownWrapper>
+              <SearchDropdownInfo invalid>
+                Sorry, we can't find city for this value.
+              </SearchDropdownInfo>
+            </SearchDropdownWrapper>
+          ) : (
+            <SearchDropdownWrapper>
+              {data.slice(0, 5).map((autocomplete) => (
+                <SearchNavigationButton
+                  to={`/weather/${autocomplete.name}`}
+                  key={autocomplete.id}
+                  onClick={() => handleOnClick(autocomplete)}
+                >
+                  <SearchDropdownInfo>
+                    {autocomplete.name}, {autocomplete.country}
+                  </SearchDropdownInfo>
+                </SearchNavigationButton>
+              ))}
+            </SearchDropdownWrapper>
+          ))}
+      </SearchWrapper>
+      <SearchNavigationButton to={`/cities`} tiles="true">
+        <TilesIcon />
+      </SearchNavigationButton>
+    </Section>
   );
 };
 

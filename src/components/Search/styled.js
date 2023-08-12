@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Search } from "./search.svg";
+import { ReactComponent as Tiles } from "./tiles_page.svg";
 
 const translateY = keyframes`
   0% {
@@ -59,6 +60,11 @@ export const SearchIcon = styled(Search)`
   fill: ${({ theme }) => theme.colors.secondaryFont};
 `;
 
+export const TilesIcon = styled(Tiles)`
+  width: 24px;
+  fill: ${({ theme }) => theme.colors.mainFont};
+`;
+
 export const SearchDropdownWrapper = styled.div`
   border-radius: 0 0 16px 16px;
   padding: 10px;
@@ -75,7 +81,7 @@ export const SearchDropdownWrapper = styled.div`
   animation: ${translateY} 0.7s ease-out;
 `;
 
-export const SearchDropdownButton = styled(NavLink)`
+export const SearchNavigationButton = styled(NavLink)`
   padding: 6px;
   cursor: pointer;
   width: 100%;
@@ -87,6 +93,18 @@ export const SearchDropdownButton = styled(NavLink)`
   &:last-of-type {
     border-bottom: none;
   }
+
+  ${({ tiles }) =>
+    tiles &&
+    css`
+      padding: 8px;
+      display: flex;
+      background: ${({ theme }) => theme.colors.secondaryColor};
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+      width: max-content;
+      border-bottom: none;
+    `}
 `;
 
 export const SearchDropdownInfo = styled.span`

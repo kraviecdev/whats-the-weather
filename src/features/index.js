@@ -1,22 +1,22 @@
 import { useSwipeable } from "react-swipeable";
 import { useDispatch, useSelector } from "react-redux";
-import { selectIsForecast, setForecastSection } from "./weatherSlice";
+import { selectWeatherData, setForecastSection } from "./weatherSlice";
 import Main from "../components/Main";
 import Heading from "../components/Heading";
 import Search from "../components/Search";
 
 const WeatherApp = ({ children }) => {
   const dispatch = useDispatch();
-  const isForecast = useSelector(selectIsForecast);
+  const weatherData = useSelector(selectWeatherData);
 
   const swipeHandlers = useSwipeable({
     onSwipedUp: () => {
-      if (isForecast === false) {
+      if (weatherData.isForecastSection === false) {
         dispatch(setForecastSection());
       }
     },
     onSwipedDown: () => {
-      if (isForecast === true) {
+      if (weatherData.isForecastSection === true) {
         dispatch(setForecastSection());
       }
     },

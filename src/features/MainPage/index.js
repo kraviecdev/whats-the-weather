@@ -18,7 +18,6 @@ import {
   setSearch,
 } from "../../components/Search/searchSlice";
 import WeatherApp from "../index";
-import Section from "../../components/Section";
 import Loading from "../../components/StatusInfo/Loading";
 import Error from "../../components/StatusInfo/Error";
 import Info from "../../components/StatusInfo/Info";
@@ -115,9 +114,7 @@ const MainPage = () => {
 
   return (
     <WeatherApp>
-      <Section>
-        <Status />
-      </Section>
+      <Status />
     </WeatherApp>
   );
 };

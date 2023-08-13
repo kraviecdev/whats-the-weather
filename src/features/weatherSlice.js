@@ -7,9 +7,7 @@ const weatherSlice = createSlice({
     geoAgreement: null,
     geoCoordinates: null,
     weatherData: null,
-    hourlyWeather: [],
-    isForecastSection: false,
-    forecastData: [],
+    citiesData: [],
   },
   reducers: {
     setApplicationStatus: (state, { payload: status }) => {
@@ -19,8 +17,6 @@ const weatherSlice = createSlice({
       state.applicationStatus = "loading";
       state.geoCoordinates = null;
       state.weatherData = null;
-      state.hourlyWeather = [];
-      state.forecastData = [];
     },
     setGeoAgreement: (state, { payload: permission }) => {
       state.geoAgreement = permission;
@@ -29,8 +25,6 @@ const weatherSlice = createSlice({
       state.geoCoordinates = coordinates;
     },
     setWeatherData: (state, { payload: apiData }) => {
-      state.weatherData = apiData;
-
       const {
         forecast: {
           forecastday: [firstDay, secondDay, thirdDay],
@@ -43,21 +37,30 @@ const weatherSlice = createSlice({
         ...thirdDay.hour,
       ];
 
-      state.hourlyWeather = hourlyData;
+      const forecastData = [
+        { ...firstDay, isContentHidden: true },
+        { ...secondDay, isContentHidden: true },
+        { ...thirdDay, isContentHidden: true },
+      ];
 
-      state.forecastData = apiData.forecast.forecastday;
+      state.weatherData = {
+        location: apiData.location,
+        current: apiData.current,
+        hourlyWeather: hourlyData,
+        forecastData: forecastData,
+        isForecastSection: false,
+      };
+    },
+    setCitiesData: (state, { payload: cityData }) => {
+      state.citiesData.push(cityData);
     },
     setForecastSection: (state) => {
-      state.isForecastSection = !state.isForecastSection;
-    },
-    addContentHidden: (state) => {
-      state.forecastData.forEach((day) => {
-        day.isContentHidden = true;
-      });
+      state.weatherData.isForecastSection =
+        !state.weatherData.isForecastSection;
     },
     setContentHidden: (state, { payload: index }) => {
-      state.forecastData[index].isContentHidden =
-        !state.forecastData[index].isContentHidden;
+      state.weatherData.forecastData[index].isContentHidden =
+        !state.weatherData.forecastData[index].isContentHidden;
     },
   },
 });
@@ -68,8 +71,8 @@ export const {
   setGeoAgreement,
   setGeoCoordinates,
   setWeatherData,
+  setCitiesData,
   setForecastSection,
-  addContentHidden,
   setContentHidden,
 } = weatherSlice.actions;
 
@@ -78,8 +81,6 @@ export const selectApplicationStatus = (state) =>
 export const selectGeoAgreement = (state) => state.weather.geoAgreement;
 export const selectGeoCoordinates = (state) => state.weather.geoCoordinates;
 export const selectWeatherData = (state) => state.weather.weatherData;
-export const selectHourlyWeatherData = (state) => state.weather.hourlyWeather;
-export const selectForecastData = (state) => state.weather.forecastData;
-export const selectIsForecast = (state) => state.weather.isForecastSection;
+export const selectCitiesData = (state) => state.weather.citiesData;
 
 export default weatherSlice.reducer;

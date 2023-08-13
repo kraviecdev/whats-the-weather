@@ -12,12 +12,8 @@ import {
   toggleSearchToFavourite,
 } from "../../components/Search/searchSlice";
 import {
-  addContentHidden,
   clearState,
   selectApplicationStatus,
-  selectForecastData,
-  selectHourlyWeatherData,
-  selectIsForecast,
   selectWeatherData,
   setApplicationStatus,
   setForecastSection,
@@ -39,9 +35,6 @@ const WeatherPage = () => {
   const searchValues = useSelector(selectSearchValues);
   const doneSearches = useSelector(selectDoneSearches);
   const weatherData = useSelector(selectWeatherData);
-  const forecastData = useSelector(selectForecastData);
-  const hourlyWeatherData = useSelector(selectHourlyWeatherData);
-  const isForecast = useSelector(selectIsForecast);
 
   const [isFavourite, setIsFavourite] = useState(false);
 
@@ -83,7 +76,6 @@ const WeatherPage = () => {
   useEffect(() => {
     if (!!data) {
       dispatch(setWeatherData(data));
-      dispatch(addContentHidden());
 
       setTimeout(() => {
         dispatch(setApplicationStatus("success"));
@@ -125,19 +117,22 @@ const WeatherPage = () => {
                 dispatch(toggleSearchToFavourite(searchValues.id))
               }
               savedInFav={isFavourite}
-              hourlyData={hourlyWeatherData}
+              hourlyData={weatherData.hourlyWeather}
               touchHandlers={handleVerticalSwipes}
             />
           </Section>
-          <Section forecastSection activeSection={isForecast}>
+          <Section
+            forecastSection
+            activeSection={weatherData.isForecastSection}
+          >
             <Button
               name={"Forecast"}
-              iconDown={isForecast}
+              iconDown={weatherData.isForecastSection}
               handleOnClick={() => dispatch(setForecastSection())}
             />
             <ForecastTile
               data={weatherData}
-              forecastData={forecastData}
+              forecastData={weatherData.forecastData}
               favOnClick={() =>
                 dispatch(toggleSearchToFavourite(searchValues.id))
               }

@@ -64,7 +64,7 @@ const MainPage = () => {
         name: data[0].name,
         lat: data[0].lat,
         lon: data[0].lon,
-        fav: false,
+        fav: true,
         location: true,
       };
 

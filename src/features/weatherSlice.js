@@ -17,6 +17,7 @@ const weatherSlice = createSlice({
       state.applicationStatus = "loading";
       state.geoCoordinates = null;
       state.weatherData = null;
+      state.citiesData = [];
     },
     setGeoAgreement: (state, { payload: permission }) => {
       state.geoAgreement = permission;
@@ -51,8 +52,8 @@ const weatherSlice = createSlice({
         isForecastSection: false,
       };
     },
-    setCitiesData: (state, { payload: cityData }) => {
-      state.citiesData.push(cityData);
+    setCitiesData: (state, { payload: cities }) => {
+      state.citiesData = cities;
     },
     setForecastSection: (state) => {
       state.weatherData.isForecastSection =

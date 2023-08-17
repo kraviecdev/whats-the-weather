@@ -31,9 +31,8 @@ const Search = () => {
   });
 
   const handleOnClick = (autocomplete) => {
-    if (doneSearches.some(({ id }) => id === autocomplete.id)) {
-      const search = doneSearches.find(({ id }) => id === autocomplete.id);
-
+    const search = doneSearches.find(({ id }) => id === autocomplete.id);
+    if (!!search) {
       dispatch(clearState());
       dispatch(setSearch(search));
       setQuery("");
@@ -43,7 +42,7 @@ const Search = () => {
         name: autocomplete.name,
         lat: autocomplete.lat,
         lon: autocomplete.lon,
-        fav: false,
+        favourite: false,
       };
 
       dispatch(clearState());

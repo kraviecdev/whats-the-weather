@@ -8,8 +8,6 @@ import {
   selectGeoAgreement,
   selectGeoCoordinates,
   setApplicationStatus,
-  setGeoAgreement,
-  setGeoCoordinates,
 } from "../weatherSlice";
 import {
   selectDoneSearches,
@@ -32,24 +30,6 @@ const MainPage = () => {
   const searchValues = useSelector(selectSearchValues);
   const doneSearches = useSelector(selectDoneSearches);
 
-  useEffect(() => {
-    if (!geoAgreement) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          dispatch(setGeoAgreement(true));
-          dispatch(
-            setGeoCoordinates({
-              lat: position.coords.latitude,
-              lon: position.coords.longitude,
-            })
-          );
-        },
-        () => dispatch(setGeoAgreement(false))
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [geoAgreement]);
-
   const { data } = useQuery(["currentPositionCity", { geoCoordinates }], () => {
     if (!!geoCoordinates) {
       const stringifyCoordinates = `${geoCoordinates.lat.toString()},${geoCoordinates.lon.toString()}`;
@@ -64,7 +44,7 @@ const MainPage = () => {
         name: data[0].name,
         lat: data[0].lat,
         lon: data[0].lon,
-        fav: true,
+        favourite: true,
         location: true,
       };
 
@@ -75,16 +55,10 @@ const MainPage = () => {
 
   useEffect(() => {
     if (!!searchValues) {
-      if (doneSearches.length > 0) {
-        const isSaved = doneSearches.some(({ id }) => id === searchValues.id);
-
-        if (!!isSaved) {
-          const savedCity = doneSearches.find(
-            ({ id }) => id === searchValues.id
-          );
-          dispatch(setSearch(savedCity));
-          navigate(`/weather/${savedCity.name}`);
-        }
+      const savedCity = doneSearches.find(({ id }) => id === searchValues.id);
+      if (!!savedCity) {
+        dispatch(setSearch(savedCity));
+        navigate(`/weather/${savedCity.name}`);
       } else {
         dispatch(setLocationSearch(searchValues));
         navigate(`/weather/${searchValues.name}`);

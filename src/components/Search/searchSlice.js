@@ -17,12 +17,13 @@ const searchSlice = createSlice({
     setLocationSearch: (state, { payload: location }) => {
       state.doneSearches.unshift(location);
     },
-    toggleSearchToFavourite: (state, { payload: searchId }) => {
-      const savedSearchIndex = state.doneSearches.findIndex(
+    toggleFavourite: (state, { payload: searchId }) => {
+      const searchIndex = state.doneSearches.findIndex(
         ({ id }) => id === searchId
       );
-      state.doneSearches[savedSearchIndex].fav =
-        !state.doneSearches[savedSearchIndex].fav;
+
+      state.doneSearches[searchIndex].favourite =
+        !state.doneSearches[searchIndex].favourite;
     },
   },
 });
@@ -31,7 +32,7 @@ export const {
   setDoneSearches,
   setLocationSearch,
   setSearch,
-  toggleSearchToFavourite,
+  toggleFavourite,
 } = searchSlice.actions;
 
 export const selectSearchValues = (state) => state.search.searchValues;

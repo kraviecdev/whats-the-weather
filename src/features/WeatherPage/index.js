@@ -9,7 +9,7 @@ import {
   selectDoneSearches,
   selectSearchValues,
   setSearch,
-  toggleSearchToFavourite,
+  toggleFavourite,
 } from "../../components/Search/searchSlice";
 import {
   clearState,
@@ -81,13 +81,17 @@ const WeatherPage = () => {
         dispatch(setApplicationStatus("success"));
       }, 500);
     }
+
+    if (!!isError) {
+      dispatch(setApplicationStatus("error"));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   useEffect(() => {
     if (doneSearches.length > 0 && !!searchValues) {
       const savedCity = doneSearches.find(({ id }) => id === searchValues.id);
-      setIsFavourite(savedCity.fav);
+      setIsFavourite(savedCity.favourite);
     }
     saveSearchesInLocalStorage(doneSearches);
   }, [doneSearches, searchValues]);
@@ -107,15 +111,13 @@ const WeatherPage = () => {
   return (
     <WeatherApp>
       {(applicationStatus === "loading" || isLoading) && <Loading />}
-      {isError && <Error />}
+      {applicationStatus === "error" && <Error />}
       {applicationStatus === "success" && (
         <>
           <Section>
             <CurrentTile
               data={weatherData}
-              favOnClick={() =>
-                dispatch(toggleSearchToFavourite(searchValues.id))
-              }
+              favOnClick={() => dispatch(toggleFavourite(searchValues.id))}
               savedInFav={isFavourite}
               hourlyData={weatherData.hourlyWeather}
               touchHandlers={handleVerticalSwipes}
@@ -133,9 +135,7 @@ const WeatherPage = () => {
             <ForecastTile
               data={weatherData}
               forecastData={weatherData.forecastData}
-              favOnClick={() =>
-                dispatch(toggleSearchToFavourite(searchValues.id))
-              }
+              favOnClick={() => dispatch(toggleFavourite(searchValues.id))}
               savedInFav={isFavourite}
             />
           </Section>

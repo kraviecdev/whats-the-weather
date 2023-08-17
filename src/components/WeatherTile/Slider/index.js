@@ -6,11 +6,10 @@ import {
 } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
-import { clearState, selectGeoAgreement } from "../../../features/weatherSlice";
+import { clearState } from "../../../features/weatherSlice";
 
 const Slider = () => {
   const doneSearches = useSelector(selectDoneSearches);
-  const geoAgreement = useSelector(selectGeoAgreement);
   const dispatch = useDispatch();
 
   const handleSearchOnClick = (savedSearch) => {
@@ -18,12 +17,21 @@ const Slider = () => {
     dispatch(setSearch(savedSearch));
   };
 
-  const searchesWithLocation =
-    geoAgreement === true ? doneSearches.slice(1) : doneSearches;
+  const isSavedLocation = doneSearches.some(
+    ({ location }) => location === true
+  );
+
+  const searchAddedToFavourite = doneSearches.filter(
+    ({ favourite }) => favourite === true
+  );
+
+  const searchesWithLocation = isSavedLocation
+    ? searchAddedToFavourite.slice(1)
+    : searchAddedToFavourite;
 
   return (
     <SliderWrapper>
-      {geoAgreement && (
+      {isSavedLocation && (
         <StyledLink
           currentlocation="true"
           to={`/weather/${doneSearches[0].name}`}

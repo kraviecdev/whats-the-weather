@@ -3,7 +3,12 @@ import { useQuery } from "react-query";
 import { getSearchData } from "./getSearchData";
 import useDebounce from "./useDebounce";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDoneSearches, setDoneSearches, setSearch } from "./searchSlice";
+import {
+  clearDoneSearches,
+  selectDoneSearches,
+  setDoneSearches,
+  setSearch,
+} from "./searchSlice";
 import { clearState } from "../../features/weatherSlice";
 import {
   SearchDropdownInfo,
@@ -46,6 +51,7 @@ const Search = () => {
       };
 
       dispatch(clearState());
+      dispatch(clearDoneSearches());
       dispatch(setSearch(searchValues));
       dispatch(setDoneSearches(searchValues));
       setQuery("");

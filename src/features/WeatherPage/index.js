@@ -6,6 +6,7 @@ import { useSwipeable } from "react-swipeable";
 import { getWeatherData } from "../getWeatherData";
 import { saveSearchesInLocalStorage } from "../../core/saveInLocalStorage";
 import {
+  clearDoneSearches,
   selectDoneSearches,
   selectSearchValues,
   setSearch,
@@ -46,6 +47,7 @@ const WeatherPage = () => {
 
       if (cityIndex !== 0) {
         dispatch(clearState());
+        dispatch(clearDoneSearches());
         dispatch(setSearch(doneSearches[cityIndex - 1]));
         navigate(`/weather/${doneSearches[cityIndex - 1].name}`);
       }
@@ -57,6 +59,7 @@ const WeatherPage = () => {
 
       if (cityIndex !== doneSearches.length - 1) {
         dispatch(clearState());
+        dispatch(clearDoneSearches());
         dispatch(setSearch(doneSearches[cityIndex + 1]));
         navigate(`/weather/${doneSearches[cityIndex + 1].name}`);
       }
@@ -76,7 +79,6 @@ const WeatherPage = () => {
   useEffect(() => {
     if (!!data) {
       dispatch(setWeatherData(data));
-
       setTimeout(() => {
         dispatch(setApplicationStatus("success"));
       }, 500);

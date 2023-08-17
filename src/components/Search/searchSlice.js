@@ -25,6 +25,9 @@ const searchSlice = createSlice({
       state.doneSearches[searchIndex].favourite =
         !state.doneSearches[searchIndex].favourite;
     },
+    clearDoneSearches: (state) => {
+      state.doneSearches = getSearchesFromLocalStorage();
+    },
   },
 });
 
@@ -33,6 +36,7 @@ export const {
   setLocationSearch,
   setSearch,
   toggleFavourite,
+  clearDoneSearches,
 } = searchSlice.actions;
 
 export const selectSearchValues = (state) => state.search.searchValues;

@@ -5,7 +5,11 @@ import {
   StyledLink,
 } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDoneSearches, setSearch } from "../../Search/searchSlice";
+import {
+  clearDoneSearches,
+  selectDoneSearches,
+  setSearch,
+} from "../../Search/searchSlice";
 import { clearState } from "../../../features/weatherSlice";
 
 const Slider = () => {
@@ -14,6 +18,7 @@ const Slider = () => {
 
   const handleSearchOnClick = (savedSearch) => {
     dispatch(clearState());
+    dispatch(clearDoneSearches());
     dispatch(setSearch(savedSearch));
   };
 

@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-08-17T08:00:19.951Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" version="20.7.2" etag="lybYTvhcunpTPvkFVJz6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-17T08:11:47.437Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" version="20.7.2" etag="Mh3YEqx7XTBOAtmrpG-h" type="github">
   <diagram id="t09i1lyWzZOKw9617J_v" name="Strona-1">
     <mxGraphModel dx="1687" dy="904" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -25,7 +25,10 @@
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-20" value="Permit" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="300" y="130" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="d-TcZHFdSOKXG9sZjkgB-22" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-89" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-22" target="d-TcZHFdSOKXG9sZjkgB-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-22" value="GetCurrentPosition" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="180" y="130" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-24" target="d-TcZHFdSOKXG9sZjkgB-28">
@@ -86,7 +89,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-44" value="Set fetchedData in WeatherData" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="540" y="790" width="120" height="60" as="geometry" />
+          <mxGeometry x="540" y="780" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-46" value="success" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="595" y="745" width="70" height="30" as="geometry" />
@@ -95,13 +98,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-47" value="Set ApplicationStatus as &quot;success&quot;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="540" y="880" width="120" height="60" as="geometry" />
+          <mxGeometry x="540" y="870" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-49" target="d-TcZHFdSOKXG9sZjkgB-51">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-49" value="Render WeatherPage with fetchedData" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="540" y="970" width="120" height="60" as="geometry" />
+          <mxGeometry x="540" y="960" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-51" target="d-TcZHFdSOKXG9sZjkgB-55">
           <mxGeometry relative="1" as="geometry" />
@@ -170,6 +173,35 @@
         </mxCell>
         <mxCell id="d-TcZHFdSOKXG9sZjkgB-82" value="Click MainPage button" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="340" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-88" target="d-TcZHFdSOKXG9sZjkgB-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-88" value="SetGeoCoordinates" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="225" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-93" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-90" target="d-TcZHFdSOKXG9sZjkgB-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-90" value="Set geoCoordinates in SearchValues" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-95" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-92" target="d-TcZHFdSOKXG9sZjkgB-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-92" value="Add geoCoordinates object to savedSearches" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="d-TcZHFdSOKXG9sZjkgB-94" target="d-TcZHFdSOKXG9sZjkgB-38">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="540" />
+              <mxPoint x="500" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d-TcZHFdSOKXG9sZjkgB-94" value="Navigate to geoCoordinates.name" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="510" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

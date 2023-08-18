@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -36,8 +36,6 @@ const WeatherPage = () => {
   const searchValues = useSelector(selectSearchValues);
   const doneSearches = useSelector(selectDoneSearches);
   const weatherData = useSelector(selectWeatherData);
-
-  const [isFavourite, setIsFavourite] = useState(false);
 
   const handleVerticalSwipes = useSwipeable({
     onSwipedRight: () => {
@@ -91,10 +89,6 @@ const WeatherPage = () => {
   }, [data]);
 
   useEffect(() => {
-    if (doneSearches.length > 0 && !!searchValues) {
-      const savedCity = doneSearches.find(({ id }) => id === searchValues.id);
-      setIsFavourite(savedCity.favourite);
-    }
     saveSearchesInLocalStorage(doneSearches);
   }, [doneSearches, searchValues]);
 
@@ -120,7 +114,9 @@ const WeatherPage = () => {
             <CurrentTile
               data={weatherData}
               favOnClick={() => dispatch(toggleFavourite(searchValues.id))}
-              savedInFav={isFavourite}
+              savedInFav={
+                doneSearches.find(({ id }) => id === searchValues.id).favourite
+              }
               hourlyData={weatherData.hourlyWeather}
               touchHandlers={handleVerticalSwipes}
             />
@@ -138,7 +134,9 @@ const WeatherPage = () => {
               data={weatherData}
               forecastData={weatherData.forecastData}
               favOnClick={() => dispatch(toggleFavourite(searchValues.id))}
-              savedInFav={isFavourite}
+              savedInFav={
+                doneSearches.find(({ id }) => id === searchValues.id).favourite
+              }
             />
           </Section>
         </>

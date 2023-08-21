@@ -59,7 +59,7 @@ const Search = () => {
   };
 
   return (
-    <Section searchSection="true">
+    <Section rowGap>
       <SearchWrapper>
         <SearchInputWrapper visible={!!debouncedQuery}>
           <SearchInput

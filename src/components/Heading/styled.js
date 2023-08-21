@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as LogoIcon } from "../Heading/logo.svg";
 
-export const HeadingWrapper = styled.div`
+export const HeadingWrapper = styled.header`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;

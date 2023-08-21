@@ -59,9 +59,12 @@ const weatherSlice = createSlice({
       state.weatherData.isForecastSection =
         !state.weatherData.isForecastSection;
     },
-    setContentHidden: (state, { payload: index }) => {
-      state.weatherData.forecastData[index].isContentHidden =
-        !state.weatherData.forecastData[index].isContentHidden;
+    setContentHidden: (state, { payload: { cities, index } }) => {
+      const statePath = cities
+        ? state.citiesData
+        : state.weatherData.forecastData;
+
+      statePath[index].isContentHidden = !statePath[index].isContentHidden;
     },
   },
 });

@@ -1,13 +1,13 @@
-import { Info, WeatherTileWrapper, WeatherTileSection } from "../styled";
+import { Info, WeatherTileWrapper } from "../styled";
 import Icon from "../TempInfo/IconInfo/Icon";
 
-const HourlyInfo = ({ hourlyData, currentHour, hourlyForecast }) => {
+const HourlyInfo = ({ hourlyData, currentHour }) => {
   const hourly = currentHour
     ? hourlyData.slice(currentHour, currentHour + 24)
     : hourlyData;
 
   return (
-    <WeatherTileSection hourlyContentSection hourlyForecast={hourlyForecast}>
+    <>
       {hourlyData &&
         hourly.map((hourly, index) => (
           <WeatherTileWrapper hourlyInfoWrapper key={index}>
@@ -22,7 +22,7 @@ const HourlyInfo = ({ hourlyData, currentHour, hourlyForecast }) => {
             </Info>
           </WeatherTileWrapper>
         ))}
-    </WeatherTileSection>
+    </>
   );
 };
 

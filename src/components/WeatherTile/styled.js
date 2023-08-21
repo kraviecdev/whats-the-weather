@@ -8,23 +8,6 @@ export const ArticleWrapper = styled.article`
   width: 100%;
   color: ${({ theme }) => theme.colors.mainFont};
 
-  ${({ forecastArticleWrapper }) =>
-    forecastArticleWrapper &&
-    css`
-      height: 100%;
-      overflow-y: hidden;
-    `}
-
-  ${({ tileView }) =>
-    tileView &&
-    css`
-      max-width: 1024px;
-      margin: 0 auto;
-      overflow-y: scroll;
-      padding: 16px;
-      gap: 8px;
-    `}
-
   ${({ tileArticle }) =>
     tileArticle &&
     css`
@@ -38,21 +21,11 @@ export const ArticleWrapper = styled.article`
         max-width: 50%;
       }
     `}
-
-  ${({ internalArticleWrapper }) =>
-    internalArticleWrapper &&
-    css`
-      margin: 0 auto;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-    `}
 `;
 
 export const WeatherTileSection = styled.section`
   display: grid;
   align-items: center;
-  justify-content: center;
   margin: 12px 0;
   transition: 0.7s ease-in-out;
 
@@ -81,19 +54,13 @@ export const WeatherTileSection = styled.section`
       height: 114px;
     `}
   
-  ${({ hourlyForecast }) =>
-    hourlyForecast &&
+  ${({ contentHidden }) =>
+    contentHidden &&
     css`
       overflow-y: hidden;
       opacity: 0;
       height: 0;
-      margin: 0;
-    `}
-  
-  ${({ forecast }) =>
-    forecast &&
-    css`
-      grid-template-columns: repeat(2, max-content);
+      margin: 0 0 0 0;
     `}
 `;
 
@@ -117,6 +84,16 @@ export const WeatherTileWrapper = styled.div`
         padding: 0 0 0 12px;
         justify-self: right;
         border-right: none;
+      }
+    `}
+
+  ${({ noPadding }) =>
+    noPadding &&
+    css`
+      padding: 0 0 0 0;
+
+      &:last-of-type {
+        padding: 0 0 0 0;
       }
     `}
 

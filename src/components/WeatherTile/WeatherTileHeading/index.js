@@ -11,7 +11,7 @@ const WeatherTileHeading = ({
   favOnClick,
   savedInFav,
   localtime,
-  forecast,
+  additionalInfo,
 }) => {
   return (
     <WeatherTileHeadingWrapper>
@@ -20,8 +20,11 @@ const WeatherTileHeading = ({
         {""}
         <WeatherTileFavouriteIcon onClick={favOnClick} added={savedInFav} />
       </WeatherTileTitle>
-      {localtime && <DateComponent localtime={localtime} />}
-      {forecast && <Info larger="true">Forecast</Info>}
+      {localtime ? (
+        <DateComponent localtime={localtime} />
+      ) : (
+        <Info larger="true">{additionalInfo}</Info>
+      )}
     </WeatherTileHeadingWrapper>
   );
 };

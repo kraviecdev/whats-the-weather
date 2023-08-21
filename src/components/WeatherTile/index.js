@@ -6,7 +6,7 @@ const WeatherTile = ({
   favOnClick,
   savedInFav,
   localtime,
-  forecast,
+  additionalInfo,
   forecastArticleWrapper,
   children,
 }) => {
@@ -17,7 +17,7 @@ const WeatherTile = ({
         favOnClick={favOnClick}
         savedInFav={savedInFav}
         localtime={localtime}
-        forecast={forecast}
+        additionalInfo={additionalInfo}
       />
       {children}
     </ArticleWrapper>

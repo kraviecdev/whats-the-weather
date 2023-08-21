@@ -1,8 +1,8 @@
-import { Info, WeatherTileWrapper, WeatherTileSection } from "../styled";
+import { Info, WeatherTileWrapper } from "../styled";
 import { HumidityIcon, VisibilityIcon, WindIcon } from "./styled";
 
 const ConditionsInfo = ({
-  basic,
+  main,
   secondary,
   children,
   feelsLike,
@@ -12,12 +12,8 @@ const ConditionsInfo = ({
   visibility,
 }) => {
   return (
-    <WeatherTileSection
-      additionalContentSection
-      borderBottom={basic}
-      forecast={secondary}
-    >
-      {basic && (
+    <>
+      {main && (
         <WeatherTileWrapper additionalInfoWrapper>
           <Info>
             Feels like: <b>{feelsLike}&#176;C</b>
@@ -46,7 +42,7 @@ const ConditionsInfo = ({
           {secondary ? <WindIcon /> : "Wind speed:"} <b>{wind} km/h</b>
         </Info>
       </WeatherTileWrapper>
-    </WeatherTileSection>
+    </>
   );
 };
 

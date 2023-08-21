@@ -5,9 +5,10 @@ const Section = styled.section`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  max-width: 100%;
 
-  ${({ searchSection }) =>
-    searchSection &&
+  ${({ rowGap }) =>
+    rowGap &&
     css`
       flex-direction: row;
       gap: 8px;
@@ -17,11 +18,11 @@ const Section = styled.section`
     forecastSection &&
     css`
       height: 100%;
+      width: 100%;
       z-index: 999;
       position: fixed;
       left: 0;
       top: 0;
-      max-width: 100%;
       justify-content: flex-start;
       transform: translateY(calc(100dvh - 51px));
       gap: 12px;
@@ -33,6 +34,15 @@ const Section = styled.section`
         css`
           transform: translateY(0);
         `}
+    `}
+
+  ${({ tileView }) =>
+    tileView &&
+    css`
+      margin: 0 auto;
+      overflow-y: scroll;
+      padding: 16px;
+      gap: 8px;
     `}
 `;
 

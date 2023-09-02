@@ -2,13 +2,32 @@ import styled, { css } from "styled-components";
 import { ReactComponent as Favourite } from "./favourite.svg";
 
 export const WeatherTileHeadingWrapper = styled.header`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  align-self: center;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   margin: 0 0 12px;
+  grid-template-areas: "title icon" "info info";
+
+  div,
+  p {
+    grid-area: info;
+  }
+
+  ${({ secondary }) =>
+    secondary &&
+    css`
+      grid-template-areas: "icon title" "icon info";
+      grid-column-gap: 16px;
+      justify-items: start;
+
+      h2 {
+        padding: 8px 0;
+      }
+    `}
 `;
 export const WeatherTileTitle = styled.h2`
+  grid-area: title;
   font-size: 24px;
   font-weight: 900;
   line-height: 30px;
@@ -20,6 +39,7 @@ export const WeatherTileTitle = styled.h2`
 `;
 
 export const WeatherTileFavouriteIcon = styled(Favourite)`
+  grid-area: icon;
   width: 20px;
   height: 20px;
   stroke: ${({ theme }) => theme.colors.mainFont};

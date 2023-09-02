@@ -12,14 +12,12 @@ const WeatherTileHeading = ({
   savedInFav,
   localtime,
   additionalInfo,
+  secondary,
 }) => {
   return (
-    <WeatherTileHeadingWrapper>
-      <WeatherTileTitle>
-        {title}
-        {""}
-        <WeatherTileFavouriteIcon onClick={favOnClick} added={savedInFav} />
-      </WeatherTileTitle>
+    <WeatherTileHeadingWrapper secondary={secondary}>
+      <WeatherTileFavouriteIcon onClick={favOnClick} added={savedInFav} />
+      <WeatherTileTitle>{title}</WeatherTileTitle>
       {localtime ? (
         <DateComponent localtime={localtime} />
       ) : (

@@ -39,7 +39,6 @@ const Section = styled.section`
   ${({ tileView }) =>
     tileView &&
     css`
-      margin: 0 auto;
       overflow-y: scroll;
       padding: 16px;
       gap: 8px;

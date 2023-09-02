@@ -17,7 +17,7 @@ const ForecastTile = ({ data, savedInFav, favOnClick, forecastData }) => {
   const dispatch = useDispatch();
 
   return (
-    <Section>
+    <>
       <WeatherTileHeading
         title={data.location.name}
         additionalInfo="Forecast"
@@ -80,7 +80,7 @@ const ForecastTile = ({ data, savedInFav, favOnClick, forecastData }) => {
             </ArticleWrapper>
           ))}
       </Section>
-    </Section>
+    </>
   );
 };
 

@@ -44,7 +44,7 @@ const CurrentTile = ({
             feelsLike={data.current.feelslike_c.toFixed(0)}
             pressure={data.current.pressure_mb}
             humidity={data.current.humidity}
-            wind={data.current.gust_kph}
+            wind={data.current.wind_kph}
           />
         </WeatherTileSection>
       </div>

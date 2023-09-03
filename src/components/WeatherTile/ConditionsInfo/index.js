@@ -11,6 +11,8 @@ const ConditionsInfo = ({
   wind,
   visibility,
 }) => {
+  const windSpeed = (wind * 0.27778).toFixed(1);
+
   return (
     <>
       {main && (
@@ -39,7 +41,7 @@ const ConditionsInfo = ({
           {secondary ? <HumidityIcon /> : "Humidity:"} <b>{humidity}%</b>
         </Info>
         <Info>
-          {secondary ? <WindIcon /> : "Wind speed:"} <b>{wind} km/h</b>
+          {secondary ? <WindIcon /> : "Wind speed:"} <b>{windSpeed} m/s</b>
         </Info>
       </WeatherTileWrapper>
     </>

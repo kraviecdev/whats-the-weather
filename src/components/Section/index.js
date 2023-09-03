@@ -43,6 +43,13 @@ const Section = styled.section`
       padding: 16px;
       gap: 8px;
     `}
+
+  ${({ citiesSection }) =>
+    citiesSection &&
+    css`
+      margin: 0 -16px;
+      max-width: unset;
+    `}
 `;
 
 export default Section;

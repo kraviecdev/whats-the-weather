@@ -50,8 +50,23 @@ export const WeatherTileSection = styled.section`
       grid-auto-rows: max-content;
       grid-column-gap: 34px;
       overflow-x: auto;
-      padding: 0 0 12px;
-      height: 114px;
+      overflow-y: hidden;
+      padding: 8px 0;
+      max-height: 114px;
+    `}
+
+  ${({ citiesSection }) =>
+    citiesSection &&
+    css`
+      grid-gap: 10px;
+      padding: 8px 0;
+      margin: 0 0 0 0;
+      overflow-y: hidden;
+      max-height: 200px;
+
+      section {
+        margin: 0;
+      }
     `}
   
   ${({ contentHidden }) =>
@@ -59,7 +74,7 @@ export const WeatherTileSection = styled.section`
     css`
       overflow-y: hidden;
       opacity: 0;
-      height: 0;
+      max-height: 0;
       margin: 0 0 0 0;
     `}
 `;

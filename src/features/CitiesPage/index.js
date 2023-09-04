@@ -11,7 +11,7 @@ import {
   setCitiesData,
 } from "../weatherSlice";
 import CitiesListTiles from "../../components/WeatherTile/CitiesListTiles";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Loading from "../../components/StatusInfo/Loading";
 import Error from "../../components/StatusInfo/Error";
 
@@ -50,7 +50,7 @@ const CitiesPage = () => {
     return results;
   };
 
-  const { data, isError } = useQuery("cities", () =>
+  const { data, isError, isLoading } = useQuery("cities", () =>
     fetchMultipleQueries(doneSearches)
   );
 
@@ -70,16 +70,13 @@ const CitiesPage = () => {
     }
   }, [data]);
 
-  const Status = () =>
-    ({
-      loading: <Loading />,
-      success: <CitiesListTiles cities={citiesData} />,
-      error: <Error />,
-    }[applicationStatus]);
-
   return (
     <WeatherApp>
-      <Status />
+      {(applicationStatus === "loading" || isLoading) && <Loading />}
+      {applicationStatus === "error" && <Error />}
+      {applicationStatus === "success" && (
+        <CitiesListTiles cities={citiesData} />
+      )}
     </WeatherApp>
   );
 };

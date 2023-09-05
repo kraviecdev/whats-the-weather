@@ -19,12 +19,15 @@ import {
   SearchInputWrapper,
   SearchWrapper,
   TilesIcon,
+  SingleIcon,
 } from "./styled";
 import Section from "../Section";
+import { useLocation } from "react-router";
 
 const Search = () => {
   const dispatch = useDispatch();
   const doneSearches = useSelector(selectDoneSearches);
+  const location = useLocation();
 
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
@@ -93,8 +96,11 @@ const Search = () => {
             </SearchDropdownWrapper>
           ))}
       </SearchWrapper>
-      <SearchNavigationButton to={`/cities`} tiles="true">
-        <TilesIcon />
+      <SearchNavigationButton
+        to={location.pathname === "/cities" ? "/weather" : "/cities"}
+        icon="true"
+      >
+        {location.pathname === "/cities" ? <SingleIcon /> : <TilesIcon />}
       </SearchNavigationButton>
     </Section>
   );

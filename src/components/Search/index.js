@@ -96,12 +96,14 @@ const Search = () => {
             </SearchDropdownWrapper>
           ))}
       </SearchWrapper>
-      <SearchNavigationButton
-        to={location.pathname === "/cities" ? "/weather" : "/cities"}
-        icon="true"
-      >
-        {location.pathname === "/cities" ? <SingleIcon /> : <TilesIcon />}
-      </SearchNavigationButton>
+      {doneSearches.length > 0 && (
+        <SearchNavigationButton
+          to={location.pathname === "/cities" ? "/weather" : "/cities"}
+          icon="true"
+        >
+          {location.pathname === "/cities" ? <SingleIcon /> : <TilesIcon />}
+        </SearchNavigationButton>
+      )}
     </Section>
   );
 };

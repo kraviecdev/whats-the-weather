@@ -98,6 +98,7 @@ const Search = () => {
       </SearchWrapper>
       {doneSearches.length > 0 && (
         <SearchNavigationButton
+          onClick={() => dispatch(clearState())}
           to={location.pathname === "/cities" ? "/weather" : "/cities"}
           icon="true"
         >

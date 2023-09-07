@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectDoneSearches } from "../../components/Search/searchSlice";
 import { getWeatherData } from "../getWeatherData";
 import {
-  clearState,
   selectApplicationStatus,
   selectCitiesData,
   setApplicationStatus,
@@ -55,8 +54,6 @@ const CitiesPage = () => {
   );
 
   useEffect(() => {
-    dispatch(clearState());
-
     if (!!isError) {
       dispatch(setApplicationStatus("error"));
     }

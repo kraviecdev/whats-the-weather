@@ -1,7 +1,7 @@
 # What's the weather
 
-What's the weather is an application based on the graphic design in Figma and using latest technology.
-It was created as a training application to my Frontend portfolio.
+What's the weather is an application based on the graphic design by Szymon Łydkowski in Figma and using latest technology.
+It was created as a training application to Frontend portfolio.
 
 ## Table of contents
 1. [Demo](#demo)
@@ -11,14 +11,20 @@ It was created as a training application to my Frontend portfolio.
 5. [Used technologies and concepts](#used-technologies-and-concepts)
 6. [Available Scripts](#available-scripts)
 ## Demo
-[Personal Homepage Demo](https://patrick36212.github.io/whats-the-weather/)
+Last version application demo below
+
+[What's the Weather](https://patrick36212.github.io/whats-the-weather/)
 
 ## Preview
+Preview for basic functionality
+
 ![Whats the weather](./wtw.gif)
+
 ## General information
 
-This project was made for weather info to any available city in whole world.
+This project was made for weather info to any available city in the world.
 Made for daily forecast in React using WeatherAPI.com
+This application gives ability to check forecast for current day + 2 days further.
 
 ![Responsive view in common devices](./responsiveness.PNG)
 
@@ -34,11 +40,16 @@ What's the weather is an application created for the smallest device, also it is
 - [x] JavaScript (ES6+)
 - [x] React
 - [x] React Redux
+- [x] React Swiepeable
+- [x] React Router
 - [x] TanStack Query (React Query)
 - [x] Styled Components
 - [x] Error Handling
 - [x] React Hooks
 - [x] Working with API
+- [x] GithubPages
+- [x] Draw.io
+- [x] Snyk.io
 - [x] NPM
 - [x] Figma
 - [x] This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

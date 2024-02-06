@@ -13,7 +13,7 @@ It was created as a training application to Frontend portfolio.
 ## Demo
 Last version application demo below
 
-[What's the Weather](https://patrick36212.github.io/whats-the-weather/)
+[What's the Weather](https://kraviecdev.github.io/whats-the-weather/#/weather/)
 
 ## Preview
 Preview for basic functionality

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/whats-the-weather/static/js/main.87eea7ea.js",
-    "static/js/496.5d6136f2.chunk.js": "/whats-the-weather/static/js/496.5d6136f2.chunk.js",
+    "main.js": "/whats-the-weather/static/js/main.12c1321e.js",
+    "static/js/808.e3d369f2.chunk.js": "/whats-the-weather/static/js/808.e3d369f2.chunk.js",
     "static/media/heavy_snow_shower.svg": "/whats-the-weather/static/media/heavy_snow_shower.ec5f14d2d7769e14815e2a3a4796750e.svg",
     "static/media/sad_cloud.svg": "/whats-the-weather/static/media/sad_cloud.6116091079dfb7e98f8800eb49e8d53e.svg",
     "static/media/light_freezing_rain.svg": "/whats-the-weather/static/media/light_freezing_rain.1a5db9b92f1f91f5ff1dc2e9132ec1a7.svg",
@@ -40,10 +40,10 @@
     "static/media/search.svg": "/whats-the-weather/static/media/search.03e90bb23b7bac50e671fa4a419ed38f.svg",
     "static/media/favourite.svg": "/whats-the-weather/static/media/favourite.998f10d2f375abfc2049b1818e312fe1.svg",
     "static/media/up.svg": "/whats-the-weather/static/media/up.ddb26952d531759e348d6fa8fc1835d7.svg",
-    "main.87eea7ea.js.map": "/whats-the-weather/static/js/main.87eea7ea.js.map",
-    "496.5d6136f2.chunk.js.map": "/whats-the-weather/static/js/496.5d6136f2.chunk.js.map"
+    "main.12c1321e.js.map": "/whats-the-weather/static/js/main.12c1321e.js.map",
+    "808.e3d369f2.chunk.js.map": "/whats-the-weather/static/js/808.e3d369f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.87eea7ea.js"
+    "static/js/main.12c1321e.js"
   ]
 }

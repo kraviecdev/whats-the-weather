@@ -2,7 +2,7 @@
   "name": "whats-the-weather",
   "version": "2.0.0",
   "private": true,
-  "homepage": "https://patrick36212.github.io/whats-the-weather/",
+  "homepage": "https://kraviecdev.github.io/whats-the-weather/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
     "@testing-library/jest-dom": "^6.4.2",

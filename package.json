@@ -4,23 +4,23 @@
   "private": true,
   "homepage": "https://patrick36212.github.io/whats-the-weather/",
   "dependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@reduxjs/toolkit": "^1.8.2",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "gh-pages": "^5.0.0",
+    "@reduxjs/toolkit": "^2.1.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
+    "dotenv": "^16.4.1",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
-    "react-redux": "^8.0.2",
-    "react-router": "^6.8.0",
-    "react-router-dom": "^6.8.2",
+    "react-redux": "^9.1.0",
+    "react-router": "^6.22.0",
+    "react-router-dom": "^6.22.0",
     "react-scripts": "^5.0.1",
     "react-swipeable": "^7.0.1",
-    "styled-components": "^5.3.6",
-    "styled-normalize": "^8.0.7",
-    "web-vitals": "^2.1.4"
+    "styled-components": "^6.1.8",
+    "styled-normalize": "^8.1.0",
+    "web-vitals": "^3.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,6 +49,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "2.8.4"
+    "prettier": "^3.2.5"
   }
 }

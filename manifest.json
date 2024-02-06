@@ -1,0 +1,13 @@
+{
+  "short_name": "What's the Weather",
+  "name": "What's the Weather",
+  "description": "Weather App powered by WeatherApi.com",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#D9DFE3",
+  "icons": {
+    "src": "logo.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  }
+}
